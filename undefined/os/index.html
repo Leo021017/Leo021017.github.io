@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">19</span> Minutes
+              Estimated Reading Time <span class="post-count">18</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">5.6k</span> In Total
+              Words <span class="post-count">5.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -419,7 +419,7 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <h2 id="第二章">第二章</h2>
-<h4 id="1-操作系统概念，与一般软件的区别">1. 操作系统概念，与一般软件的区别</h4>
+<h3 id="操作系统概念-与一般软件的区别">操作系统概念 与一般软件的区别</h3>
 <ol>
 <li>操作系统是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配（<strong>①操作系统是系统资源的管理者</strong>）</li>
 <li>以提供给用户和其他软件方便的接口和环境（<strong>②向上层提供方便易用的服务</strong>）</li>
@@ -431,7 +431,7 @@
 </ol>
 </li>
 </ol>
-<h4 id="2-操作系统的功能和目标">2. 操作系统的功能和目标</h4>
+<h3 id="操作系统的功能和目标">操作系统的功能和目标</h3>
 <ol>
 <li>
 <p>处理机管理、进程管理、内存管理、文件管理、设备驱动管理（如摄像头等资源）、用户接口</p>
@@ -455,9 +455,9 @@
 <p>扩展能力：在构造操作系统时，应允许在不妨碍服务的前提下，有效地开发、测试和引入新的系统功能</p>
 </li>
 </ol>
-<h4 id="3-操作系统的构成模块">3. 操作系统的构成模块</h4>
+<h3 id="操作系统的构成模块">操作系统的构成模块</h3>
 <p>​	对应上题中要实现的功能有相应的模块</p>
-<h4 id="4-操作系统发展的三主线">4. 操作系统发展的三主线</h4>
+<h3 id="操作系统发展的三主线">操作系统发展的三主线</h3>
 <ol>
 <li>历史发展角度
 <ol>
@@ -475,7 +475,7 @@
 <li>设计实现角度</li>
 <li>其他</li>
 </ol>
-<h4 id="5-分时系统与批处理系统（多道）的概念和异同">5. 分时系统与批处理系统（多道）的概念和异同</h4>
+<h3 id="分时系统与批处理系统的概念和异同">分时系统与批处理系统的概念和异同</h3>
 <ol>
 <li>分时系统：计算机会为每个用户提供一定时间片的CPU时间，以便用户可以执行他们的任务并与计算机交互</li>
 <li>批处理系统：用户提交一个作业，该作业包含一系列需要执行的任务，然后计算机会按照顺序逐一执行这些任务。</li>
@@ -483,16 +483,16 @@
 <li>分时：减小响应时间                            批处理：充分利用处理器</li>
 <li>都使用了多道程序设计</li>
 </ol>
-<h4 id="6-中断和异常在分时系统和批处理系统中的差异">6. 中断和异常在分时系统和批处理系统中的差异</h4>
+<h3 id="中断和异常在分时系统和批处理系统中的差异">中断和异常在分时系统和批处理系统中的差异</h3>
 <p>​	1. 在分时系统中，异常处理和中断处理非常重要。当一个程序出现异常时，操作系统会立即停止当前进程并将控制权转移到异常处理程		序。</p>
 <ol start="2">
 <li>在批处理系统中，通常只有一个用户提交作业，如果一个作业出现错误，系统可能会记录错误信息并将作业标记为失败，而不是立即停止当前作业并转移到异常处理程序。</li>
 </ol>
-<h4 id="7-如何理解操作系统与虚拟机">7. 如何理解操作系统与虚拟机</h4>
+<h3 id="如何理解操作系统与虚拟机">如何理解操作系统与虚拟机</h3>
 <p>虚拟机是指通过软件模拟的具有完整硬件系统功能的、运行在一个完全隔离环境中的完整计算 机系统</p>
 <p>操作系统是一个虚拟机，（CPU被虚拟，并发变并行，内存被虚拟化）</p>
 <h2 id="第三章">第三章</h2>
-<h4 id="1-为了实现进程，需要CPU提供哪些硬件支持（mode态，中断与异常）">1. 为了实现进程，需要CPU提供哪些硬件支持（mode态，中断与异常）</h4>
+<h3 id="为了实现进程，需要CPU提供哪些硬件支持">为了实现进程，需要CPU提供哪些硬件支持</h3>
 <p>​	当进程需要进行输入输出、系统调用或遇到错误时，CPU需要提供中断/异常处理机制来实现从用户态到内核态的切换，并执行相应	的中断/异常处理程序。</p>
 <ol>
 <li>程序计数器：用于存储当前执行指令的地址，以便在下一次执行时能够继续执行。</li>
@@ -502,7 +502,7 @@
 <li>内存管理单元：用于实现虚拟内存，将虚拟地址映射到物理地址，以便进程能够访问到自己的内存空间。</li>
 <li>计时器：用于计算程序执行时间，以便操作系统能够进行时间片轮转调度，实现进程 切换</li>
 </ol>
-<h4 id="2-进程的概念，产生背景，和程序的关系和区别">2. 进程的概念，产生背景，和程序的关系和区别</h4>
+<h3 id="进程的概念-产生背景-和程序的关系和区别">进程的概念 产生背景 和程序的关系和区别</h3>
 <ul>
 <li>
 <p>程序代码+代码相关联的数据集+PCB；</p>
@@ -521,19 +521,19 @@
 <p>可以让os更方便地管理资源，实现资源对多个程序可用；</p>
 </li>
 </ul>
-<h4 id="3-进程控制块的概念及功能，简单描述其构成">3. 进程控制块的概念及功能，简单描述其构成</h4>
+<h3 id="进程控制块的概念及功能-简单描述其构成">进程控制块的概念及功能 简单描述其构成</h3>
 <ul>
 <li>有操作系统创建并管理；存储基本的进程描述信息的数据结构；操作系统对进程进行管理工作所需的信息都存在PCB中</li>
 <li>可以中断一个程序的执行，并在后来恢复程序的执行</li>
 <li>回答三个字段：eg. ID（唯一标识符）、状态（运行态等）、优先级</li>
 </ul>
-<h4 id="4-从程序生命周期角度说明一个程序是如何转化为一个进程的（必须画出PCB）">4. 从程序生命周期角度说明一个程序是如何转化为一个进程的（必须画出PCB）</h4>
+<h3 id="从程序生命周期角度说明一个程序是如何转化为一个进程的">从程序生命周期角度说明一个程序是如何转化为一个进程的</h3>
 <ol>
 <li>程序加载：一个程序通过<strong>编译链接</strong>后得到的可执行文件加载到内存中</li>
 <li>进程创建：分配内存空间，创建PCB</li>
 <li>进程初始化：将代码、数据、<strong>堆</strong>、<strong>栈</strong>加载进内存空间</li>
 </ol>
-<h4 id="5-进程控制相关的原理或者系统调用-进程创建销毁等（fork-wait）">5. 进程控制相关的原理或者系统调用  进程创建销毁等（fork wait）</h4>
+<h3 id="进程控制相关的原理或者系统调用-进程创建销毁等">进程控制相关的原理或者系统调用  进程创建销毁等</h3>
 <ul>
 <li>进程控制：实现进程状态转换；mode的切换；中断</li>
 <li><code>fork()</code>函数产生一个子进程，子进程返回0，父进程返回子进程ID，出错返回-1</li>
@@ -548,15 +548,15 @@
 </ol>
 </li>
 </ul>
-<h4 id="6-进程的五状态图">6. 进程的五状态图</h4>
+<h3 id="进程的五状态图">进程的五状态图</h3>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230611201355231.png" alt="image-20230611201355231" style="zoom:50%;" />
-<h4 id="7-从三个角度来分析进程交替执行">7. 从三个角度来分析进程交替执行</h4>
+<h3 id="从三个角度来分析进程交替执行">从三个角度来分析进程交替执行</h3>
 <ol>
 <li>OS：让程序 A 执行6个指令周期，当满足进程切换的条件时立刻停止 A 的继续执行，收回控制权并执行分派器的程序，将控制权转给程序B</li>
 <li>CPU：CPU 正在读取A程序的指令并执行，然后去读取B进程的指令并执行（意识不到进程的存在）</li>
 <li>某个进程：意识不到自己被中断，虽然在物理控制流上是非连续的，但在逻辑控制流上是连续的</li>
 </ol>
-<h4 id="8-进程的创建流程，并结合Linux-的fork系统调用流程">8. 进程的创建流程，并结合Linux 的fork系统调用流程</h4>
+<h3 id="进程的创建流程，并结合Linux-的fork系统调用流程">进程的创建流程，并结合Linux 的fork系统调用流程</h3>
 <ol>
 <li>为新进程分配进程标识符</li>
 <li>为进程分配空间</li>
@@ -565,7 +565,7 @@
 <li>创建或扩充其他数据结构</li>
 <li><code>fork</code>的一次调用两次返回（2‘）</li>
 </ol>
-<h4 id="9-关于进程切换的流程和时机（以Linux-的wait为例）">9. 关于进程切换的流程和时机（以Linux 的wait为例）</h4>
+<h3 id="关于进程切换的流程和时机">关于进程切换的流程和时机</h3>
 <ol>
 <li>流程
 <ol>
@@ -578,18 +578,18 @@
 </ol>
 <p>（考研）给代码解释</p>
 <h2 id="第四章">第四章</h2>
-<h4 id="1-线程的概念，进程和线程的区别（关系）">1. 线程的概念，进程和线程的区别（关系）</h4>
+<h3 id="线程的概念-进程和线程的区别（关系）">线程的概念 进程和线程的区别（关系）</h3>
 <ul>
 <li>线程是是调度的基本单位，是一个基本的CPU执行单元，也是程序执行流的最小单位（轻量版的进程）</li>
 <li>进程是资源分配的基本单位，线程是调度的基本单位；一个进程内的线程共享进程的资源</li>
 </ul>
-<h4 id="2-线程的实现方法">2. 线程的实现方法</h4>
+<h3 id="线程的实现方法">线程的实现方法</h3>
 <ol>
 <li>用户级线程：所有的线程管理工作都由应用程序负责，在用户态下完成，操作系统内核意识不到线程的存在，任何应用程序都可以使用线程库设计成多线程程序</li>
 <li>内核级线程：线程的管理工作由操作系统内核完成（通过TCB管理），在内核态下完成，操作系统内核可以意识到</li>
 <li>用户级+内核级：</li>
 </ol>
-<h4 id="3-ULT和KLT各自的优缺点">3. ULT和KLT各自的优缺点</h4>
+<h3 id="ULT和KLT各自的优缺点">ULT和KLT各自的优缺点</h3>
 <ol>
 <li>
 <p>ULT</p>
@@ -621,39 +621,44 @@
 </li>
 </ol>
 <h2 id="第五章">第五章</h2>
-<h4 id="1-并发需要解决的四个问题，及概念">1. 并发需要解决的四个问题，及概念</h4>
+<h3 id="并发需要解决的四个问题-及概念">并发需要解决的四个问题 及概念</h3>
 <ol>
 <li>同步：进程的并发必然导致异步性，而实际中有些程序必须按照顺序执行（如：读&amp;写），这种直接制约关系就是同步</li>
 <li>互斥：当一个进程进入临界区访问共享资源时其他进程不能进入该临界区访问任何共享资源的情形</li>
 <li>饥饿：一个可运行的进程即使能继续执行，但被调度程序无限期地忽视，而不能被调度执行的情形</li>
 <li>死锁：一组进程中的每个进程都在等待某个事件，而仅有这组进程中被阻塞的其他才可触发该进程时，就称这组进程发生了死锁</li>
 </ol>
-<h4 id="2-同步和互斥的产生背景（为什么引入）">2. 同步和互斥的产生背景（为什么引入）</h4>
+<h3 id="同步和互斥的产生背景（为什么引入）">同步和互斥的产生背景（为什么引入）</h3>
 <p>现代操作系统基本都是多任务操作系统，即同时有大量可调度实体在运行</p>
 <p>都需要访问/使用同一种资源</p>
 <p>进程的并发必然导致异步性，而实际中有些程序必须按照顺序执行（如：读&amp;写），这种直接制约关系就是同步；会产生<strong>条件竞争</strong>，保护数据；</p>
-<h4 id="3-（考研特色题）什么叫条件竞争，并举例描述（结合代码）">3. （考研特色题）什么叫条件竞争，并举例描述（结合代码）</h4>
+<h3 id="（考研特色题）什么叫条件竞争，并举例描述（结合代码）">（考研特色题）什么叫条件竞争，并举例描述（结合代码）</h3>
 <p>多个进程或线程读写数据时，最终结果取决于多个进程的指令执行顺序</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230616230837218.png" alt="image-20230616230837218" style="zoom:40%;" />
-<h4 id="4-为了解决同步和互斥问题，有哪些解决方案">4. 为了解决同步和互斥问题，有哪些解决方案</h4>
-<pre><code>  1. 软件
-     - dekker
-     - Peterson
-  2. 硬件：中断禁用；专用机器指令（`compare_and_swap` &amp;`exchange`）
-  3. **系统**：管程&amp;信号量&amp;消息传递
-</code></pre>
-<h4 id="5-如果用硬件解决互斥方法，他有什么缺点">5. 如果用硬件解决互斥方法，他有什么缺点</h4>
-<pre><code>  1. 关中断：简单粗暴，操作系统被限制只能交替运行程序，执行的效率降低；不能用于多处理器体系结构，只会屏蔽当前运行的处理机，其他处理器仍然可能对其中断
-  2. 特殊的硬件指令：不满足“忙则等待”；选择等待的进程是任意的，可能会饥饿；可能会死锁：低优先级临界区被中断，高优先级忙等待，由于被中断的优先级低，不会再被调度
-</code></pre>
-<h4 id="6-信号量的概念本质及其实现">6. 信号量的概念本质及其实现</h4>
+<h3 id="为了解决同步和互斥问题，有哪些解决方案">为了解决同步和互斥问题，有哪些解决方案</h3>
+<ol>
+<li>软件
+<ul>
+<li>dekker</li>
+<li>Peterson</li>
+</ul>
+</li>
+<li>硬件：中断禁用；专用机器指令（<code>compare_and_swap</code> &amp;<code>exchange</code>）</li>
+<li><strong>系统</strong>：管程&amp;信号量&amp;消息传递</li>
+</ol>
+<h3 id="如果用硬件解决互斥方法，他有什么缺点">如果用硬件解决互斥方法，他有什么缺点</h3>
+<ol>
+<li>关中断：简单粗暴，操作系统被限制只能交替运行程序，执行的效率降低；不能用于多处理器体系结构，只会屏蔽当前运行的处理机，其他处理器仍然可能对其中断</li>
+<li>特殊的硬件指令：不满足“忙则等待”；选择等待的进程是任意的，可能会饥饿；可能会死锁：低优先级临界区被中断，高优先级忙等待，由于被中断的优先级低，不会再被调度</li>
+</ol>
+<h3 id="信号量的概念本质及其实现">信号量的概念本质及其实现</h3>
 <p>大题</p>
-<h4 id="7-管程的好处或引入管程的原因是什么">7. 管程的好处或引入管程的原因是什么</h4>
+<h3 id="管程的好处或引入管程的原因是什么">管程的好处或引入管程的原因是什么</h3>
 <p>管程——&gt;函数库级的信号量，属于系统库，所有同步机制限制在管程内部</p>
 <p>信号量分布在整个程序中，使用不当， 可能造成程序错误，甚至死锁。管程易于验证同步正确性，易于检测出错误</p>
 <p>让程序员写程序时不需要再关注复杂的PV操作，让写代码更轻松</p>
 <h2 id="第六章">第六章</h2>
-<h4 id="1-死锁的概念和产生背景">1. 死锁的概念和产生背景</h4>
+<h3 id="死锁的概念和产生背景">死锁的概念和产生背景</h3>
 <p>给一段代码判断是否是死锁（过独木桥，过十字路口）</p>
 <p>一组进程中的每个进程都在等待某个事件，而仅有这组进程中被阻塞的其他才可触发该进程时，就称这组进程发生了死锁</p>
 <p>背景</p>
@@ -663,48 +668,53 @@
 <li>资源分配不当</li>
 <li>进程运行推进阻塞</li>
 </ol>
-<h4 id="2-死锁的条件（三个充分，四个充要）">2. 死锁的条件（三个充分，四个充要）</h4>
-<pre><code>  1. 互斥：一次只能有一个进程使用一个资源，其他进程不能访问已经被分配给其他进程的资源
-  2. 占有且等待：一个进程等待其他资源时，继续占有已分配的资源
-  3. 非抢占：只能等其他进程主动释放自己的资源，不能去抢占其他进程的资源
-  4. 循环等待：存在一个闭合的进程链，每个进程至少占有此链中下一个进程所需要的资源（必要不充分；发生循环等待未必死锁）
-</code></pre>
-<h4 id="3-死锁的解决方法">3. 死锁的解决方法</h4>
-<pre><code>1. 预防：破坏四个条件之一
-   1. 互斥：不能被破坏
-   2. 占有且等待：一次性请求所需要的所有资源（依然还是有占有且等待条件的）
-   3. 非抢占：允许抢占（破坏了抢占的条件）；申请资源被拒绝就释放自己的全部资源（不占有）
-   4. 循环等待：定义资源类型的线性顺序（破坏了循环等待的条件）
-2. 避免（银行家算法）
-   1. 一个进程请求会死锁就不启动该进程
-   2. 一个进程的资源请求会死锁，就不分配该资源
-</code></pre>
-<ol start="3">
+<h3 id="死锁的条件（三个充分，四个充要）">死锁的条件（三个充分，四个充要）</h3>
+<ol>
+<li>互斥：一次只能有一个进程使用一个资源，其他进程不能访问已经被分配给其他进程的资源</li>
+<li>占有且等待：一个进程等待其他资源时，继续占有已分配的资源</li>
+<li>非抢占：只能等其他进程主动释放自己的资源，不能去抢占其他进程的资源</li>
+<li>循环等待：存在一个闭合的进程链，每个进程至少占有此链中下一个进程所需要的资源（必要不充分；发生循环等待未必死锁）</li>
+</ol>
+<h3 id="死锁的解决方法">死锁的解决方法</h3>
+<ol>
+<li>
+<p>预防：破坏四个条件之一</p>
+<ol>
+<li>互斥：不能被破坏</li>
+<li>占有且等待：一次性请求所需要的所有资源（依然还是有占有且等待条件的）</li>
+<li>非抢占：允许抢占（破坏了抢占的条件）；申请资源被拒绝就释放自己的全部资源（不占有）</li>
+<li>循环等待：定义资源类型的线性顺序（破坏了循环等待的条件）</li>
+</ol>
+</li>
+<li>
+<p>避免（银行家算法）</p>
+<ol>
+<li>一个进程请求会死锁就不启动该进程</li>
+<li>一个进程的资源请求会死锁，就不分配该资源</li>
+</ol>
+</li>
 <li>
 <p>检测（死锁了怎么办，挂起谁？）</p>
 <ol>
 <li>银行家算法检测</li>
-<li>恢复
-<ol>
+<li>恢复</li>
 <li>取消所有死锁进程</li>
 <li>回滚进程到检查点并重新启动</li>
 <li>连续取消死锁进程直到不再死锁</li>
 <li>连续抢占资源直到不再死锁</li>
 </ol>
 </li>
-</ol>
-</li>
 <li>
 <p>综合：把资源分成几组不同的资源类，使用线性排序策略，在一个资源类中使用最适合该资源的算法</p>
 </li>
 </ol>
-<h4 id="4-死锁和饥饿的关系">4. 死锁和饥饿的关系</h4>
+<h3 id="死锁和饥饿的关系">死锁和饥饿的关系</h3>
 <p>都是竞争资源引起的</p>
 <p>死锁是导致饥饿的一个原因（不是唯一）</p>
 <p>死锁等待对方释放资源（至少两个进程）</p>
 <p>饥饿自己拿不到资源，不一定是对方的（一个进程也可饥饿）</p>
 <h2 id="第七章">第七章</h2>
-<h4 id="1-简述存储管理的七个方法">1. 简述存储管理的七个方法</h4>
+<h3 id="简述存储管理的七个方法">简述存储管理的七个方法</h3>
 <ol>
 <li>
 <p>全部加载且连续：</p>
@@ -728,21 +738,21 @@
 </ul>
 </li>
 </ol>
-<h4 id="2-固定分区、动态分区、分页、分段的异同（-是否全部加载、是否连续）">2. 固定分区、动态分区、分页、分段的异同（+是否全部加载、是否连续）</h4>
+<h3 id="固定分区、动态分区、分页、分段的异同（-是否全部加载、是否连续）">固定分区、动态分区、分页、分段的异同（+是否全部加载、是否连续）</h3>
 <p>分页、分段：一个大小相同，一个大小不同</p>
 <p>固定分区、分页：大小相等</p>
 <p>动态分区和分段：大小不等</p>
-<h4 id="3-段表和页表的构造和使用">3. 段表和页表的构造和使用</h4>
+<h3 id="段表和页表的构造和使用">段表和页表的构造和使用</h3>
 <p>是由谁构造（操作系统内核）、什么时候构造（进程创建时分配连续的虚拟空间并构造对应的页表和段表）、构造出来长什么样子（表格：页号、页框号；段号、长度、基地址）；谁在使用（CPU）、什么时候使用（进程访问时）</p>
    <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230610221704616.png" alt="image-20230610221704616" style="zoom:50%;" />
 <h2 id="第八章">第八章</h2>
-<h4 id="1-实现虚拟存储主要考虑的三个问题">1. 实现虚拟存储主要考虑的三个问题</h4>
+<h3 id="实现虚拟存储主要考虑的三个问题">实现虚拟存储主要考虑的三个问题</h3>
 <ol>
 <li>是否支持虚拟存储</li>
 <li>虚拟存储的具体实现方式（分页、分段、段页）</li>
 <li>操作系统在内存分配时的具体算法（os考虑）</li>
 </ol>
-<h4 id="2-实现虚拟存储的三个方法">2. 实现虚拟存储的三个方法</h4>
+<h3 id="实现虚拟存储的三个方法">实现虚拟存储的三个方法</h3>
 <ol>
 <li>
 <p>虚拟分页：不需要装入一个进程的所有页，在需要时自动调入</p>
@@ -755,9 +765,9 @@
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230616233222597.png" alt="image-20230616233222597" style="zoom:50%;" />
 </li>
 </ol>
-<h4 id="3-虚拟存储器的PageFault的处理流程">3. 虚拟存储器的PageFault的处理流程</h4>
+<h3 id="虚拟存储器的PageFault的处理流程">虚拟存储器的PageFault的处理流程</h3>
    <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230611140732283.png" alt="image-20230611140732283" style="zoom:40%;" />
-<h4 id="4-地址转化（只考图）">4. 地址转化（只考<strong>图</strong>）</h4>
+<h3 id="地址转化（只考图）">地址转化（只考<strong>图</strong>）</h3>
 <ol>
 <li>
 <p>虚存分页（两级页表）怎么查</p>
@@ -773,10 +783,10 @@
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230616233437046.png" alt="image-20230616233437046" style="zoom:50%;" />
 </li>
 </ol>
-<h4 id="5-请简述缺页率和页尺寸和页框数的关系（结合图分析）">5. 请简述缺页率和页尺寸和页框数的关系（结合图分析）</h4>
+<h3 id="请简述缺页率和页尺寸和页框数的关系（结合图分析）">请简述缺页率和页尺寸和页框数的关系（结合图分析）</h3>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230611142554690.png" alt="image-20230611142554690" style="zoom:40%;" />
 <h2 id="第九章">第九章</h2>
-<h4 id="1-长中短三个调度的描述（三个图：状态转换、调度层次、队列管理）">1. 长中短三个调度的描述（三个图：状态转换、调度层次、队列管理）</h4>
+<h3 id="长中短三个调度的描述（三个图：状态转换、调度层次、队列管理）">长中短三个调度的描述（三个图：状态转换、调度层次、队列管理）</h3>
 <ol>
 <li>长程调度（作业调度）：按照某种规则，从后备队列中选择合适的作业将其调入内存，并为其创建进程（无-&gt;创建态-&gt;就绪态）（外存-&gt;内存）</li>
 <li>中程调度（内存调度）：按照某种规则，从堵塞挂起或就绪挂起队列中选择合适的进程将其数据调回内存（挂起态-&gt;就绪态（阻塞挂起-&gt;阻塞态））（外存-&gt;内存）</li>
@@ -788,7 +798,7 @@
 <h2 id="第十章">第十章</h2>
 <h4 id="无">无</h4>
 <h2 id="第十一章">第十一章</h2>
-<h4 id="1-IOBuffer的产生背景和常见的IOBuffer的实现方式">1. IOBuffer的产生背景和常见的IOBuffer的实现方式</h4>
+<h3 id="IOBuffer的产生背景和常见的IOBuffer的实现方式">IOBuffer的产生背景和常见的IOBuffer的实现方式</h3>
 <ol>
 <li>产生背景
 <ol>
@@ -808,7 +818,7 @@
 </li>
 </ol>
 <h2 id="第十二章">第十二章</h2>
-<h4 id="1-文件系统的设计层次（图）">1. 文件系统的设计层次（图）</h4>
+<h3 id="文件系统的设计层次（图）">文件系统的设计层次（图）</h3>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230615005155553.png" alt="image-20230615005155553" style="zoom:50%;" />
 <ol>
 <li>设备驱动：直接与外围设备通信（os）</li>
@@ -818,7 +828,7 @@
 </ol>
 <p>​	<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230615005211610.png" alt="image-20230615005211610" style="zoom:40%;" /></p>
 <p>用户和应用程序执行文件操作在记录级上执行，将文件视为具有组织记录的某种结构，但IO是以块为基础的，将块组织成记录</p>
-<h4 id="2-文件系统逻辑层次上的五种实现方式（堆、索引）">2. 文件系统逻辑层次上的五种实现方式（堆、索引）</h4>
+<h3 id="文件系统逻辑层次上的五种实现方式">文件系统逻辑层次上的五种实现方式</h3>
 <ol>
 <li>堆：按照数据到来顺序进行组织（记录和记录中的域都是变长的；穷尽搜索）</li>
 <li>顺序文件：文件由定长的记录构成，每个记录由确定顺序（关键域唯一标识）的、定长的域构成（穷尽、排序存储）</li>
@@ -826,7 +836,7 @@
 <li>索引文件：可以为多个关键域建立索引</li>
 <li>散列文件：采用散列表索引，不按照关键域排序（有关键域；域和记录等长；快速访问）</li>
 </ol>
-<h4 id="3-文件系统物理层次上的三种实现方式">3. 文件系统物理层次上的三种实现方式</h4>
+<h3 id="文件系统物理层次上的三种实现方式">文件系统物理层次上的三种实现方式</h3>
 <ol>
 <li>连续分配：创建时分配一组连续的块，每个文件只需要一个表项用于说明起始块和文件的长 度，会出现外部碎片，需要执行紧缩算法来释放磁盘中的额外空间</li>
 <li>链式分配：链式分配基于单个块，链中的每块都包含指向下一块的指针，要一个表项用于说明 起始块和文件的长度，没有外部碎片，最适合顺序文件，局部性原理不再适用，需要周期性地 合并文件</li>
@@ -867,6 +877,17 @@
 
       <!-- Catalog: Tabe of Content -->
       <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">第二章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5-%E4%B8%8E%E4%B8%80%E8%88%AC%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">操作系统概念 与一般软件的区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">操作系统的功能和目标</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9E%84%E6%88%90%E6%A8%A1%E5%9D%97"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">操作系统的构成模块</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%91%E5%B1%95%E7%9A%84%E4%B8%89%E4%B8%BB%E7%BA%BF"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">操作系统发展的三主线</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E5%BC%82%E5%90%8C"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">分时系统与批处理系统的概念和异同</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8%E5%9C%A8%E5%88%86%E6%97%B6%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%89%B9%E5%A4%84%E7%90%86%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">中断和异常在分时系统和批处理系统中的差异</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">如何理解操作系统与虚拟机</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">第三章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%B8%BA%E4%BA%86%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%EF%BC%8C%E9%9C%80%E8%A6%81CPU%E6%8F%90%E4%BE%9B%E5%93%AA%E4%BA%9B%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">为了实现进程，需要CPU提供哪些硬件支持</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5-%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF-%E5%92%8C%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">进程的概念 产生背景 和程序的关系和区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97%E7%9A%84%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%8A%9F%E8%83%BD-%E7%AE%80%E5%8D%95%E6%8F%8F%E8%BF%B0%E5%85%B6%E6%9E%84%E6%88%90"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">进程控制块的概念及功能 简单描述其构成</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%8E%E7%A8%8B%E5%BA%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%A7%92%E5%BA%A6%E8%AF%B4%E6%98%8E%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E6%98%AF%E5%A6%82%E4%BD%95%E8%BD%AC%E5%8C%96%E4%B8%BA%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%E7%9A%84"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">从程序生命周期角度说明一个程序是如何转化为一个进程的</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8E%9F%E7%90%86%E6%88%96%E8%80%85%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8-%E8%BF%9B%E7%A8%8B%E5%88%9B%E5%BB%BA%E9%94%80%E6%AF%81%E7%AD%89"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">进程控制相关的原理或者系统调用  进程创建销毁等</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%BA%94%E7%8A%B6%E6%80%81%E5%9B%BE"><span class="toc-nav-number">2.6.</span> <span class="toc-nav-text">进程的五状态图</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%8E%E4%B8%89%E4%B8%AA%E8%A7%92%E5%BA%A6%E6%9D%A5%E5%88%86%E6%9E%90%E8%BF%9B%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%A7%E8%A1%8C"><span class="toc-nav-number">2.7.</span> <span class="toc-nav-text">从三个角度来分析进程交替执行</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%EF%BC%8C%E5%B9%B6%E7%BB%93%E5%90%88Linux-%E7%9A%84fork%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="toc-nav-number">2.8.</span> <span class="toc-nav-text">进程的创建流程，并结合Linux 的fork系统调用流程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%85%B3%E4%BA%8E%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2%E7%9A%84%E6%B5%81%E7%A8%8B%E5%92%8C%E6%97%B6%E6%9C%BA"><span class="toc-nav-number">2.9.</span> <span class="toc-nav-text">关于进程切换的流程和时机</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">第四章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5-%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88%E5%85%B3%E7%B3%BB%EF%BC%89"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">线程的概念 进程和线程的区别（关系）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">线程的实现方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#ULT%E5%92%8CKLT%E5%90%84%E8%87%AA%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">ULT和KLT各自的优缺点</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">第五章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%B9%B6%E5%8F%91%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E5%9B%9B%E4%B8%AA%E9%97%AE%E9%A2%98-%E5%8F%8A%E6%A6%82%E5%BF%B5"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">并发需要解决的四个问题 及概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E4%BA%92%E6%96%A5%E7%9A%84%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF%EF%BC%88%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BC%95%E5%85%A5%EF%BC%89"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">同步和互斥的产生背景（为什么引入）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%EF%BC%88%E8%80%83%E7%A0%94%E7%89%B9%E8%89%B2%E9%A2%98%EF%BC%89%E4%BB%80%E4%B9%88%E5%8F%AB%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%EF%BC%8C%E5%B9%B6%E4%B8%BE%E4%BE%8B%E6%8F%8F%E8%BF%B0%EF%BC%88%E7%BB%93%E5%90%88%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">（考研特色题）什么叫条件竞争，并举例描述（结合代码）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E5%90%8C%E6%AD%A5%E5%92%8C%E4%BA%92%E6%96%A5%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9C%89%E5%93%AA%E4%BA%9B%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">为了解决同步和互斥问题，有哪些解决方案</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A6%82%E6%9E%9C%E7%94%A8%E7%A1%AC%E4%BB%B6%E8%A7%A3%E5%86%B3%E4%BA%92%E6%96%A5%E6%96%B9%E6%B3%95%EF%BC%8C%E4%BB%96%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">如果用硬件解决互斥方法，他有什么缺点</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E7%9A%84%E6%A6%82%E5%BF%B5%E6%9C%AC%E8%B4%A8%E5%8F%8A%E5%85%B6%E5%AE%9E%E7%8E%B0"><span class="toc-nav-number">4.6.</span> <span class="toc-nav-text">信号量的概念本质及其实现</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%A1%E7%A8%8B%E7%9A%84%E5%A5%BD%E5%A4%84%E6%88%96%E5%BC%95%E5%85%A5%E7%AE%A1%E7%A8%8B%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-nav-number">4.7.</span> <span class="toc-nav-text">管程的好处或引入管程的原因是什么</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">第六章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">死锁的概念和产生背景</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%9D%A1%E4%BB%B6%EF%BC%88%E4%B8%89%E4%B8%AA%E5%85%85%E5%88%86%EF%BC%8C%E5%9B%9B%E4%B8%AA%E5%85%85%E8%A6%81%EF%BC%89"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">死锁的条件（三个充分，四个充要）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-nav-number">5.3.</span> <span class="toc-nav-text">死锁的解决方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%AD%BB%E9%94%81%E5%92%8C%E9%A5%A5%E9%A5%BF%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-nav-number">5.4.</span> <span class="toc-nav-text">死锁和饥饿的关系</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">第七章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E8%BF%B0%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%83%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">简述存储管理的七个方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9B%BA%E5%AE%9A%E5%88%86%E5%8C%BA%E3%80%81%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E3%80%81%E5%88%86%E9%A1%B5%E3%80%81%E5%88%86%E6%AE%B5%E7%9A%84%E5%BC%82%E5%90%8C%EF%BC%88-%E6%98%AF%E5%90%A6%E5%85%A8%E9%83%A8%E5%8A%A0%E8%BD%BD%E3%80%81%E6%98%AF%E5%90%A6%E8%BF%9E%E7%BB%AD%EF%BC%89"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">固定分区、动态分区、分页、分段的异同（+是否全部加载、是否连续）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%AE%B5%E8%A1%A8%E5%92%8C%E9%A1%B5%E8%A1%A8%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">段表和页表的构造和使用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">第八章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E4%B8%BB%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%B8%89%E4%B8%AA%E9%97%AE%E9%A2%98"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">实现虚拟存储主要考虑的三个问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E7%8E%B0%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E7%9A%84%E4%B8%89%E4%B8%AA%E6%96%B9%E6%B3%95"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">实现虚拟存储的三个方法</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84PageFault%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">虚拟存储器的PageFault的处理流程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E5%8C%96%EF%BC%88%E5%8F%AA%E8%80%83%E5%9B%BE%EF%BC%89"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">地址转化（只考图）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%AF%B7%E7%AE%80%E8%BF%B0%E7%BC%BA%E9%A1%B5%E7%8E%87%E5%92%8C%E9%A1%B5%E5%B0%BA%E5%AF%B8%E5%92%8C%E9%A1%B5%E6%A1%86%E6%95%B0%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%88%E7%BB%93%E5%90%88%E5%9B%BE%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-nav-number">7.5.</span> <span class="toc-nav-text">请简述缺页率和页尺寸和页框数的关系（结合图分析）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%B9%9D%E7%AB%A0"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">第九章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%95%BF%E4%B8%AD%E7%9F%AD%E4%B8%89%E4%B8%AA%E8%B0%83%E5%BA%A6%E7%9A%84%E6%8F%8F%E8%BF%B0%EF%BC%88%E4%B8%89%E4%B8%AA%E5%9B%BE%EF%BC%9A%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E3%80%81%E8%B0%83%E5%BA%A6%E5%B1%82%E6%AC%A1%E3%80%81%E9%98%9F%E5%88%97%E7%AE%A1%E7%90%86%EF%BC%89"><span class="toc-nav-number">8.1.</span> <span class="toc-nav-text">长中短三个调度的描述（三个图：状态转换、调度层次、队列管理）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">第十章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%97%A0"><span class="toc-nav-number">9.0.1.</span> <span class="toc-nav-text">无</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">第十一章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#IOBuffer%E7%9A%84%E4%BA%A7%E7%94%9F%E8%83%8C%E6%99%AF%E5%92%8C%E5%B8%B8%E8%A7%81%E7%9A%84IOBuffer%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">10.1.</span> <span class="toc-nav-text">IOBuffer的产生背景和常见的IOBuffer的实现方式</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">第十二章</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%B1%82%E6%AC%A1%EF%BC%88%E5%9B%BE%EF%BC%89"><span class="toc-nav-number">11.1.</span> <span class="toc-nav-text">文件系统的设计层次（图）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%80%BB%E8%BE%91%E5%B1%82%E6%AC%A1%E4%B8%8A%E7%9A%84%E4%BA%94%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">11.2.</span> <span class="toc-nav-text">文件系统逻辑层次上的五种实现方式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%89%A9%E7%90%86%E5%B1%82%E6%AC%A1%E4%B8%8A%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-nav-number">11.3.</span> <span class="toc-nav-text">文件系统物理层次上的三种实现方式</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
 
 
 
