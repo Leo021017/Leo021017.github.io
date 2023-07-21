@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">3</span> Minutes
+              Estimated Reading Time <span class="post-count">7</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">967</span> In Total
+              Words <span class="post-count">2.1k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -521,15 +521,90 @@
 </li>
 </ul>
 <h1>单层卷积网络</h1>
+<ul>
+<li>
+<p><strong>构造一个卷积层</strong>：</p>
+<p>过滤器用变量$W^{[1]}$表示，实际上是一个线性函数；</p>
+<p>输入是$a^{[0]}$；</p>
+<p>$b^{[1]}$是偏差（bias），16个元素都要加上；</p>
+<p>$a$是当前层的输出，也是下一层的输入；</p>
+<p>$g()$是一个非线性激活函数<strong>ReLU</strong>，得到的4×4×2矩阵，成为神经网络的下一层，也就是激活层</p>
+<p>$a^{[1]}=g(W^{[1]}a^{[0]}+b^{[1]})$</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230708143711380.png" alt="image-20230708143711380" style="zoom:33%;" />
+</li>
+<li>
+<p>不论输入图片有多大，参数始终不变。可以“<strong>避免过拟合</strong>”</p>
+</li>
+<li>
+<p><strong>激活函数</strong>：</p>
+</li>
+</ul>
 <h1>简单卷积网络示例</h1>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721143525918.png" alt="image-20230721143525918" style="zoom:50%;" />
+<p>将得到的一组7×7×40的特征扁平化为一个向量，输出到softmax/logistic层</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721143752746.png" alt="image-20230721143752746" style="zoom:33%;" />
 <h1>Pooling Layer</h1>
+<ul>
+<li>
+<p>作用：缩减模型的大小，提高计算速度，同时提高所提取特征的鲁棒性</p>
+</li>
+<li>
+<p>计算方式：两个参数——s : stride  和 f : size of filter</p>
+<ol>
+<li>
+<p>max pooling：把4×4的输入拆分成不同的区域，输出的每个元素都是其对应颜色区域中的最大元素值</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721145345787.png" alt="image-20230721145345787" style="zoom:40%;" />
+<p>把这个4×4输入看作是某些特征的集合，数字大意味着可能探测到了某些特定的特征，最大化操作的功能就是只要在任何一个象限内提取到某个特征，它都会保留在最大化的池化输出里；有一组超参数（f和s），但并没有参数需要学习；如果输入是三维的，那么输出也是三维的；最大池化很少用padding</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721145606770.png" alt="image-20230721145606770" style="zoom:33%;" />
+</li>
+<li>
+<p>average pooling：不常用，选取的是平均值</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721145648448.png" alt="image-20230721145648448" style="zoom:33%;" />
+</li>
+</ol>
+</li>
+</ul>
 <h1>卷积神经网络示例</h1>
+<ul>
+<li>
+<p>下面是一个经典的手写数字识别的CNN，Layer1和Layer2分别由一层卷积和一层池化组成，将得到的5×5×16扁平化为一个400维的特征向量，FC3和FC4分别是两个全连接层，最后将结果放入softmax层输出10个结果之一</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721153944285.png" alt="image-20230721153944285" style="zoom:40%;" />
+</li>
+<li>
+<p>一种写法是一层卷积+一层池化=一层，另一种是一层卷积或一层池化都算是一层，前者的原因是池化层没有权重和参数，只有一些提前设定好的超参数，所以不认为是一层；全连接层就是一个基础的神经网络层，在120×400的维度上有一个权重矩阵，两边的每一个参数都相互连接；另一种模式是一个或多个卷积层后面跟着一个池化层，然后跟着一个全连接层</p>
+</li>
+<li>
+<p>第一，池化层和最大池化层没有参数；第二卷积层的参数相对较少；第三，随着神经网络的加深，激活值尺寸会逐渐变小，如果激活值尺寸下降太快，也会影响神经网络性能</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721154544110.png" alt="image-20230721154544110" style="zoom:33%;" />
+</li>
+</ul>
 <h1>为什么使用卷积</h1>
+<ul>
+<li>举个例子：6个大小为5×5的过滤器，输出维度为28×28×6。32×32×3=3072，28×28×6=4704，构建一个传统神经网络，其中一层含有3072个单元，下一层含有4074个单元，两层中的每个神经元彼此相连，权重矩阵的参数有4074×3072≈1400万，而如果使用卷积连接，每个过滤器都是5×5，一个过滤器有25个参数，再加上偏差参数，那么每个过滤器就有26个参数，一共有6个过滤器，所以参数共计156个，参数的数量大大减少</li>
+</ul>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721151103556.png" alt="image-20230721151103556" style="zoom: 40%;" />
+<ul>
+<li>
+<p>原因：</p>
+<ol>
+<li>参数共享：特征检测如垂直边缘检测如果适用于图片的某个区域，那么它也可能适用于图片的其他区域，它不仅适用于边缘特征这样的低阶特征，同样适用于高阶特征，例如提取脸上的眼睛，猫或者其他特征对象（边缘检测是基础），</li>
+<li>稀疏连接：后面卷积层中的0是通过3×3的卷积计算得到的，它只依赖于这个3×3的输入的单元格，右边这个输出单元（元素0）仅与36个输入特征中9个相连接。而且其它像素值都不会对输出产生任何影响</li>
+</ol>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721151758481.png" alt="image-20230721151758481" style="zoom:33%;" />
+</li>
+<li>
+<p>神经网络可以通过这两种机制减少参数，以便我们用更小的训练集来训练它，从而预防过度拟合。卷积神经网络善于捕捉平移不变。神经网络的卷积结构使得即使图片移动几个像素，这张图片依然具有非常相似的特征，应该属于同样的输出标记，使网络更加健壮</p>
+</li>
+</ul>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/DeepLearning/CNN/week2/" data-toggle="tooltip" data-placement="top" title="CNN-week-2">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">

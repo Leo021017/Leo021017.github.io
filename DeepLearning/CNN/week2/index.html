@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/tags/CNN/">
+  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/week2/">
   <title>
     
-      Leo&#39;s Blog
+      CNN-week-2 - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -340,10 +340,36 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Leo&#39;s Blog</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">这里是知识的荒漠</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#CNN" title="CNN">CNN</a>
+              
+            </div>
+            <h1>CNN-week-2</h1>
+            <h2 class="subheading">卷积神经网络（Convolutional Neural Networks）</h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-07-21
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">3</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">797</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
           </div>
           
         </div>
@@ -384,204 +410,249 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h1>经典网络</h1>
+<ul>
+<li>
+<p><strong>LeNet-5</strong>：可以识别图中的手写数字，灰度图像；使用平均池化，建议改成最大池化；还没有使用到padding；现在多使用softmax函数输出分类结果，而LeNet-5网络使用了另外一种已经不常用的；</p>
+<p>而一个或多个卷积层后面跟着一个池化层，然后又是若干个卷积层再接一个池化层，然后是全连接层，最后是输出，这种排列方式很常用</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721160045118.png" alt="image-20230721160045118" style="zoom:50%;" />
+</li>
+<li>
+<p><strong>AlexNet</strong>：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721160946137.png" alt="image-20230721160946137" style="zoom:50%;" />
+</li>
+<li>
+<p><strong>VGG-16</strong>：网络结构相对一致（16个卷积层和全连接层）</p>
+<p>过滤器均为3×3，步幅为1；padding参数为same卷积中的参数；最大池化层的过滤器为2×2，步幅为2；</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721161801530.png" alt="image-20230721161801530" style="zoom:50%;" />
+</li>
+</ul>
+<h1>残差网络(ResNets)</h1>
+<ul>
+<li>
+<p><strong>ResNets</strong>是由残差块（<strong>Residual block</strong>）构建的，每一次跳跃连接（<strong>Skip connection</strong>）都会产生一个残差块</p>
+</li>
+<li>
+<p>考虑一个两层神经网络，在$L$层进行激活，得到$a^{[l+1]}$，再次进行激活，两层之后得到$a^{[l+2]}$，即信息流从$a^{[l+1]}$到$a^{[l+2]}$需要经过以上所有步骤，即这组网络层的主路径。</p>
+<p>在残差网络中有一点变化，我们将$a^{[l]}$直接向后，拷贝到神经网络的深层，在ReLU非线性激活函数前加上$a^{[l]}$，这是一条捷径，$a^{[l]}$的信息直接到达神经网络的深层，不再沿着主路径传递，由$a^{[l+2]}=g(z^{[l+2]})$变成$a^{[l+2]}=g(z^{[l+2]}+a^{[l]})$，从而产生了一个残差块</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721163348734.png" alt="image-20230721163348734" style="zoom:50%;" />
+</li>
+<li>
+<p>如图所示，5个残差块连接在一起构成一个残差网络，避免了过拟合现象</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721163908647.png" alt="image-20230721163908647" style="zoom:50%;" />
+</li>
+</ul>
+<h1>残差网络为什么有用？</h1>
+<ul>
+<li>
+<p>假设有一个大型神经网络（BigNN），给这个网络额外添加两层，有可能这两层的学习效果不好，反而拉低了准确率，而ResNet可以保证我们多添加网络后，至少不会比原来差，因为添加前的值通过跳跃连接到了最后的输出，如果效果不好将这两层学习到的参数置为0即可，相当于做了一次恒等变换。$a^{[l+2]}=g(W^{[l+2]}a^{[l+1]}+b^{[l+2]}+a^{[l]})$，让$W^{[l+2]}$和$b^{[l+2]}$置为0，得到$a^{[l+2]}=g(a^{[l]})=a^{[l]}$</p>
+</li>
+<li>
+<p>对于普通网络，当网络不断加深时，就算是选用学习恒等函数的参数都很困难，而残差块学习恒等函数非常容易</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721171207162.png" alt="image-20230721171207162" style="zoom:40%;" />
+</li>
+<li>
+<p>ResNets使用了许多same卷积，使得$z^{[l+2]}$与$a^{[l]}$具有相同的维度；如果输入和输出有不同维度，比如输入的维度是128，$a^{[l+2]}$的维度是256，则再增加一个256×128维度的矩阵$W_{s}$，既可以是通过学习得到，也可以是padding值为0，用0填充$a^{[l]}$</p>
+</li>
+<li>
+<p>ResNets网络常用的结构是：卷积层-卷积层-卷积层-池化层-卷积层-卷积层-卷积层-池化层……依此重复，遇到池化层时，需要调整矩阵$W_{s}$的维度</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230721171943501.png" alt="image-20230721171943501" style="zoom:25%;" />
+</li>
+</ul>
+<h1>网络中的网络以及 1×1 卷积</h1>
+<h1>谷歌 Inception 网络简介</h1>
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <li>
-            07-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/week2/" style="color: #0085a1">
-              <span>
-                CNN-week-2
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
           
-          <li>
-            07-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/week1/" style="color: #0085a1">
-              <span>
-                CNN-week-1
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/os/" style="color: #0085a1">
-              <span>
-                操作系统期末复习
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/firstBlog/" style="color: #0085a1">
-              <span>
-                第一篇博客——杂谈
-                
-                -- other
-                
-              </span>
-            </a>
+          <li class="next">
+            <a href="/DeepLearning/CNN/week1/" data-toggle="tooltip" data-placement="top" title="CNN-week-1">Next Post &rarr;</a>
           </li>
           
         </ul>
-      </div>
-      
-    </div>
-  </div>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
 </div>
+<!-- tip end -->
 
+        <!-- tip end -->
+        
 
-      <!-- 如果开启评论功能 -->
-      
-    </div>
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
 
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>四川大学 网络空间安全学院</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Leo021017">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../DeepLearning/CNN/week2/">
-      <li>CNN-week-2</li>
-    </a>
-    
-    <a href="../../DeepLearning/CNN/week1/">
-      <li>CNN-week-1</li>
-    </a>
-    
-    <a href="../../course/os/">
-      <li>操作系统期末复习</li>
-    </a>
-    
-    <a href="../../other/firstBlog/">
-      <li>第一篇博客——杂谈</li>
-    </a>
-    
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=CNN-week-2&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/week2/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
   </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <hr>
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">经典网络</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">残差网络(ResNets)</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">残差网络为什么有用？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">网络中的网络以及 1×1 卷积</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">谷歌 Inception 网络简介</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-
-    
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
