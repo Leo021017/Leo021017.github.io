@@ -410,12 +410,229 @@
   <!-- top end -->
   
 
-  <a href="/DeepLearning/CNN/week2/">
+  <a href="/DeepLearning/CNN/Swing Transformer/">
     <h2 class="post-title">
-      CNN-week-2
+      Swin Transformer
     </h2>
     <h3 class="post-subtitle">
-      卷积神经网络（Convolutional Neural Networks）
+      介绍Swin Transformer网络结构
+    </h3>
+    <div class="post-content-preview">
+      Vision Transformer
+
+
+整体架构：
+
+构建patch：将一张图片分成了9个小块，即9个patch，再把每一个patch都 ”拉长“ （一次卷积计算）成一个向量，这样就转换成了一个vector set，然后通过一个全连接层，做一个特征整合和维度变换
+
+
+
+
+位置编码：在图像中，位置编码尤为重要，两种方法，一种是在每一个vector前面加上一个位置ID，另一种方法是加上一个空间......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-25
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#CNN" title="CNN">CNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/self-attention/">
+    <h2 class="post-title">
+      自注意力机制
+    </h2>
+    <h3 class="post-subtitle">
+      介绍自注意力机制
+    </h3>
+    <div class="post-content-preview">
+      自注意力机制概述
+
+
+自注意力机制解决深度学习模型的输入是一组向量且大小不等的问题，如nlp（word embedding），语音处理，图（Graph）
+关于输出可以分为三类：
+
+
+n个输入，n个输出：词性标注、社交网络中的用户分析等
+
+
+
+n个输入，1个输出：情感分析，语音识别谁的声音
+
+
+
+n个输入，m个输出：即seq2seq，如语言识别出文字
+
+
+
+
+一个词性标注的例子：I saw a......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-24
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#CNN" title="CNN">CNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/Transformer/">
+    <h2 class="post-title">
+      Transformer
+    </h2>
+    <h3 class="post-subtitle">
+      介绍Transformer网络结构
+    </h3>
+    <div class="post-content-preview">
+      Transformer概述
+
+
+核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
+
+
+
+encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
+
+
+enc......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-24
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#CNN" title="CNN">CNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/EfficientNet/">
+    <h2 class="post-title">
+      EfficientNet
+    </h2>
+    <h3 class="post-subtitle">
+      介绍EfficientNet网络结构
+    </h3>
+    <div class="post-content-preview">
+      EfficientNet V1
+
+
+EfficientNet主要是用NAS（Neural Architecture Search）技术来搜索网络的图像输入分辨率 r ，网络的深度depth以及channel的宽度width三个参数的合理化配置，之前的论文都是都是通过改变上述3个参数中的一个来提升网络的性能，参数少，推理速度块，但比较占显存
+
+增加网络的深度depth能够得到更加丰富、复杂的特......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#CNN" title="CNN">CNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/undefined/report/">
+    <h2 class="post-title">
+      实训2报告
+    </h2>
+    <h3 class="post-subtitle">
+      scu-ccs大二暑期实训报告
+    </h3>
+    <div class="post-content-preview">
+      
+
+	
+    
+	
+
+
+...
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#实训" title="实训">实训</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/classic CNN/">
+    <h2 class="post-title">
+      经典卷积网络
+    </h2>
+    <h3 class="post-subtitle">
+      介绍了LeNet-5 ResNets VGG等经典卷积神经网络结构
     </h3>
     <div class="post-content-preview">
       经典网络
@@ -455,12 +672,12 @@ VGG-16：网络结构相对......
   <!-- top end -->
   
 
-  <a href="/DeepLearning/CNN/week1/">
+  <a href="/DeepLearning/CNN/CNN intro/">
     <h2 class="post-title">
-      CNN-week-1
+      卷积神经网络概述
     </h2>
     <h3 class="post-subtitle">
-      卷积神经网络（Convolutional Neural Networks）
+      介绍了卷积神经网络及其组件
     </h3>
     <div class="post-content-preview">
       计算机视觉
@@ -661,20 +878,24 @@ VGG-16：网络结构相对......
 <div class="widget">
   <ul>
     
-    <a href="DeepLearning/CNN/week2/">
-      <li>CNN-week-2</li>
+    <a href="DeepLearning/CNN/Swing%20Transformer/">
+      <li>Swin Transformer</li>
     </a>
     
-    <a href="DeepLearning/CNN/week1/">
-      <li>CNN-week-1</li>
+    <a href="DeepLearning/CNN/self-attention/">
+      <li>自注意力机制</li>
     </a>
     
-    <a href="course/os/">
-      <li>操作系统期末复习</li>
+    <a href="DeepLearning/CNN/Transformer/">
+      <li>Transformer</li>
     </a>
     
-    <a href="other/firstBlog/">
-      <li>第一篇博客——杂谈</li>
+    <a href="DeepLearning/CNN/EfficientNet/">
+      <li>EfficientNet</li>
+    </a>
+    
+    <a href="undefined/report/">
+      <li>实训2报告</li>
     </a>
     
   </ul>

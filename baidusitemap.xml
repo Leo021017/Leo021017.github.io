@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://leo021017.github.io/DeepLearning/CNN/week2/</loc>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/Swing%20Transformer/</loc>
+    <lastmod>2023-07-25</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/self-attention/</loc>
+    <lastmod>2023-07-24</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/Transformer/</loc>
+    <lastmod>2023-07-24</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/EfficientNet/</loc>
+    <lastmod>2023-07-23</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/undefined/report/</loc>
+    <lastmod>2023-07-23</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/classic%20CNN/</loc>
     <lastmod>2023-07-21</lastmod>
   </url>
   <url>
-    <loc>http://leo021017.github.io/DeepLearning/CNN/week1/</loc>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/CNN%20intro/</loc>
     <lastmod>2023-07-07</lastmod>
   </url>
   <url>
