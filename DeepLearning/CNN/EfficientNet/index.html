@@ -358,7 +358,7 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">4</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
@@ -421,11 +421,11 @@
         <h2 id="EfficientNet-V1">EfficientNet V1</h2>
 <ul>
 <li>
-<p>EfficientNet主要是用NAS（Neural Architecture Search）技术来搜索网络的图像输入分辨率 r ，网络的深度depth以及channel的宽度width三个参数的合理化配置，之前的论文都是都是通过改变上述3个参数中的一个来提升网络的性能，参数少，推理速度块，但比较占显存</p>
+<p><strong>EfficientNet</strong>主要是用<strong>NAS</strong>（Neural Architecture Search）技术来搜索网络的图像输入<strong>分辨率 r</strong> ，网络的深度<strong>depth</strong>以及channel的宽度<strong>width</strong>三个参数的合理化配置，之前的论文都是都是通过改变上述3个参数中的一个来提升网络的性能，参数少，推理速度块，但比较占显存</p>
 <ol>
-<li>增加网络的深度depth能够得到更加丰富、复杂的特征并且能够很好的应用到其它任务中。但网络的深度过深会面临梯度消失，训练困难的问题</li>
-<li>增加网络的width能够获得更高细粒度的特征并且也更容易训练，但对于width很大而深度较浅的网络往往很难学习到更深层次的特征</li>
-<li>增加输入网络的图像分辨率能够潜在得获得更高细粒度的特征模板，但对于非常高的输入分辨率，准确率的增益也会减小，并且大分辨率图像会增加计算量</li>
+<li>增加网络的深度depth能够得到更加丰富、复杂的特征，但网络的深度过深会面临<strong>梯度消失</strong>的问题</li>
+<li>增加网络的width能够获得更高细粒度的特征，但对于width很大而深度较浅的网络往往很难学习到更深层次的特征</li>
+<li>增加输入网络的图像分辨率能够获得更高细粒度的特征模板，但对于非常高的输入分辨率，准确率的增益也会减小，并且大分辨率图像会增加计算量</li>
 </ol>
 </li>
 <li>
