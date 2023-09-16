@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+  <link rel="canonical" href="http://leo021017.github.io/archives/2023/archives/2/">
   <title>
     
-      Transformer - Leo&#39;s Blog
+      Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
     }
 
     header.intro-header {
-       /*post*/
-        background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+       /*page*/
+        background-image: var(--intro-header-background-image-url-page);
+        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
       
     }
 
@@ -340,36 +340,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="/tags/#Transformer" title="Transformer">Transformer</a>
-              
-            </div>
-            <h1>Transformer</h1>
-            <h2 class="subheading">介绍Transformer的基本网络结构</h2>
-            <span class="meta">
-              Posted by Leo on
-              2023-07-31
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">503</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- WordCount end -->
-            
-            
-
-
+          <div class="site-heading">
+            <h1>Leo&#39;s Blog</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">这里是知识的荒漠</span>
           </div>
           
         </div>
@@ -410,268 +384,312 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-        <h1>Transformer概述</h1>
-<ul>
-<li>
-<p>核心是<strong>seq2seq</strong>模型，能处理很多的问题；一般的seq2seq模型分成两个部分：<strong>encoder</strong>和<strong>decoder</strong>，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724190057869.png" alt="image-20230724190057869" style="zoom:25%;" />
-</li>
-<li>
-<p>encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用</p>
-</li>
-<li>
-<p><strong>encoder</strong>：给一排向量，输出一排向量，transformer用的encoder是<strong>self-attention</strong>；</p>
-<p>每一个encoder会分成很多个block，每一个block由很多层组成</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724191620332.png" alt="image-20230724191620332" style="zoom:15%;" />
-<p>在真正的transformer中更加复杂，在加入<strong>positional encoding</strong>后，首先加入了<strong>残差连接</strong>（residual connection），再将输出结果做<strong>layer normalization</strong>，得到的输出才是全连接层的输入，再做一次residual和normalizaton得到最终block的输出</p>
-<p>（注：batch normalization是对一批样本的同一纬度特征做归一化；layer normalization是对单个样本的所有维度特征做归一化）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192419947.png" alt="image-20230724192419947" style="zoom:20%;" />
-<p>最终的模型图：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192611448.png" alt="image-20230724192611448" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>decoder</strong>：介绍decoder中最常见的一种decoder——<strong>Autoregressive decoder</strong></p>
-<p>首先给decoder输入一个表示begin of sentence的特殊向量START，根据encoder给出的的输入向量输出第一个向量，做一个softmax，得到每一个汉字的概率（长度是汉字的数量），取最大值作为输出</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105551614.png" alt="image-20230725105551614" style="zoom:25%;" />
-<p>将第一个输出的向量作为第二个输出向量的输入向量，重复上面的步骤，依次得到最终的结果</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105929978.png" alt="image-20230725105929978" style="zoom:25%;" />
-<ul>
-<li>
-<p>内部结构：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110844680.png" alt="image-20230725110844680" style="zoom:25%;" />
-<p>去掉中间这一块和encoder几乎一样</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110408862.png" alt="image-20230725110408862" style="zoom:20%;" />
-<ul>
-<li>
-<p><strong>Masked</strong>：在做self-attention时，只关注序列中当前元素左边的元素，因为右边的元素还未产生（encoder是并行，decoder是串行）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725111426275.png" alt="image-20230725111426275" style="zoom:25%;" />
-</li>
-</ul>
-</li>
-<li>
-<p>decoder如何决定输出sequence的长度：当输出END时，表示这个sequence要停止了</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112211270.png" alt="image-20230725112211270" style="zoom:25%;" />
-</li>
-<li>
-<p>NAT（<strong>Non-autoregressive</strong>）：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112839201.png" alt="image-20230725112839201" style="zoom:25%;" />
-</li>
-</ul>
-</li>
-<li>
-<p>encoder和decoder是怎么连接的，上面被遮住的就是连接处，即<strong>Cross attention</strong></p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725113657182.png" alt="image-20230725113657182" style="zoom: 33%;" />
-<p>由decoder的attention产生$q$，由encoder的attention产生$k$和$v$，然后交叉做attention</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725114038510.png" alt="image-20230725114038510" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Training</strong>：在decoder训练的时候，输入的是正确答案，计算交叉熵损失函数，是交叉熵最小（Teacher Forcing）</p>
-<p>tips:</p>
-<ul>
-<li>
-<p>Copy Mechanism</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725152216750.png" alt="image-20230725152216750" style="zoom:25%;" />
-</li>
-<li></li>
-</ul>
-</li>
-</ul>
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
+      <!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+      <!-- 归档列表 -->
 
-        <hr>
-        <!-- Pager -->
-        <ul class="pager">
+      
+
+      <!-- 归档列表 -->
+      
+      <div class="one-tag-list">
+        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
+          <span class="tag-text">2023</span>
+        </span>
+        <ul>
           
-          <li class="previous">
-            <a href="/DeepLearning/GNN/GNN/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
+          <li>
+            09-16
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
+              <span>
+                Untitled
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
           </li>
           
+          <li>
+            09-13
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
+              <span>
+                Untitled
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
           
-          <li class="next">
-            <a href="/DeepLearning/Transformer/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">Next Post &rarr;</a>
+          <li>
+            07-31
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
+              <span>
+                Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-25
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
+              <span>
+                Swin Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-24
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
+              <span>
+                自注意力机制
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-24
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
+              <span>
+                Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-23
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
+              <span>
+                EfficientNet
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-23
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/undefined/report/" style="color: #0085a1">
+              <span>
+                实训2报告
+                
+                -- 
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-21
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
+              <span>
+                经典卷积网络
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-07
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
+              <span>
+                卷积神经网络概述
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            06-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/course/os/" style="color: #0085a1">
+              <span>
+                操作系统期末复习
+                
+                -- course
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            06-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/other/firstBlog/" style="color: #0085a1">
+              <span>
+                第一篇博客——杂谈
+                
+                -- other
+                
+              </span>
+            </a>
           </li>
           
         </ul>
-
-        
-        <!-- tip start -->
-        <!-- tip -->
-<!-- tip start -->
-<div class="tip">
-  <p>
-    
-      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
-    
-  </p>
+      </div>
+      
+    </div>
+  </div>
 </div>
-<!-- tip end -->
 
-        <!-- tip end -->
-        
 
-        
-        <!-- Sharing Srtart -->
-        <!--
- * @Author: Leo
- * @Date: 2023-06-26 15:50:28
- * @LastEditTime: 2023-06-28 23:04:59
- * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
- * @Description: Leo的一些没用的代码
--->
-<!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+      <!-- 如果开启评论功能 -->
+      
+    </div>
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li> -->
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Transformer&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/Transformer/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li> -->
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5><a href="/about/">ABOUT ME</a></h5>
+  <div class="short-about">
+
+    
+    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
+
+    
+    <p>四川大学 网络空间安全学院</p>
+    
+
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+
+      
+      <li>
+        <a target="_blank" href="https://github.com/Leo021017">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- RECENT POSTS -->
+
+<h5><a href="/">RECENT POSTS</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="../../../../DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+      <li>(no title)</li>
+    </a>
+    
+    <a href="../../../../DeepLearning/GNN/GNN/">
+      <li>(no title)</li>
+    </a>
+    
+    <a href="../../../../DeepLearning/CNN/Transformer/">
+      <li>Transformer</li>
+    </a>
+    
+    <a href="../../../../DeepLearning/Transformer/Swing%20Transformer/">
+      <li>Swin Transformer</li>
+    </a>
+    
+    <a href="../../../../DeepLearning/Transformer/self-attention/">
+      <li>自注意力机制</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
-        <!-- <hr> -->
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-<!-- 2. gitment comment -->
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <!-- <hr> -->
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Transformer概述</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-
-        <!-- Friends Blog -->
-        
         <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
+    
+        <!-- Friends Blog -->
 
-          
-          <li>
-            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
-          </li>
-          
-        </ul>
-        
-      </div>
-    </div>
+<h5><a href="/">FRIENDS</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
+  
+</ul>
+
+
+        <hr>
+    
+</div>
+
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

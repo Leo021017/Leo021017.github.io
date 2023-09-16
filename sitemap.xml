@@ -2,21 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://leo021017.github.io/DeepLearning/CNN/Swing%20Transformer/</loc>
+    <loc>http://leo021017.github.io/DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    
+    <lastmod>2023-09-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/GNN/GNN/</loc>
+    
+    <lastmod>2023-09-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/CNN/Transformer/</loc>
+    
+    <lastmod>2023-07-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leo021017.github.io/DeepLearning/Transformer/Swing%20Transformer/</loc>
     
     <lastmod>2023-07-25</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leo021017.github.io/DeepLearning/CNN/self-attention/</loc>
+    <loc>http://leo021017.github.io/DeepLearning/Transformer/self-attention/</loc>
     
     <lastmod>2023-07-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leo021017.github.io/DeepLearning/CNN/Transformer/</loc>
+    <loc>http://leo021017.github.io/DeepLearning/Transformer/Transformer/</loc>
     
     <lastmod>2023-07-24</lastmod>
     
@@ -81,7 +102,7 @@
 
   <url>
     <loc>http://leo021017.github.io/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -89,28 +110,35 @@
   
   <url>
     <loc>http://leo021017.github.io/tags/%E5%AE%9E%E8%AE%AD/</loc>
-    <lastmod>2023-07-31</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://leo021017.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://leo021017.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://leo021017.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://leo021017.github.io/tags/CNN/</loc>
-    <lastmod>2023-07-31</lastmod>
+    <lastmod>2023-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://leo021017.github.io/tags/Transformer/</loc>
+    <lastmod>2023-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

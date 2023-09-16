@@ -410,7 +410,133 @@
   <!-- top end -->
   
 
-  <a href="/DeepLearning/CNN/Swing Transformer/">
+  <a href="/DeepLearning/DL基础知识/">
+    <h2 class="post-title">
+      Untitled
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      梯度下降
+
+
+引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即梯度下降法
+
+
+
+随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值
+
+
+更......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-16
+  </p>
+  <div class="tags">
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/GNN/GNN/">
+    <h2 class="post-title">
+      Untitled
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      GNN介绍
+
+
+图：GNN考虑一个图有三个要素：点、边、全局（输入数据的格式不规则）
+GNN最终的作用是通过迭代计算，重构一张图中点和边的特征，然后将特征交给全连接层即可
+
+
+
+消息传递(聚合)：针对下图去更新节点的特征，需要结合邻居和自身信息，$h_{j}$表示原始邻居的特征，$W_{j}$表示GNN需要学习的权重参数矩阵，加到一起后用激活函数处理（可以是最大、最小、平均）
+
+$$
+h_{......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-13
+  </p>
+  <div class="tags">
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/Transformer/">
+    <h2 class="post-title">
+      Transformer
+    </h2>
+    <h3 class="post-subtitle">
+      介绍Transformer的基本网络结构
+    </h3>
+    <div class="post-content-preview">
+      Transformer概述
+
+
+核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
+
+
+
+encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
+
+
+enc......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-31
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/Transformer/Swing Transformer/">
     <h2 class="post-title">
       Swin Transformer
     </h2>
@@ -438,7 +564,7 @@
   </p>
   <div class="tags">
     
-    <a href="/tags/#CNN" title="CNN">CNN</a>
+    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
     
   </div>
   
@@ -453,7 +579,7 @@
   <!-- top end -->
   
 
-  <a href="/DeepLearning/CNN/self-attention/">
+  <a href="/DeepLearning/Transformer/self-attention/">
     <h2 class="post-title">
       自注意力机制
     </h2>
@@ -491,7 +617,7 @@ n个输入，m个输出：即seq2seq，如语言识别出文字
   </p>
   <div class="tags">
     
-    <a href="/tags/#CNN" title="CNN">CNN</a>
+    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
     
   </div>
   
@@ -506,25 +632,22 @@ n个输入，m个输出：即seq2seq，如语言识别出文字
   <!-- top end -->
   
 
-  <a href="/DeepLearning/CNN/Transformer/">
+  <a href="/DeepLearning/Transformer/Transformer/">
     <h2 class="post-title">
       Transformer
     </h2>
     <h3 class="post-subtitle">
-      介绍Transformer网络结构
+      介绍Transformer的基本网络结构
     </h3>
     <div class="post-content-preview">
       Transformer概述
 
 
-核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
+核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder（编码器-解码器架构），encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
 
 
 
-encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
-
-
-enc......
+encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的......
     </div>
   </a>
   
@@ -534,7 +657,7 @@ enc......
   </p>
   <div class="tags">
     
-    <a href="/tags/#CNN" title="CNN">CNN</a>
+    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
     
   </div>
   
@@ -727,86 +850,14 @@ VGG-16：网络结构相对......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/course/os/">
-    <h2 class="post-title">
-      操作系统期末复习
-    </h2>
-    <h3 class="post-subtitle">
-      SCU-CCS操作系统课程的知识点总结
-    </h3>
-    <div class="post-content-preview">
-      第二章
-操作系统概念 与一般软件的区别
-
-操作系统是指控制和管理整个计算机系统的硬件和软件资源，并合理地组织调度计算机的工作和资源的分配（①操作系统是系统资源的管理者）
-以提供给用户和其他软件方便的接口和环境（②向上层提供方便易用的服务）
-它是计算机系统中最基本的系统软件（③是最接近硬件的一层软件）
-区别：
-
-与普通计算机软件作用相同，是处理机执行的一段程序
-（意图）操作系统控制处理器及其他......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-06-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#操作系统" title="操作系统">操作系统</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/other/firstBlog/">
-    <h2 class="post-title">
-      第一篇博客——杂谈
-    </h2>
-    <h3 class="post-subtitle">
-      从这篇博客开始，记录一下自己技术的成长过程
-    </h3>
-    <div class="post-content-preview">
-      作为一名IT学生，不断体会到应该搭建一个平台，来记录自己学习过程中的知识总结和心得体会，于是搭建了这个博客，分享一些自己的东西
-...
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-06-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#杂谈" title="杂谈">杂谈</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
     
+    
+    <li class="next">
+      <a href="/archives/2/">Newer Posts &rarr;</a>
+    </li>
     
   </ul>
 
@@ -878,24 +929,24 @@ VGG-16：网络结构相对......
 <div class="widget">
   <ul>
     
-    <a href="DeepLearning/CNN/Swing%20Transformer/">
-      <li>Swin Transformer</li>
+    <a href="DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+      <li>(no title)</li>
     </a>
     
-    <a href="DeepLearning/CNN/self-attention/">
-      <li>自注意力机制</li>
+    <a href="DeepLearning/GNN/GNN/">
+      <li>(no title)</li>
     </a>
     
     <a href="DeepLearning/CNN/Transformer/">
       <li>Transformer</li>
     </a>
     
-    <a href="DeepLearning/CNN/EfficientNet/">
-      <li>EfficientNet</li>
+    <a href="DeepLearning/Transformer/Swing%20Transformer/">
+      <li>Swin Transformer</li>
     </a>
     
-    <a href="undefined/report/">
-      <li>实训2报告</li>
+    <a href="DeepLearning/Transformer/self-attention/">
+      <li>自注意力机制</li>
     </a>
     
   </ul>

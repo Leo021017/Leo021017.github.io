@@ -130,7 +130,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/Transformer/Transformer/">
   <title>
     
       Transformer - Leo&#39;s Blog
@@ -350,7 +350,7 @@
             <h2 class="subheading">介绍Transformer的基本网络结构</h2>
             <span class="meta">
               Posted by Leo on
-              2023-07-31
+              2023-07-24
             </span>
 
 
@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">2</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">503</span> In Total
+              Words <span class="post-count">714</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -421,27 +421,28 @@
         <h1>Transformer概述</h1>
 <ul>
 <li>
-<p>核心是<strong>seq2seq</strong>模型，能处理很多的问题；一般的seq2seq模型分成两个部分：<strong>encoder</strong>和<strong>decoder</strong>，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence</p>
+<p>核心是<strong>seq2seq</strong>模型，能处理很多的问题；一般的seq2seq模型分成两个部分：<strong>encoder</strong>和<strong>decoder</strong>（编码器-解码器架构），encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724190057869.png" alt="image-20230724190057869" style="zoom:25%;" />
 </li>
 <li>
 <p>encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用</p>
 </li>
 <li>
-<p><strong>encoder</strong>：给一排向量，输出一排向量，transformer用的encoder是<strong>self-attention</strong>；</p>
-<p>每一个encoder会分成很多个block，每一个block由很多层组成</p>
+<p><strong>encoder</strong>：比如输入一个由$n$个词组成的句子：$(x_{1},x_{2},…,x_{n})$，$x_{t}$是第t个字的向量形式，输出$(z_{1},z_{2},…,z_{n})$，其中$z_{t}$对应的是$x_{t}$的一个向量的表示，将原始输入变成机器学习可以理解的向量（即提取特征）</p>
+<p>transformer用的encoder是<strong>self-attention</strong>；</p>
+<p>每一个encoder会分成很多个<strong>block</strong>，每一个block由很多层组成</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724191620332.png" alt="image-20230724191620332" style="zoom:15%;" />
-<p>在真正的transformer中更加复杂，在加入<strong>positional encoding</strong>后，首先加入了<strong>残差连接</strong>（residual connection），再将输出结果做<strong>layer normalization</strong>，得到的输出才是全连接层的输入，再做一次residual和normalizaton得到最终block的输出</p>
-<p>（注：batch normalization是对一批样本的同一纬度特征做归一化；layer normalization是对单个样本的所有维度特征做归一化）</p>
+<p>在真正的transformer中更加复杂，在加入<strong>positional encoding</strong>后，首先加入了<strong>残差连接</strong>（residual connection），再将输出结果做<strong>layer normalization</strong>，得到的输出才是全连接层的输入，再做一次residual和normalizaton得到最终block的输出，为了方便残差链接，限制每一层的输出维度为512</p>
+<p>（注：batch normalization是对一批样本的同一纬度特征做归一化；layer normalization是对单个样本的所有维度特征做归一化，对应这里是batch、sequence、feature三个维度，其中feature是一个词的向量表示（512），seq是你这一句话里有多少个词，batch是一共几句话，LN针对seq2seq这种每个batch的维度数量不一样的情况效果更好）</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192419947.png" alt="image-20230724192419947" style="zoom:20%;" />
 <p>最终的模型图：</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192611448.png" alt="image-20230724192611448" style="zoom:25%;" />
 </li>
 <li>
-<p><strong>decoder</strong>：介绍decoder中最常见的一种decoder——<strong>Autoregressive decoder</strong></p>
+<p><strong>decoder</strong>：介绍decoder中最常见的一种——<strong>Auto-regressive decoder</strong>（自回归）</p>
 <p>首先给decoder输入一个表示begin of sentence的特殊向量START，根据encoder给出的的输入向量输出第一个向量，做一个softmax，得到每一个汉字的概率（长度是汉字的数量），取最大值作为输出</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105551614.png" alt="image-20230725105551614" style="zoom:25%;" />
-<p>将第一个输出的向量作为第二个输出向量的输入向量，重复上面的步骤，依次得到最终的结果</p>
+<p>将第一个输出的向量作为第二个输出向量的输入向量（自回归，通过masked只能看到之前的输出），重复上面的步骤，依次得到最终的结果</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105929978.png" alt="image-20230725105929978" style="zoom:25%;" />
 <ul>
 <li>
@@ -467,7 +468,7 @@
 </ul>
 </li>
 <li>
-<p>encoder和decoder是怎么连接的，上面被遮住的就是连接处，即<strong>Cross attention</strong></p>
+<p>encoder和decoder是怎么连接的，也就是decoder怎么从encoder中挑出与我正要预测的向量关系最大的向量；上面被遮住的就是连接处，即<strong>Cross attention</strong></p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725113657182.png" alt="image-20230725113657182" style="zoom: 33%;" />
 <p>由decoder的attention产生$q$，由encoder的attention产生$k$和$v$，然后交叉做attention</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725114038510.png" alt="image-20230725114038510" style="zoom:25%;" />
@@ -491,12 +492,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/DeepLearning/GNN/GNN/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
+            <a href="/DeepLearning/Transformer/self-attention/" data-toggle="tooltip" data-placement="top" title="自注意力机制">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/DeepLearning/Transformer/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">Next Post &rarr;</a>
+            <a href="/DeepLearning/CNN/EfficientNet/" data-toggle="tooltip" data-placement="top" title="EfficientNet">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -552,7 +553,7 @@
       </a>
     </li>
     <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Transformer&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Transformer&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/Transformer/Transformer/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li> -->

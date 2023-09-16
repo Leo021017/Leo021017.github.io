@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/self-attention/">
+  <link rel="canonical" href="http://leo021017.github.io/archives/2023/09/">
   <title>
     
-      自注意力机制 - Leo&#39;s Blog
+      Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
     }
 
     header.intro-header {
-       /*post*/
-        background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+       /*page*/
+        background-image: var(--intro-header-background-image-url-page);
+        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
       
     }
 
@@ -340,36 +340,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="/tags/#CNN" title="CNN">CNN</a>
-              
-            </div>
-            <h1>自注意力机制</h1>
-            <h2 class="subheading">介绍自注意力机制</h2>
-            <span class="meta">
-              Posted by Leo on
-              2023-07-24
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">4</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">1.1k</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- WordCount end -->
-            
-            
-
-
+          <div class="site-heading">
+            <h1>Leo&#39;s Blog</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">这里是知识的荒漠</span>
           </div>
           
         </div>
@@ -410,312 +384,312 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-        <h2 id="自注意力机制概述">自注意力机制概述</h2>
-<ul>
-<li>
-<p>自注意力机制解决深度学习模型的输入是一组向量且大小不等的问题，如nlp（word embedding），语音处理，图（Graph）</p>
-<p>关于输出可以分为三类：</p>
-<ol>
-<li>
-<p>n个输入，n个输出：词性标注、社交网络中的用户分析等</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724113121020.png" alt="image-20230724113121020" style="zoom:20%;" />
-</li>
-<li>
-<p>n个输入，1个输出：情感分析，语音识别谁的声音</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724113223579.png" alt="image-20230724113223579" style="zoom:20%;" />
-</li>
-<li>
-<p>n个输入，m个输出：即<strong>seq2seq</strong>，如语言识别出文字</p>
-</li>
-</ol>
-</li>
-<li>
-<p>一个词性标注的例子：I saw a saw，如果简单地使用全连接层输出结果，两个saw的结果会一样，因为没有考虑上下文（传统的<strong>word2vector</strong>也有这一问题），并且输入是定长的，而自注意力机制可以解决这个问题：将四个向量组成的sequence全交给self-attention，self-attention会考虑整个sequence后输出结果，当然self-attention可以层级使用</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724114047566.png" alt="image-20230724114047566" style="zoom:25%;" />
-</li>
-<li>
-<p>从整个sequence中找出哪些部分是重要的，哪些决定$a^{1}$的class/regression，每一个向量与$a^{1}$的关联程度用$α$（<strong>attention score</strong>）表示</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724160950497.png" alt="image-20230724160950497" style="zoom:20%;" />
-<p>那么怎么计算$α$的大小呢？</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724161105526.png" alt="image-20230724161105526" style="zoom:15%;" />
-<p>通常有Dot-product和Additive两种方法，<strong>Dot-product</strong>最常用</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724161739497.png" alt="image-20230724161739497" style="zoom:25%;" />
-<p>现在要计算$a^{1}$的输出结果，先计算出$a^{1}$的$q$（query），再计算剩余三个向量的$k$（key），通过dot-product计算出attention-score，注意要对向量长度做一个归一化，让每一个词向量都是同一维度，最后通过softmax函数做一个normalization，也可以选择ReLu等激活函数</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724162139080.png" alt="image-20230724162139080" style="zoom:25%;" />
-<p>分别乘以$W^{v}$，得到向量$v$（value）后与$α$相乘，最后全部相加即得输出结果$b^{1}$</p>
-</li>
-</ul>
-<h2 id="矩阵角度——自注意力机制">矩阵角度——自注意力机制</h2>
-<p>通过转换成矩阵计算，相当于实现了并行加速</p>
-<ul>
-<li>
-<p><strong>Step1</strong>: $W^{q}$、$W^{k}$和$W^{v}$相当于network的参数，可以把四个向量合成一个矩阵去理解，即相当于矩阵变换</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724163134044.png" alt="image-20230724163134044" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Step2</strong>: 计算$\alpha$相当于做了一个矩阵和向量的乘法，再把向量$q$排成一个矩阵，就得到了最终所有的$\alpha$</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164040135.png" alt="image-20230724164040135" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Step3</strong>: 同理，output的计算也可以从矩阵的角度理解</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164833361.png" alt="image-20230724164833361" style="zoom:25%;" />
-</li>
-<li>
-<p>最后整个的计算过程如下：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164901972.png" alt="image-20230724164901972" style="zoom:25%;" />
-</li>
-</ul>
-<h2 id="Multi-head-Self-attention">Multi-head Self-attention</h2>
-<ul>
-<li>
-<p>single head self-attention可以理解为学习input之间的相关性，但input之间的相关性可能不止一种，所以就有了multi-head，每一种相关性，就表示一个head，学习到不同意义的特征，head的具体数目是一个hyper parameter</p>
-</li>
-<li>
-<p>将$q^{i}$乘以另外两个矩阵，得到$q^{i,1}$和$q^{i,2}$，相应的$k$和$v$都有两个，做self-attention时，1那一类的一起做，2那一类的一起做，</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724171305069.png" alt="image-20230724171305069" style="zoom:25%;" />
-</li>
-<li>
-<p>将$b^{i,1}$和$b^{i,2}$拼接起来，再通过一个矩阵变换（通常是一个<strong>全连接层</strong>，综合所有特征后输出结果，用于降维）得到最终的$b^{i}$，送到下一层去</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724171449990.png" alt="image-20230724171449990" style="zoom:25%;" />
-</li>
-</ul>
-<h2 id="Positional-Encoding">Positional Encoding</h2>
-<ul>
-<li>
-<p>使用self-attention的layer丢失了位置的信息（如在词性标注中很重要），虽然在前面学习中标注了1234，但实际处理中没有先后次序，“<strong>天涯若比邻</strong>”</p>
-</li>
-<li>
-<p>为每一个位置设定一个vector $e^{i}$，叫做positional vector，$i$代表的是位置，这个$e^{i}$可以是人设的（hand-crafted），也可以是learn出来的，尚在研究（截止2021）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724172607489.png" alt="image-20230724172607489" style="zoom:25%;" />
-</li>
-</ul>
-<h2 id="在其他领域的应用">在其他领域的应用</h2>
-<ul>
-<li>
-<p>语音处理：语音处理中的向量大小及数量比NLP要大很多，为了简化运算量，提出了<strong>Truncated Self-attention</strong>，只关注一个小范围</p>
-</li>
-<li>
-<p>图像处理：将一张图片看成是一个vector set</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724173545884.png" alt="image-20230724173545884" style="zoom:20%;" />
-</li>
-<li>
-<p><strong>Self-attention v.s. CNN</strong></p>
-<ul>
-<li>CNN的感受野由卷积核的大小决定，只能提取一小部分的特征，而Self-attention关注的是整张图像的信息，所提取特征的位置和数量由自己训练所决定（attention score），不需要人工干预，所以Self-attention包含CNN <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175026157.png" alt="image-20230724175026157" style="zoom:15%;" /></li>
-</ul>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724174611656.png" alt="image-20230724174611656" style="zoom:25%;" />
-<ul>
-<li>CNN的限制更多，更适合小数据集，而Self-attention限制更少，更适合大数据集</li>
-</ul>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175058882.png" alt="image-20230724175058882" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Self-attention v.s. RNN</strong></p>
-</li>
-<li>
-<p><strong>Self-attention for Graph</strong></p>
-<ul>
-<li>在Graph中，点之间的相关性信息已经由Graph给出，只需要计算有edge相连的node就可以了，不想连的两个node将他们的attention score设为零即可</li>
-</ul>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175550617.png" alt="image-20230724175550617" style="zoom:25%;" />
-</li>
-</ul>
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
+      <!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+      <!-- 归档列表 -->
 
-        <hr>
-        <!-- Pager -->
-        <ul class="pager">
+      
+
+      <!-- 归档列表 -->
+      
+      <div class="one-tag-list">
+        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
+          <span class="tag-text">2023</span>
+        </span>
+        <ul>
           
-          <li class="previous">
-            <a href="/DeepLearning/CNN/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">&larr; Previous Post</a>
+          <li>
+            09-16
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
+              <span>
+                Untitled
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
           </li>
           
+          <li>
+            09-13
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
+              <span>
+                Untitled
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
           
-          <li class="next">
-            <a href="/DeepLearning/CNN/Transformer/" data-toggle="tooltip" data-placement="top" title="Transformer">Next Post &rarr;</a>
+          <li>
+            07-31
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
+              <span>
+                Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-25
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
+              <span>
+                Swin Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-24
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
+              <span>
+                自注意力机制
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-24
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
+              <span>
+                Transformer
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-23
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
+              <span>
+                EfficientNet
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-23
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/undefined/report/" style="color: #0085a1">
+              <span>
+                实训2报告
+                
+                -- 
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-21
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
+              <span>
+                经典卷积网络
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-07
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
+              <span>
+                卷积神经网络概述
+                
+                -- DeepLearning
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            06-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/course/os/" style="color: #0085a1">
+              <span>
+                操作系统期末复习
+                
+                -- course
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            06-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/other/firstBlog/" style="color: #0085a1">
+              <span>
+                第一篇博客——杂谈
+                
+                -- other
+                
+              </span>
+            </a>
           </li>
           
         </ul>
-
-        
-        <!-- tip start -->
-        <!-- tip -->
-<!-- tip start -->
-<div class="tip">
-  <p>
-    
-      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
-    
-  </p>
+      </div>
+      
+    </div>
+  </div>
 </div>
-<!-- tip end -->
 
-        <!-- tip end -->
-        
 
-        
-        <!-- Sharing Srtart -->
-        <!--
- * @Author: Leo
- * @Date: 2023-06-26 15:50:28
- * @LastEditTime: 2023-06-28 23:04:59
- * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
- * @Description: Leo的一些没用的代码
--->
-<!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+      <!-- 如果开启评论功能 -->
+      
+    </div>
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li> -->
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=自注意力机制&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/self-attention/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li> -->
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5><a href="/about/">ABOUT ME</a></h5>
+  <div class="short-about">
+
+    
+    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
+
+    
+    <p>四川大学 网络空间安全学院</p>
+    
+
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+
+      
+      <li>
+        <a target="_blank" href="https://github.com/Leo021017">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- RECENT POSTS -->
+
+<h5><a href="/">RECENT POSTS</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="../../../DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+      <li>(no title)</li>
+    </a>
+    
+    <a href="../../../DeepLearning/GNN/GNN/">
+      <li>(no title)</li>
+    </a>
+    
+    <a href="../../../DeepLearning/CNN/Transformer/">
+      <li>Transformer</li>
+    </a>
+    
+    <a href="../../../DeepLearning/Transformer/Swing%20Transformer/">
+      <li>Swin Transformer</li>
+    </a>
+    
+    <a href="../../../DeepLearning/Transformer/self-attention/">
+      <li>自注意力机制</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
-        <!-- <hr> -->
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-<!-- 2. gitment comment -->
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <!-- <hr> -->
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">自注意力机制概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%9F%A9%E9%98%B5%E8%A7%92%E5%BA%A6%E2%80%94%E2%80%94%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">矩阵角度——自注意力机制</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Multi-head-Self-attention"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Multi-head Self-attention</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Positional-Encoding"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Positional Encoding</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9C%A8%E5%85%B6%E4%BB%96%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">在其他领域的应用</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-
-        <!-- Friends Blog -->
-        
         <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
+    
+        <!-- Friends Blog -->
 
-          
-          <li>
-            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
-          </li>
-          
-        </ul>
-        
-      </div>
-    </div>
+<h5><a href="/">FRIENDS</a></h5>
+<ul class="list-inline">
+  
+  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
+  
+</ul>
+
+
+        <hr>
+    
+</div>
+
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

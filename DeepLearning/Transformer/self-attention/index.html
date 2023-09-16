@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/Transformer/self-attention/">
   <title>
     
-      Transformer - Leo&#39;s Blog
+      自注意力机制 - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -346,11 +346,11 @@
               <a class="tag" href="/tags/#Transformer" title="Transformer">Transformer</a>
               
             </div>
-            <h1>Transformer</h1>
-            <h2 class="subheading">介绍Transformer的基本网络结构</h2>
+            <h1>自注意力机制</h1>
+            <h2 class="subheading">介绍自注意力机制</h2>
             <span class="meta">
               Posted by Leo on
-              2023-07-31
+              2023-07-24
             </span>
 
 
@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">4</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">503</span> In Total
+              Words <span class="post-count">1.1k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -418,70 +418,117 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>Transformer概述</h1>
+        <h2 id="自注意力机制概述">自注意力机制概述</h2>
 <ul>
 <li>
-<p>核心是<strong>seq2seq</strong>模型，能处理很多的问题；一般的seq2seq模型分成两个部分：<strong>encoder</strong>和<strong>decoder</strong>，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724190057869.png" alt="image-20230724190057869" style="zoom:25%;" />
+<p>自注意力机制解决深度学习模型的输入是一组向量且大小不等的问题，如nlp（word embedding），语音处理，图（Graph）</p>
+<p>关于输出可以分为三类：</p>
+<ol>
+<li>
+<p>n个输入，n个输出：词性标注、社交网络中的用户分析等</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724113121020.png" alt="image-20230724113121020" style="zoom:20%;" />
 </li>
 <li>
-<p>encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用</p>
+<p>n个输入，1个输出：情感分析，语音识别谁的声音</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724113223579.png" alt="image-20230724113223579" style="zoom:20%;" />
 </li>
 <li>
-<p><strong>encoder</strong>：给一排向量，输出一排向量，transformer用的encoder是<strong>self-attention</strong>；</p>
-<p>每一个encoder会分成很多个block，每一个block由很多层组成</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724191620332.png" alt="image-20230724191620332" style="zoom:15%;" />
-<p>在真正的transformer中更加复杂，在加入<strong>positional encoding</strong>后，首先加入了<strong>残差连接</strong>（residual connection），再将输出结果做<strong>layer normalization</strong>，得到的输出才是全连接层的输入，再做一次residual和normalizaton得到最终block的输出</p>
-<p>（注：batch normalization是对一批样本的同一纬度特征做归一化；layer normalization是对单个样本的所有维度特征做归一化）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192419947.png" alt="image-20230724192419947" style="zoom:20%;" />
-<p>最终的模型图：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192611448.png" alt="image-20230724192611448" style="zoom:25%;" />
+<p>n个输入，m个输出：即<strong>seq2seq</strong>，如语言识别出文字</p>
+</li>
+</ol>
 </li>
 <li>
-<p><strong>decoder</strong>：介绍decoder中最常见的一种decoder——<strong>Autoregressive decoder</strong></p>
-<p>首先给decoder输入一个表示begin of sentence的特殊向量START，根据encoder给出的的输入向量输出第一个向量，做一个softmax，得到每一个汉字的概率（长度是汉字的数量），取最大值作为输出</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105551614.png" alt="image-20230725105551614" style="zoom:25%;" />
-<p>将第一个输出的向量作为第二个输出向量的输入向量，重复上面的步骤，依次得到最终的结果</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105929978.png" alt="image-20230725105929978" style="zoom:25%;" />
+<p>一个词性标注的例子：I saw a saw，如果简单地使用全连接层输出结果，两个saw的结果会一样，因为没有考虑上下文（传统的<strong>word2vector</strong>也有这一问题），并且输入是定长的，而自注意力机制可以解决这个问题：将四个向量组成的sequence全交给self-attention，self-attention会考虑整个sequence后输出结果，当然self-attention可以层级使用</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724114047566.png" alt="image-20230724114047566" style="zoom:25%;" />
+</li>
+<li>
+<p>从整个sequence中找出哪些部分是重要的，哪些决定$a^{1}$的class/regression，每一个向量与$a^{1}$的关联程度用$α$（<strong>attention score</strong>）表示</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724160950497.png" alt="image-20230724160950497" style="zoom:20%;" />
+<p>那么怎么计算$α$的大小呢？</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724161105526.png" alt="image-20230724161105526" style="zoom:15%;" />
+<p>通常有Dot-product和Additive两种方法，<strong>Dot-product</strong>最常用</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724161739497.png" alt="image-20230724161739497" style="zoom:25%;" />
+<p>现在要计算$a^{1}$的输出结果，先计算出$a^{1}$的$q$（query），再计算剩余三个向量的$k$（key），通过dot-product计算出attention-score，注意要对向量长度做一个归一化（除以$\sqrt{d_{k}}$，因为当长度很长时，去做softmax会使差距变大），最后通过softmax函数做一个normalization，也可以选择ReLu等激活函数</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724162139080.png" alt="image-20230724162139080" style="zoom:25%;" />
+<p>分别乘以$W^{v}$，得到向量$v$（value）后与$α$相乘，最后全部相加即得输出结果$b^{1}$</p>
+</li>
+</ul>
+<h2 id="矩阵角度——自注意力机制">矩阵角度——自注意力机制</h2>
+<p>通过转换成矩阵计算，相当于实现了并行加速</p>
 <ul>
 <li>
-<p>内部结构：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110844680.png" alt="image-20230725110844680" style="zoom:25%;" />
-<p>去掉中间这一块和encoder几乎一样</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110408862.png" alt="image-20230725110408862" style="zoom:20%;" />
+<p><strong>Step1</strong>: $W^{q}$、$W^{k}$和$W^{v}$相当于network的参数，可以把四个向量合成一个矩阵去理解，即相当于矩阵变换</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724163134044.png" alt="image-20230724163134044" style="zoom:25%;" />
+</li>
+<li>
+<p><strong>Step2</strong>: 计算$\alpha$相当于做了一个矩阵和向量的乘法，再把向量$q$排成一个矩阵，就得到了最终所有的$\alpha$</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164040135.png" alt="image-20230724164040135" style="zoom:25%;" />
+</li>
+<li>
+<p><strong>Step3</strong>: 同理，output的计算也可以从矩阵的角度理解</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164833361.png" alt="image-20230724164833361" style="zoom:25%;" />
+</li>
+<li>
+<p>最后整个的计算过程如下：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724164901972.png" alt="image-20230724164901972" style="zoom:25%;" />
+</li>
+</ul>
+<h2 id="Multi-head-Self-attention">Multi-head Self-attention</h2>
 <ul>
 <li>
-<p><strong>Masked</strong>：在做self-attention时，只关注序列中当前元素左边的元素，因为右边的元素还未产生（encoder是并行，decoder是串行）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725111426275.png" alt="image-20230725111426275" style="zoom:25%;" />
+<p>single head self-attention可以理解为学习input之间的相关性，但input之间的相关性可能不止一种，所以就有了multi-head，每一种相关性，就表示一个head，学习到不同意义的特征，head的具体数目是一个hyper parameter</p>
 </li>
+<li>
+<p>将$q^{i}$乘以另外两个矩阵，得到$q^{i,1}$和$q^{i,2}$，相应的$k$和$v$都有两个，做self-attention时，1那一类的一起做，2那一类的一起做，</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724171305069.png" alt="image-20230724171305069" style="zoom:25%;" />
+</li>
+<li>
+<p>将$b^{i,1}$和$b^{i,2}$拼接起来，再通过一个矩阵变换（通常是一个<strong>全连接层</strong>，综合所有特征后输出结果，用于降维）得到最终的$b^{i}$，送到下一层去</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724171449990.png" alt="image-20230724171449990" style="zoom:25%;" />
+</li>
+</ul>
+<h2 id="Positional-Encoding">Positional Encoding</h2>
+<ul>
+<li>
+<p>使用self-attention的layer丢失了位置的信息（如在词性标注中很重要），虽然在前面学习中标注了1234，但实际处理中没有先后次序，“<strong>天涯若比邻</strong>”</p>
+</li>
+<li>
+<p>为每一个位置设定一个vector $e^{i}$，叫做positional vector，$i$代表的是位置，这个$e^{i}$可以是人设的（hand-crafted），也可以是learn出来的，尚在研究（截止2021）</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724172607489.png" alt="image-20230724172607489" style="zoom:25%;" />
+</li>
+</ul>
+<h2 id="在其他领域的应用">在其他领域的应用</h2>
+<ul>
+<li>
+<p>语音处理：语音处理中的向量大小及数量比NLP要大很多，为了简化运算量，提出了<strong>Truncated Self-attention</strong>，只关注一个小范围</p>
+</li>
+<li>
+<p>图像处理：将一张图片看成是一个vector set</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724173545884.png" alt="image-20230724173545884" style="zoom:20%;" />
+</li>
+<li>
+<p><strong>Self-attention v.s. CNN</strong></p>
+<ul>
+<li>CNN的感受野由卷积核的大小决定，只能提取一小部分的特征，难以处理比较长的sequence；而Self-attention关注的是整张图像的信息，所提取特征的位置和数量由自己训练所决定（attention score），不需要人工干预，所以Self-attention包含CNN <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175026157.png" alt="image-20230724175026157" style="zoom:15%;" /></li>
+</ul>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724174611656.png" alt="image-20230724174611656" style="zoom:25%;" />
+<ul>
+<li>CNN的限制更多，更适合小数据集，而Self-attention限制更少，更适合大数据集</li>
+</ul>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175058882.png" alt="image-20230724175058882" style="zoom:25%;" />
+<ul>
+<li>其实Self-attention的多头注意力机制就是为了实现CNN的多通道输出机制</li>
 </ul>
 </li>
 <li>
-<p>decoder如何决定输出sequence的长度：当输出END时，表示这个sequence要停止了</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112211270.png" alt="image-20230725112211270" style="zoom:25%;" />
+<p><strong>Self-attention v.s. RNN</strong></p>
 </li>
 <li>
-<p>NAT（<strong>Non-autoregressive</strong>）：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112839201.png" alt="image-20230725112839201" style="zoom:25%;" />
-</li>
-</ul>
-</li>
-<li>
-<p>encoder和decoder是怎么连接的，上面被遮住的就是连接处，即<strong>Cross attention</strong></p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725113657182.png" alt="image-20230725113657182" style="zoom: 33%;" />
-<p>由decoder的attention产生$q$，由encoder的attention产生$k$和$v$，然后交叉做attention</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725114038510.png" alt="image-20230725114038510" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Training</strong>：在decoder训练的时候，输入的是正确答案，计算交叉熵损失函数，是交叉熵最小（Teacher Forcing）</p>
-<p>tips:</p>
+<p><strong>Self-attention for Graph</strong></p>
 <ul>
-<li>
-<p>Copy Mechanism</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725152216750.png" alt="image-20230725152216750" style="zoom:25%;" />
-</li>
-<li></li>
+<li>在Graph中，点之间的相关性信息已经由Graph给出，只需要计算有edge相连的node就可以了，不想连的两个node将他们的attention score设为零即可</li>
 </ul>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724175550617.png" alt="image-20230724175550617" style="zoom:25%;" />
 </li>
 </ul>
 
@@ -491,12 +538,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/DeepLearning/GNN/GNN/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
+            <a href="/DeepLearning/Transformer/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/DeepLearning/Transformer/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">Next Post &rarr;</a>
+            <a href="/DeepLearning/Transformer/Transformer/" data-toggle="tooltip" data-placement="top" title="Transformer">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -552,7 +599,7 @@
       </a>
     </li>
     <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Transformer&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=自注意力机制&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/Transformer/self-attention/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li> -->
@@ -590,7 +637,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Transformer概述</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">自注意力机制概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%9F%A9%E9%98%B5%E8%A7%92%E5%BA%A6%E2%80%94%E2%80%94%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">矩阵角度——自注意力机制</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Multi-head-Self-attention"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Multi-head Self-attention</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Positional-Encoding"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Positional Encoding</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9C%A8%E5%85%B6%E4%BB%96%E9%A2%86%E5%9F%9F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">在其他领域的应用</span></a></li></ol>
         
         </div>
       </aside>

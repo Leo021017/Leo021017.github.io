@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+  <link rel="canonical" href="http://leo021017.github.io/DeepLearning/DL基础知识/">
   <title>
     
-      Transformer - Leo&#39;s Blog
+      Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+        /* background-image: url(''); */
       
     }
 
@@ -343,14 +343,12 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#Transformer" title="Transformer">Transformer</a>
-              
             </div>
-            <h1>Transformer</h1>
-            <h2 class="subheading">介绍Transformer的基本网络结构</h2>
+            <h1></h1>
+            <h2 class="subheading"></h2>
             <span class="meta">
               Posted by Leo on
-              2023-07-31
+              2023-09-16
             </span>
 
 
@@ -358,11 +356,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">3</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">503</span> In Total
+              Words <span class="post-count">936</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -418,70 +416,98 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>Transformer概述</h1>
+        <h1>梯度下降</h1>
 <ul>
 <li>
-<p>核心是<strong>seq2seq</strong>模型，能处理很多的问题；一般的seq2seq模型分成两个部分：<strong>encoder</strong>和<strong>decoder</strong>，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724190057869.png" alt="image-20230724190057869" style="zoom:25%;" />
+<p>引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即<strong>梯度下降法</strong></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916145705344.png" alt="image-20230916145705344" style="zoom:25%;" />
 </li>
 <li>
-<p>encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用</p>
+<p>随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916145839905.png" alt="image-20230916145839905" style="zoom:30%;" />
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916150054669.png" alt="image-20230916150054669" style="zoom:31%;" />
+<p>更一般的形式如下：要优化的参数是$\theta$，首先求出$L$关于$\theta$的偏导，也就是梯度值，然后对每一个点做一个平均，$\theta$沿着梯度的负方向移动就可以让损失函数更小</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916150324899.png" alt="image-20230916150324899" style="zoom:16%;" />
 </li>
 <li>
-<p><strong>encoder</strong>：给一排向量，输出一排向量，transformer用的encoder是<strong>self-attention</strong>；</p>
-<p>每一个encoder会分成很多个block，每一个block由很多层组成</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724191620332.png" alt="image-20230724191620332" style="zoom:15%;" />
-<p>在真正的transformer中更加复杂，在加入<strong>positional encoding</strong>后，首先加入了<strong>残差连接</strong>（residual connection），再将输出结果做<strong>layer normalization</strong>，得到的输出才是全连接层的输入，再做一次residual和normalizaton得到最终block的输出</p>
-<p>（注：batch normalization是对一批样本的同一纬度特征做归一化；layer normalization是对单个样本的所有维度特征做归一化）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192419947.png" alt="image-20230724192419947" style="zoom:20%;" />
-<p>最终的模型图：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230724192611448.png" alt="image-20230724192611448" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>decoder</strong>：介绍decoder中最常见的一种decoder——<strong>Autoregressive decoder</strong></p>
-<p>首先给decoder输入一个表示begin of sentence的特殊向量START，根据encoder给出的的输入向量输出第一个向量，做一个softmax，得到每一个汉字的概率（长度是汉字的数量），取最大值作为输出</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105551614.png" alt="image-20230725105551614" style="zoom:25%;" />
-<p>将第一个输出的向量作为第二个输出向量的输入向量，重复上面的步骤，依次得到最终的结果</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725105929978.png" alt="image-20230725105929978" style="zoom:25%;" />
+<p>优化方法：</p>
 <ul>
 <li>
-<p>内部结构：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110844680.png" alt="image-20230725110844680" style="zoom:25%;" />
-<p>去掉中间这一块和encoder几乎一样</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725110408862.png" alt="image-20230725110408862" style="zoom:20%;" />
+<p><strong>随机梯度下降</strong>：如果样本点很多，计算的内存开销较大，于是每次从所有样本中随机选取小部分样本拿来训练，并且不重复</p>
+</li>
+<li>
+<p><strong>动量随机梯度下降</strong>：为了防止在 “山谷” 之间 “振荡” ，每次增加一个阻尼，每次计算保留一部分上一次计算的梯度，加在一起就是新的梯度</p>
+</li>
+</ul>
+  <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916151344967.png" alt="image-20230916151344967" style="zoom:33%;" />
 <ul>
 <li>
-<p><strong>Masked</strong>：在做self-attention时，只关注序列中当前元素左边的元素，因为右边的元素还未产生（encoder是并行，decoder是串行）</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725111426275.png" alt="image-20230725111426275" style="zoom:25%;" />
+<p><strong>AdaGrad算法</strong>：在训练过程中希望梯度一开始快速找到下降方向，学习率要大，后期要找到最小值，学习率要小。$r$是梯度在时间上的积累量，将$\sqrt{r}$放在学习率的分母上，可以实现自动调整。RMSProp算法在$r$更新的式子中加入了可以手动调节的$\rho$，$r\leftarrow \rho r+(1-\rho)g^2$</p>
+</li>
+<li>
+<p><strong>Adam算法</strong>：结合自适应学习和动量两种方法，自适应动量由$s$表示<br>
+$$<br>
+\theta \leftarrow \theta-\frac{\epsilon s}{\sqrt r+\delta}g<br>
+$$</p>
 </li>
 </ul>
 </li>
-<li>
-<p>decoder如何决定输出sequence的长度：当输出END时，表示这个sequence要停止了</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112211270.png" alt="image-20230725112211270" style="zoom:25%;" />
-</li>
-<li>
-<p>NAT（<strong>Non-autoregressive</strong>）：</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725112839201.png" alt="image-20230725112839201" style="zoom:25%;" />
-</li>
 </ul>
-</li>
-<li>
-<p>encoder和decoder是怎么连接的，上面被遮住的就是连接处，即<strong>Cross attention</strong></p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725113657182.png" alt="image-20230725113657182" style="zoom: 33%;" />
-<p>由decoder的attention产生$q$，由encoder的attention产生$k$和$v$，然后交叉做attention</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725114038510.png" alt="image-20230725114038510" style="zoom:25%;" />
-</li>
-<li>
-<p><strong>Training</strong>：在decoder训练的时候，输入的是正确答案，计算交叉熵损失函数，是交叉熵最小（Teacher Forcing）</p>
-<p>tips:</p>
+<h1>反向传播</h1>
 <ul>
 <li>
-<p>Copy Mechanism</p>
-<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230725152216750.png" alt="image-20230725152216750" style="zoom:25%;" />
+<p>引入：下面是一个线性拟合的例子，$w$和$b$的随机化一个初始值，通过损失函数去反向更新$w$和$b$的值。我们需要计算损失函数$L$对$w$和$b$的梯度值，为了方便计算，先计算$L$对$y$的偏导，然后通过链式法则去计算$L$对$w$和$b$的偏导，然后通过梯度下降更新$w$和$b$的值，这就是<strong>反向传播</strong></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154220136.png" alt="image-20230916154220136" style="zoom:43%;" />
 </li>
-<li></li>
+<li>
+<p>计算机中的模块化计算：</p>
+<p>下面是正向计算图</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154558833.png" alt="image-20230916154558833" style="zoom:33%;" />
+<p>下面是反向传播计算图</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154730452.png" alt="image-20230916154730452" style="zoom:33%;" />
+</li>
+<li>
+<p>代码实现</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916155110042.png" alt="image-20230916155110042" style="zoom:30%;" />
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Multiply</span>(<span class="params">torch.autograd.Function</span>):</span></span><br><span class="line"><span class="meta">	@staticmethod</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">ctx, x, y</span>):</span></span><br><span class="line">		ctx.save_for_backward(x,y)</span><br><span class="line">		z = x * y</span><br><span class="line">		<span class="keyword">return</span> z</span><br><span class="line">	</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backward</span>(<span class="params">ctx, x, y</span>):</span></span><br><span class="line">        x, y = ctx.save_tensors</span><br><span class="line">        grad_x = grad_z * y</span><br><span class="line">        grad_y = grad_z * x</span><br><span class="line">        <span class="keyword">return</span> grad_x, grad_y</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<h1>激活函数</h1>
+<ul>
+<li>
+<p>神经网络的矩阵乘法只是线性变换，为了解决非线性问题，使用非线性函数进行激活，这就是<strong>激活函数</strong></p>
+</li>
+<li>
+<p>激活函数的条件：</p>
+<ol>
+<li>为了能反向传播，一定要连续可导</li>
+<li>能映射所有实数</li>
+<li>激活函数只是增加非线性，不改变对输入的响应状态，应该单调递增</li>
+</ol>
+</li>
+<li>
+<p>常用的激活函数</p>
+<ol>
+<li>
+<p>sigmoid函数：$\sigma=\frac{1}{1+e^{-y}}$，导数最大值是0.25，意味着反向更新权重时，每层梯度会至少缩小$1/4$，导致最前面几层梯度几乎为0，权重几乎不更新，这就是<strong>梯度消失</strong>现象</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916160627746.png" alt="image-20230916160627746" style="zoom:40%;" />
+</li>
+<li>
+<p>tanh函数：$tanh=\frac{1-e^{-y}}{1+e^{-y}}$，优于sigmoid函数，但也存在梯度消失的问题</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916161057745.png" alt="image-20230916161057745" style="zoom:40%;" />
+</li>
+<li>
+<p><strong>ReLU函数</strong>：$ReLU(y)=\left{<br>
+\begin{matrix}<br>
+y,y\geq0 \<br>
+0,y\leq0<br>
+\end{matrix}<br>
+\right.$，函数没有上限，梯度累积可能过大导致<strong>梯度爆炸</strong></p>
+<p>具有稀疏性，信息耦合程度低，表现更好</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916161247649.png" alt="image-20230916161247649" style="zoom:40%;" />
+<p>为了避免函数值等于零导致神经元坏死，出现了Leaky ReLU和Parametric ReLU…</p>
+</li>
+</ol>
 </li>
 </ul>
 
@@ -490,13 +516,9 @@
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/DeepLearning/GNN/GNN/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/DeepLearning/Transformer/Swing Transformer/" data-toggle="tooltip" data-placement="top" title="Swin Transformer">Next Post &rarr;</a>
+            <a href="/DeepLearning/GNN/GNN/" data-toggle="tooltip" data-placement="top" title="">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -552,7 +574,7 @@
       </a>
     </li>
     <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Transformer&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/CNN/Transformer/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=&body=Hi,I found this website and thought you might like it http://leo021017.github.io/DeepLearning/DL基础知识/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li> -->
@@ -584,17 +606,6 @@
 
       <!-- Catalog: Tabe of Content -->
       <!-- Table of Contents -->
-
-    
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Transformer概述</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
 
 
 
