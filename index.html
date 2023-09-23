@@ -410,12 +410,59 @@
   <!-- top end -->
   
 
-  <a href="/DeepLearning/DL基础知识/">
+  <a href="/DeepLearning/RNN/RNN/">
     <h2 class="post-title">
-      Untitled
+      循环神经网络
     </h2>
     <h3 class="post-subtitle">
-      
+      介绍了循环神经网络结构，如LSTM、GRU
+    </h3>
+    <div class="post-content-preview">
+      RNN
+
+
+RNN相较其他的神经网络，考虑到了每个隐藏层在时间上的变化，宏观上看，RNN在每一个时间点的输出，同时由当前输入和前一时间点的输出所决定，公式表达为：
+$$
+S_{t}=f(W_{input}X+W_SS_{t-1}+b)
+$$
+
+注：RNN假定不同时刻共享参数矩阵$W_{s}$
+
+
+不同的模型
+
+1 to N：与CNN等结合，可以实现看图写话等功能
+N  to 1：如情感分类等......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-16
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#RNN" title="RNN">RNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/DL基础知识/">
+    <h2 class="post-title">
+      深度学习的一些基础
+    </h2>
+    <h3 class="post-subtitle">
+      深度学习中的一些基础概念的讲解
     </h3>
     <div class="post-content-preview">
       梯度下降
@@ -438,6 +485,8 @@
   </p>
   <div class="tags">
     
+    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+    
   </div>
   
 
@@ -453,10 +502,10 @@
 
   <a href="/DeepLearning/GNN/GNN/">
     <h2 class="post-title">
-      Untitled
+      图神经网络
     </h2>
     <h3 class="post-subtitle">
-      
+      介绍了图神经网络结构
     </h3>
     <div class="post-content-preview">
       GNN介绍
@@ -479,6 +528,8 @@ h_{......
     2023-09-13
   </p>
   <div class="tags">
+    
+    <a href="/tags/#GNN" title="GNN">GNN</a>
     
   </div>
   
@@ -788,68 +839,6 @@ VGG-16：网络结构相对......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/CNN/CNN intro/">
-    <h2 class="post-title">
-      卷积神经网络概述
-    </h2>
-    <h3 class="post-subtitle">
-      介绍了卷积神经网络及其组件
-    </h3>
-    <div class="post-content-preview">
-      计算机视觉
-
-
-计算机视觉的成果可以应用到其他领域（如：语音识别）
-
-
-两个作用
-
-
-识别
-
-
-
-检测
-
-
-
-
-
-图像的数据量非常大，所以需要使用卷积计算来进行处理
-
-
-边缘检测示例
-
-
-神经网络的前几层是如何检测边缘的，后面的层有可能检测到物体的部分区域，更靠后的一些层可能检测到完整的物体（如：人脸）
-
-
-
-构造一个用于检测垂直边缘的过滤器（filter，或核），如：$\begin{bma......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#CNN" title="CNN">CNN</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -929,12 +918,16 @@ VGG-16：网络结构相对......
 <div class="widget">
   <ul>
     
+    <a href="DeepLearning/RNN/RNN/">
+      <li>循环神经网络</li>
+    </a>
+    
     <a href="DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-      <li>(no title)</li>
+      <li>深度学习的一些基础</li>
     </a>
     
     <a href="DeepLearning/GNN/GNN/">
-      <li>(no title)</li>
+      <li>图神经网络</li>
     </a>
     
     <a href="DeepLearning/CNN/Transformer/">
@@ -943,10 +936,6 @@ VGG-16：网络结构相对......
     
     <a href="DeepLearning/Transformer/Swing%20Transformer/">
       <li>Swin Transformer</li>
-    </a>
-    
-    <a href="DeepLearning/Transformer/self-attention/">
-      <li>自注意力机制</li>
     </a>
     
   </ul>
