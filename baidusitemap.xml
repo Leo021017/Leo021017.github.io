@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://leo021017.github.io/course/DSA/%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2023-10-09</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/Lab/CSAPP/lab2-bomb/</loc>
+    <lastmod>2023-09-23</lastmod>
+  </url>
+  <url>
     <loc>http://leo021017.github.io/DeepLearning/RNN/RNN/</loc>
     <lastmod>2023-09-16</lastmod>
   </url>
@@ -45,7 +53,7 @@
     <lastmod>2023-07-07</lastmod>
   </url>
   <url>
-    <loc>http://leo021017.github.io/course/os/</loc>
+    <loc>http://leo021017.github.io/course/OS/os/</loc>
     <lastmod>2023-06-28</lastmod>
   </url>
   <url>

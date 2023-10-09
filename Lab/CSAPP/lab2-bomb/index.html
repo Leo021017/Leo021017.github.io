@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/tags/实训/">
+  <link rel="canonical" href="http://leo021017.github.io/Lab/CSAPP/lab2-bomb/">
   <title>
     
-      Leo&#39;s Blog
+      CSAPP-Lab2 - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -340,10 +340,36 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Leo&#39;s Blog</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">这里是知识的荒漠</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#CSAPP-Lab" title="CSAPP-Lab">CSAPP-Lab</a>
+              
+            </div>
+            <h1>CSAPP-Lab2</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-09-23
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">7</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.6k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
           </div>
           
         </div>
@@ -384,351 +410,241 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h1>实验概览</h1>
+<p><code>BombLab</code>提供给我们两个文件，一个是编译不了的C文件<code>bomb.c</code>，一个是可执行文件<code>bomb</code>。当运行<code>bomb</code>文件时，它会要求输内容，如果其中的任何一句是错的，炸弹就会“爆炸”。我们必须利用反汇编工具逆向分析这个文件，并找到这6个字符串，从而“拆除”炸弹。</p>
+<p>使用<code>objdump -d bomb &gt; bomb.asm</code>命令反汇编<code>bomb</code></p>
+<h1>汇编基础</h1>
+<ul>
+<li>
+<p><code>eax</code>寄存器常用来保存函数的返回值</p>
+</li>
+<li>
+<p><code>test</code>指令在两个操作数的对应位之间进行 <code>AND</code>操作，并根据运算结果设置符号标志位、零标志位和奇偶标志位，但<code>test</code>指令不修改目标操作数，<code>test</code>指令可以同时检查多个位</p>
+<p>假设想要知道 AL 寄存器的位 0 和位 3 是否置 1，可以使用如下指令：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">test </span>al, 00001001b ;测试位 0 和位 3</span><br></pre></td></tr></table></figure>
+<p>只有当所有测试位都清 0 时，零标志位<code>ZF</code>才置 1</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">1</span>    &lt;- 输入值</span><br><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>    &lt;- 测试值</span><br><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>    &lt;- 结果：ZF=<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span>    &lt;- 输入值</span><br><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">1</span>    &lt;- 测试值</span><br><span class="line"><span class="symbol">0 </span> <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>  <span class="number">0</span>    &lt;- 结果：ZF=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><code>test   %eax,%eax</code>指令可以用来检查<code>eax</code>的值是否为零</p>
+</li>
+<li>
+<p>在<code>x86</code>架构中，<code>eax</code> 是32位的寄存器，其中包含了 <code>ax</code>、<code>ah</code> 和 <code>al</code> 三个子寄存器。其中，<code>al</code> 是 <code>eax</code> 的低8位，<code>ah</code> 是中间的8位，<code>ax</code> 是 <code>eax</code> 的低16位</p>
+</li>
+</ul>
+<h1>phase_1</h1>
+<p>对汇编代码进行分析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">400ee0:	48 83 ec 08          	sub    $0x8,%rsp	&#x2F;&#x2F; 为函数分配栈帧</span><br><span class="line">400ee4:	be 00 24 40 00       	mov    $0x402400,%esi	&#x2F;&#x2F; 设置函数strings_not_equal的传入参数，0x402400</span><br><span class="line">400ee9:	e8 4a 04 00 00       	callq  401338 &lt;strings_not_equal&gt;</span><br><span class="line">400eee:	85 c0                	test   %eax,%eax</span><br><span class="line">400ef0:	74 05                	je     400ef7 &lt;phase_1+0x17&gt;	&#x2F;&#x2F; 函数返回值若为0，拆除成功；不为0，则bomb!</span><br><span class="line">400ef2:	e8 43 05 00 00       	callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">400ef7:	48 83 c4 08          	add    $0x8,%rsp</span><br><span class="line">400efb:	c3                   	retq</span><br></pre></td></tr></table></figure>
+<p><code>&lt;strings_not_equal&gt;</code>函数的汇编代码如下：（需要返回0）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">401338:	41 54                	push   %r12</span><br><span class="line">40133a:	55                   	push   %rbp</span><br><span class="line">40133b:	53                   	push   %rbx</span><br><span class="line">40133c:	48 89 fb             	mov    %rdi,%rbx</span><br><span class="line">40133f:	48 89 f5             	mov    %rsi,%rbp</span><br><span class="line">401342:	e8 d4 ff ff ff       	callq  40131b &lt;string_length&gt;	&#x2F;&#x2F; 求出第一个字符串的长度并传给$r12d</span><br><span class="line">401347:	41 89 c4             	mov    %eax,%r12d</span><br><span class="line">40134a:	48 89 ef             	mov    %rbp,%rdi</span><br><span class="line">40134d:	e8 c9 ff ff ff       	callq  40131b &lt;string_length&gt;	&#x2F;&#x2F; 求出第一个字符串的长度并与上一个字符串比较</span><br><span class="line">401352:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line">401357:	41 39 c4             	cmp    %eax,%r12d</span><br><span class="line">40135a:	75 3f                	jne    40139b &lt;strings_not_equal+0x63&gt;	&#x2F;&#x2F; 将1作为返回值返回</span><br><span class="line">40135c:	0f b6 03             	movzbl (%rbx),%eax	&#x2F;&#x2F;rbx的低一字节传给eax</span><br><span class="line">40135f:	84 c0                	test   %al,%al	&#x2F;&#x2F; 相当于要一个字节一个字节地比较</span><br><span class="line">401361:	74 25                	je     401388 &lt;strings_not_equal+0x50&gt;	&#x2F;&#x2F;将0作为返回值返回</span><br><span class="line">401363:	3a 45 00             	cmp    0x0(%rbp),%al</span><br><span class="line">401366:	74 0a                	je     401372 &lt;strings_not_equal+0x3a&gt;	&#x2F;&#x2F;跳转到0x401372，去比较下一个字节</span><br><span class="line">401368:	eb 25                	jmp    40138f &lt;strings_not_equal+0x57&gt;	&#x2F;&#x2F;将1作为返回值返回</span><br><span class="line"></span><br><span class="line">&#x2F;* 循环开始 *&#x2F;</span><br><span class="line">40136a:	3a 45 00             	cmp    0x0(%rbp),%al</span><br><span class="line">40136d:	0f 1f 00             	nopl   (%rax)</span><br><span class="line">401370:	75 24                	jne    401396 &lt;strings_not_equal+0x5e&gt;	&#x2F;&#x2F;如果不相等将1作为返回值返回</span><br><span class="line">401372:	48 83 c3 01          	add    $0x1,%rbx	&#x2F;&#x2F;每一次地址加1，相当于比较下一个字节</span><br><span class="line">401376:	48 83 c5 01          	add    $0x1,%rbp</span><br><span class="line">40137a:	0f b6 03             	movzbl (%rbx),%eax</span><br><span class="line">40137d:	84 c0                	test   %al,%al</span><br><span class="line">40137f:	75 e9                	jne    40136a &lt;strings_not_equal+0x32&gt; &#x2F;&#x2F;如果$al不等于0，即还没有比较完</span><br><span class="line"></span><br><span class="line">401381:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line">401386:	eb 13                	jmp    40139b &lt;strings_not_equal+0x63&gt; &#x2F;&#x2F;将0作为返回值返回</span><br><span class="line">401388:	ba 00 00 00 00       	mov    $0x0,%edx</span><br><span class="line">40138d:	eb 0c                	jmp    40139b &lt;strings_not_equal+0x63&gt; &#x2F;&#x2F;将0作为返回值返回</span><br><span class="line">40138f:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line">401394:	eb 05                	jmp    40139b &lt;strings_not_equal+0x63&gt; &#x2F;&#x2F;将1作为返回值返回</span><br><span class="line">401396:	ba 01 00 00 00       	mov    $0x1,%edx</span><br><span class="line">40139b:	89 d0                	mov    %edx,%eax</span><br><span class="line">40139d:	5b                   	pop    %rbx</span><br><span class="line">40139e:	5d                   	pop    %rbp</span><br><span class="line">40139f:	41 5c                	pop    %r12</span><br><span class="line">4013a1:	c3                   	retq   </span><br></pre></td></tr></table></figure>
+<p>要判断的是输入字符串是否与<code>0x402400</code>处存储的字符串相同，可以使用<code>print (char*)0x402400</code>或<code>x/s 0x402400</code>来查看，得到<strong>key</strong></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Border </span>relations with Canada have never <span class="keyword">been </span><span class="keyword">better.</span></span><br></pre></td></tr></table></figure>
+<h1>phase_2</h1>
+<p>对汇编代码进行分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">400efc:	55                   	push   %rbp	  &#x2F;&#x2F; 将被调用者保存寄存器的值入栈</span><br><span class="line">400efd:	53                   	push   %rbx</span><br><span class="line">400efe:	48 83 ec 28          	sub    $0x28,%rsp</span><br><span class="line"></span><br><span class="line">400f02:	48 89 e6             	mov    %rsp,%rsi	&#x2F;&#x2F; 分配栈帧并调用&lt;read_six_numbers&gt;读入整数</span><br><span class="line">400f05:	e8 52 05 00 00       	callq  40145c &lt;read_six_numbers&gt;</span><br><span class="line"></span><br><span class="line">400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)	&#x2F;&#x2F; 比较%rsp与1是否相等，不相等则引爆。可知第一个数为 1</span><br><span class="line">400f0e:	74 20                	je     400f30 &lt;phase_2+0x34&gt;</span><br><span class="line">400f10:	e8 25 05 00 00       	callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">400f15:	eb 19                	jmp    400f30 &lt;phase_2+0x34&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;* 循环开始 *&#x2F;</span><br><span class="line">400f17:	8b 43 fc             	mov    -0x4(%rbx),%eax</span><br><span class="line">400f1a:	01 c0                	add    %eax,%eax</span><br><span class="line">400f1c:	39 03                	cmp    %eax,(%rbx)</span><br><span class="line">400f1e:	74 05                	je     400f25 &lt;phase_2+0x29&gt; &#x2F;&#x2F;如果相等，进行下一步比较</span><br><span class="line">400f20:	e8 15 05 00 00       	callq  40143a &lt;explode_bomb&gt; &#x2F;&#x2F; 如果不等就bomb</span><br><span class="line"></span><br><span class="line">400f25:	48 83 c3 04          	add    $0x4,%rbx</span><br><span class="line">400f29:	48 39 eb             	cmp    %rbp,%rbx ，</span><br><span class="line">400f2c:	75 e9                	jne    400f17 &lt;phase_2+0x1b&gt; &#x2F;&#x2F; 如果不等，回到循环开始</span><br><span class="line">400f2e:	eb 0c                	jmp    400f3c &lt;phase_2+0x40&gt; &#x2F;&#x2F;如果相等，函数成功返回</span><br><span class="line"></span><br><span class="line">400f30:	48 8d 5c 24 04       	lea    0x4(%rsp),%rbx</span><br><span class="line">400f35:	48 8d 6c 24 18       	lea    0x18(%rsp),%rbp</span><br><span class="line">400f3a:	eb db                	jmp    400f17 &lt;phase_2+0x1b&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;* 回收内存空间 *&#x2F;</span><br><span class="line">400f3c:	48 83 c4 28          	add    $0x28,%rsp</span><br><span class="line">400f40:	5b                   	pop    %rbx</span><br><span class="line">400f41:	5d                   	pop    %rbp</span><br><span class="line">400f42:	c3                   	retq</span><br></pre></td></tr></table></figure>
+<p>对<code>&lt;read_six_numbers&gt;</code>的汇编分析如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">40145c:	48 83 ec 18          	sub    $0x18,%rsp</span><br><span class="line">401460:	48 89 f2             	mov    %rsi,%rdx</span><br><span class="line">401463:	48 8d 4e 04          	lea    0x4(%rsi),%rcx</span><br><span class="line">401467:	48 8d 46 14          	lea    0x14(%rsi),%rax</span><br><span class="line">40146b:	48 89 44 24 08       	mov    %rax,0x8(%rsp)</span><br><span class="line">401470:	48 8d 46 10          	lea    0x10(%rsi),%rax</span><br><span class="line">401474:	48 89 04 24          	mov    %rax,(%rsp)</span><br><span class="line">401478:	4c 8d 4e 0c          	lea    0xc(%rsi),%r9</span><br><span class="line">40147c:	4c 8d 46 08          	lea    0x8(%rsi),%r8</span><br><span class="line"></span><br><span class="line">401480:	be c3 25 40 00       	mov    $0x4025c3,%esi	&#x2F;&#x2F; 调用scanf()函数读取6个整数</span><br><span class="line">401485:	b8 00 00 00 00       	mov    $0x0,%eax</span><br><span class="line">40148a:	e8 61 f7 ff ff       	callq  400bf0 &lt;__isoc99_sscanf@plt&gt;</span><br><span class="line">40148f:	83 f8 05             	cmp    $0x5,%eax</span><br><span class="line">401492:	7f 05                	jg     401499 &lt;read_six_numbers+0x3d&gt;</span><br><span class="line">401494:	e8 a1 ff ff ff       	callq  40143a &lt;explode_bomb&gt;</span><br><span class="line">401499:	48 83 c4 18          	add    $0x18,%rsp</span><br><span class="line">40149d:	c3                   	retq</span><br></pre></td></tr></table></figure>
+<p>为了验证是读取6个整数，使用<code>print (char*)0x4025c3</code>，输出<code>%d %d %d %d %d %d</code>，猜想正确</p>
+<p><code>&lt;phase_2&gt;</code>剩余代码的循环规律是，每个数都要与上一个数的2倍相等，从而可以得到<strong>key</strong></p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span><span class="number">2</span> <span class="number">4</span> <span class="number">8</span> <span class="number">16</span> <span class="number">32</span></span><br></pre></td></tr></table></figure>
+<h1>phase_3</h1>
+<h1>phase_4</h1>
+<h1>phase_5</h1>
+<h1>phase_6</h1>
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <li>
-            10-09
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/DSA/指针/" style="color: #0085a1">
-              <span>
-                指针学习笔记
-                
-                -- course
-                
-              </span>
-            </a>
+          <li class="previous">
+            <a href="/course/DSA/指针/" data-toggle="tooltip" data-placement="top" title="指针学习笔记">&larr; Previous Post</a>
           </li>
           
-          <li>
-            09-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab2-bomb/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab2
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
           
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/RNN/RNN/" style="color: #0085a1">
-              <span>
-                循环神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
-              <span>
-                深度学习的一些基础知识
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
-              <span>
-                图神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-31
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
-              <span>
-                Swin Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
-              <span>
-                自注意力机制
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
-              <span>
-                EfficientNet
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/undefined/report/" style="color: #0085a1">
-              <span>
-                实训2报告
-                
-                -- 
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
-              <span>
-                经典卷积网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
-              <span>
-                卷积神经网络概述
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/OS/os/" style="color: #0085a1">
-              <span>
-                操作系统期末复习
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/firstBlog/" style="color: #0085a1">
-              <span>
-                第一篇博客——杂谈
-                
-                -- other
-                
-              </span>
-            </a>
+          <li class="next">
+            <a href="/DeepLearning/RNN/RNN/" data-toggle="tooltip" data-placement="top" title="循环神经网络">Next Post &rarr;</a>
           </li>
           
         </ul>
-      </div>
-      
-    </div>
-  </div>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
 </div>
+<!-- tip end -->
 
+        <!-- tip end -->
+        
 
-      <!-- 如果开启评论功能 -->
-      
-    </div>
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
 
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>四川大学 网络空间安全学院</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Leo021017">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../course/DSA/%E6%8C%87%E9%92%88/">
-      <li>指针学习笔记</li>
-    </a>
-    
-    <a href="../../Lab/CSAPP/lab2-bomb/">
-      <li>CSAPP-Lab2</li>
-    </a>
-    
-    <a href="../../DeepLearning/RNN/RNN/">
-      <li>循环神经网络</li>
-    </a>
-    
-    <a href="../../DeepLearning/DL%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-      <li>深度学习的一些基础知识</li>
-    </a>
-    
-    <a href="../../DeepLearning/GNN/GNN/">
-      <li>图神经网络</li>
-    </a>
-    
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=CSAPP-Lab2&body=Hi,I found this website and thought you might like it http://leo021017.github.io/Lab/CSAPP/lab2-bomb/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
   </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <hr>
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">实验概览</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">汇编基础</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">phase_1</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">phase_2</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">phase_3</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">phase_4</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">phase_5</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">phase_6</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-
-    
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
