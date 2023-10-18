@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="这里是一个没有知识的荒漠"/>
+  <meta name="keyword" content="郝怡琛, Leo, 网络空间安全,四川大学,IT  blog,Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/myAvatar.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="http://leo021017.github.io/Lab/Top-Down/Programming/">
+  <title>
+    
+      自顶向下编程练习 - Leo&#39;s Blog
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--dark">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'dark';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+		<!-- Gitter -->
+<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'your-community/your-room'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Leo&#39;s Blog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">HOME</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              TAGS
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>SEARCH</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/leo.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+              
+            </div>
+            <h1>自顶向下编程练习</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-10-17
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">16</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">3.2k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h2 id="Web服务器">Web服务器</h2>
+<h3 id="实验要求">实验要求</h3>
+<p>将HTML文件（例如HelloWorld.html）放在服务器所在的目录中。运行服务器程序。确认运行服务器的主机的IP地址（例如128.238.251.26）。从另一个主机，打开浏览器并提供相应的URL。例如：</p>
+<p><a target="_blank" rel="noopener" href="http://128.238.251.26:6789/HelloWorld.html">http://128.238.251.26:6789/HelloWorld.html</a></p>
+<p>“HelloWorld.html”是您放在服务器目录中的文件。还要注意使用冒号后的端口号。您需要使用服务器代码中使用的端口号来替换此端口号。在上面的例子中，我们使用了端口号6789. 浏览器应该显示HelloWorld.html的内容。如果省略“:6789”，浏览器将使用默认端口80，只有当您的服务器正在端口80监听时，才会从服务器获取网页。</p>
+<p>然后用客户端尝试获取服务器上不存在的文件。你应该会得到一个“404 Not Found”消息。</p>
+<h3 id="代码">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#import socket module</span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line">serverSocket = socket(AF_INET, SOCK_STREAM) </span><br><span class="line"><span class="comment">#Prepare a sever socket </span></span><br><span class="line">PORT = <span class="number">1234</span></span><br><span class="line">serverSocket.bind((<span class="string">&#x27;&#x27;</span>,PORT)) </span><br><span class="line">serverSocket.listen(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:     </span><br><span class="line">    <span class="comment">#Establish the connection    </span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Ready to serve...&quot;</span>)     </span><br><span class="line">    connectionSocket, addr = serverSocket.accept()  <span class="comment">#Fill in start  #Fill in end</span></span><br><span class="line">    <span class="keyword">try</span>:         </span><br><span class="line">        message = connectionSocket.recv(<span class="number">2048</span>)  <span class="comment">#Fill in start  #Fill in end</span></span><br><span class="line">        filename = message.split()[<span class="number">1</span>]   <span class="comment"># get file path   )                       </span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(filename[<span class="number">1</span>:]) <span class="keyword">as</span> f:</span><br><span class="line">            outputdata = f.read()   <span class="comment">#Fill in start  #Fill in end</span></span><br><span class="line">            <span class="comment">#Send one HTTP header line into socket         </span></span><br><span class="line">            header = <span class="string">&#x27;HTTP/1.1 200 OK\nConnection: close\nContent-Type: text/html\nContent-Length: %d\n\n&#x27;</span> % (<span class="built_in">len</span>(outputdata))</span><br><span class="line">            connectionSocket.send(header.encode())    </span><br><span class="line"></span><br><span class="line">        <span class="comment">#Send the content of the requested file to the client</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(outputdata)):</span><br><span class="line">            connectionSocket.send(outputdata[i].encode())</span><br><span class="line">        connectionSocket.close()</span><br><span class="line">    <span class="keyword">except</span> IOError:</span><br><span class="line">        <span class="comment">#Send response message for file not found</span></span><br><span class="line">        header = <span class="string">&#x27; HTTP/1.1 404 Found&#x27;</span></span><br><span class="line">        connectionSocket.send(header.encode())</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Close client socket</span></span><br><span class="line">        connectionSocket.close()             </span><br><span class="line">serverSocket.close()</span><br></pre></td></tr></table></figure>
+<h2 id="UDP-Ping程序">UDP Ping程序</h2>
+<h3 id="实验要求-2">实验要求</h3>
+<p>在本实验中，您将学习使用Python进行UDP套接字编程的基础知识。您将学习如何使用UDP套接字发送和接收数据报，以及如何设置适当的套接字超时。在实验中，您将熟悉Ping应用程序及其在计算统计信息（如丢包率）中的作用。</p>
+<p>您首先需要研究一个用Python编写的简单的ping服务器程序，并实现对应的客户端程序。这些程序提供的功能类似于现代操作系统中可用的标准ping程序功能。然而，我们的程序使用更简单的UDP协议，而不是标准互联网控制消息协议（ICMP）来进行通信。 ping协议允许客户端机器发送一个数据包到远程机器，并使远程机器将数据包返回到客户（称为回显）的操作。另外，ping协议允许主机计算它到其他机器的往返时间。</p>
+<h3 id="代码-2">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># UDPPingerServer.py </span></span><br><span class="line"><span class="comment"># We will need the following module to generate randomized lost packets import random </span></span><br><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a UDP socket  </span></span><br><span class="line"><span class="comment"># Notice the use of SOCK_DGRAM for UDP packets </span></span><br><span class="line">serverSocket = socket(AF_INET, SOCK_DGRAM) </span><br><span class="line"><span class="comment"># Assign IP address and port number to socket </span></span><br><span class="line">serverSocket.bind((<span class="string">&#x27;&#x27;</span>, <span class="number">1234</span>)) </span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:     </span><br><span class="line">	<span class="comment"># Generate random number in the range of 0 to 10 </span></span><br><span class="line">	rand = random.randint(<span class="number">0</span>, <span class="number">10</span>)     </span><br><span class="line">	<span class="comment"># Receive the client packet along with the address it is coming from  </span></span><br><span class="line">	message, address = serverSocket.recvfrom(<span class="number">1024</span>) </span><br><span class="line">	<span class="comment"># Capitalize the message from the client     </span></span><br><span class="line">	message = message.upper() </span><br><span class="line">	<span class="comment"># If rand is less is than 4, we consider the packet lost and do not respond     </span></span><br><span class="line">	<span class="keyword">if</span> rand &lt; <span class="number">4</span>:         </span><br><span class="line">		<span class="keyword">continue</span>     </span><br><span class="line">	<span class="comment"># Otherwise, the server responds         </span></span><br><span class="line">	serverSocket.sendto(message, address) </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">client_socket= socket(AF_INET, SOCK_DGRAM) </span><br><span class="line"></span><br><span class="line">serverIP = <span class="string">&#x27;192.168.147.135&#x27;</span> </span><br><span class="line">serverPort = <span class="number">1234</span> </span><br><span class="line">client_socket.settimeout(<span class="number">1</span>) <span class="comment"># 设置套接字超时值1秒</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    startTime = time.time()</span><br><span class="line">    message = (<span class="string">&#x27;Ping %d %s&#x27;</span> % (i, startTime)).encode()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        client_socket.sendto(message, (serverIP, serverPort))</span><br><span class="line">        res, addr = client_socket.recvfrom(<span class="number">1024</span>)</span><br><span class="line">        endTime = time.time()</span><br><span class="line">        rtt = endTime - startTime</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Sequence %d: Reply from %s    RTT = %.6fs&#x27;</span> % (i+<span class="number">1</span>, serverIP, rtt)) </span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Sequence %d: Request timed out&#x27;</span> % (i+<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="邮件客户端">邮件客户端</h2>
+<h3 id="实验要求-3">实验要求</h3>
+<p>创建一个向任何接收方发送电子邮件的简单邮件客户。你的客户将必须与邮件服务器（如谷歌的电子邮件服务器）创建一个TCP连接，使用SMTP协议与该邮件服务器进行交谈，经该邮件服务器向某接收方（如你的朋友）发送一个电子邮件报文，最后关闭与该邮件服务器的TCP连接。</p>
+<p>本实验参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/JavaMoo/article/details/54897033">https://blog.csdn.net/JavaMoo/article/details/54897033</a></p>
+<h3 id="代码-3">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">subject = <span class="string">&quot;SMTP socket programming&quot;</span></span><br><span class="line">contenttype = <span class="string">&quot;text/plain&quot;</span></span><br><span class="line">msg = <span class="string">&quot;\r\n FBI Warning! You have been hacked! I&#x27;m not kidding!!&quot;</span></span><br><span class="line">endMsg = <span class="string">&quot;\r\n.\r\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Auth information (Encode with base64)</span></span><br><span class="line">username = base64.b64encode(<span class="string">b&#x27;leo021017&#x27;</span>).decode() + <span class="string">&#x27;\r\n&#x27;</span></span><br><span class="line">password = base64.b64encode(<span class="string">b&#x27;BKEUPKJRGWWWNSNF&#x27;</span>).decode() + <span class="string">&#x27;\r\n&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sender and reciever</span></span><br><span class="line">fromAddress = <span class="string">&quot;leo021017@163.com&quot;</span></span><br><span class="line">toAddress = <span class="string">&quot;haoyichen1017@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Choose a mail server (e.g. Google mail server) and call it mailServer </span></span><br><span class="line">mailServer = <span class="string">&#x27;smtp.163.com&#x27;</span></span><br><span class="line">mailPort = <span class="number">25</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create socket called clientSocket and establish a TCP connection with mailServer</span></span><br><span class="line">clientSocket = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">clientSocket.connect((mailServer, mailPort))</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> recv[:<span class="number">3</span>] != <span class="string">&#x27;220&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;220 reply not received from server.&#x27;</span>)</span><br><span class="line">    clientSocket.close()</span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send HELO command and print server response.</span></span><br><span class="line">heloCommand = <span class="string">&#x27;HELO Leo\r\n&#x27;</span></span><br><span class="line">clientSocket.send(heloCommand.encode())</span><br><span class="line">recv1 = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv1)</span><br><span class="line"><span class="keyword">if</span> recv1[:<span class="number">3</span>] != <span class="string">&#x27;250&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;250 reply not received from server.&#x27;</span>)</span><br><span class="line">    clientSocket.close()</span><br><span class="line">    exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Auth</span></span><br><span class="line">clientSocket.sendall(<span class="string">&#x27;AUTH LOGIN\r\n&#x27;</span>.encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;334&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;334 reply not received from server&#x27;</span>)</span><br><span class="line">     </span><br><span class="line"><span class="comment"># send username</span></span><br><span class="line">clientSocket.sendall((username).encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;334&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;334 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># send password</span></span><br><span class="line">clientSocket.sendall((password).encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;235&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;235 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send MAIL FROM command and print server response.</span></span><br><span class="line">clientSocket.sendall((<span class="string">&#x27;MAIL FROM: &lt;&#x27;</span> + fromAddress + <span class="string">&#x27;&gt;\r\n&#x27;</span>).encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;250&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;250 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send RCPT TO command and print server response.</span></span><br><span class="line">clientSocket.sendall((<span class="string">&#x27;RCPT TO: &lt;&#x27;</span> + toAddress + <span class="string">&#x27;&gt;\r\n&#x27;</span>).encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;250&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;250 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send DATA command and print server response.</span></span><br><span class="line">clientSocket.send(<span class="string">&#x27;DATA\r\n&#x27;</span>.encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;354&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;354 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send message data.</span></span><br><span class="line">message = <span class="string">&#x27;from:&#x27;</span> + fromAddress + <span class="string">&#x27;\r\n&#x27;</span></span><br><span class="line">message += <span class="string">&#x27;to:&#x27;</span> + toAddress + <span class="string">&#x27;\r\n&#x27;</span></span><br><span class="line">message += <span class="string">&#x27;subject:&#x27;</span> + subject + <span class="string">&#x27;\r\n&#x27;</span></span><br><span class="line">message += <span class="string">&#x27;Content-Type:&#x27;</span> + contenttype + <span class="string">&#x27;\t\n&#x27;</span></span><br><span class="line">message += <span class="string">&#x27;\r\n&#x27;</span> + msg</span><br><span class="line">clientSocket.sendall(message.encode()) </span><br><span class="line"></span><br><span class="line"><span class="comment"># Message ends with a single period.</span></span><br><span class="line">clientSocket.sendall(endMsg.encode())</span><br><span class="line">recv = clientSocket.recv(<span class="number">1024</span>).decode()</span><br><span class="line"><span class="built_in">print</span>(recv)</span><br><span class="line"><span class="keyword">if</span> (recv[:<span class="number">3</span>] != <span class="string">&#x27;250&#x27;</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;250 reply not received from server&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Send QUIT command and get server response.</span></span><br><span class="line">clientSocket.sendall(<span class="string">&#x27;QUIT\r\n&#x27;</span>.encode())</span><br><span class="line"></span><br><span class="line"><span class="comment"># Close connection</span></span><br><span class="line">clientSocket.close()</span><br></pre></td></tr></table></figure>
+<h2 id="代理服务器">代理服务器</h2>
+<h3 id="实验要求-4">实验要求</h3>
+<p>在本实验中，您将了解Web代理服务器的工作原理及其基本功能之一 —— 缓存。</p>
+<p>您的任务是开发一个能够缓存网页的小型Web代理服务器。这是一个很简单的代理服务器，它只能理解简单的GET请求，但能够处理各种对象 —— 不仅仅是HTML页面，还包括图片。</p>
+<p>通常，当客户端发出一个请求时，请求将被直接发送到Web服务器。然后Web服务器处理该请求并将响应消息发送客户端。为了提高性能，我们在客户端和Web服务器之间建立一个代理服务器。现在，客户端发送的请求消息和Web服务器返回的响应消息都要经过代理服务器。换句话说，客户端通过代理服务器请求对象。代理服务器将客户端的请求转发到Web服务器。然后，Web服务器将生成响应消息并将其传递给代理服务器，代理服务器又将其发送给客户端。</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/ProxyServerDemo.png" style="zoom:50%;" />
+<h3 id="代码-4">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> socket <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># if len(sys.argv) &lt;= 1:</span></span><br><span class="line"><span class="comment"># 	print (&#x27;Usage : &quot;python proxy.py server_ip&quot;\n[server_ip : It is the IP Address Of Proxy Server&#x27;)</span></span><br><span class="line"><span class="comment"># 	sys.exit(2)</span></span><br><span class="line"><span class="comment"># Create a server socket, bind it to a port and start listening</span></span><br><span class="line">PORT = <span class="number">1234</span></span><br><span class="line">tcpSerSock = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">tcpSerSock.bind((<span class="string">&#x27;&#x27;</span>, PORT))</span><br><span class="line">tcpSerSock.listen(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">	<span class="comment"># Strat receiving data from the client</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;Ready to serve...&#x27;</span>)</span><br><span class="line">	tcpCliSock, addr = tcpSerSock.accept()</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&#x27;Received a connection from:&#x27;</span>, addr)</span><br><span class="line">	message = tcpCliSock.recv(<span class="number">4096</span>).decode()</span><br><span class="line">	<span class="comment"># Extract the filename from the given message</span></span><br><span class="line">	filename = message.split()[<span class="number">1</span>].partition(<span class="string">&quot;//&quot;</span>)[<span class="number">2</span>].replace(<span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;_&#x27;</span>)</span><br><span class="line">	fileExist = <span class="string">&quot;false&quot;</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		<span class="comment"># Check wether the file exist in the cache</span></span><br><span class="line">		f = <span class="built_in">open</span>(filename, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">		outputdata = f.readlines()</span><br><span class="line">		fileExist = <span class="string">&quot;true&quot;</span></span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;File Exists!&#x27;</span>)</span><br><span class="line">		<span class="comment"># ProxyServer finds a cache hit and generates a response message</span></span><br><span class="line">		str1 = <span class="string">&quot;HTTP/1.0 200 OK\r\n&quot;</span></span><br><span class="line">		str2 = <span class="string">&quot;Content-Type:text/html\r\n\n&quot;</span></span><br><span class="line">		<span class="comment"># tcpCliSock.send(str1.encode())	不知道为什么会显示在前端？</span></span><br><span class="line">		<span class="comment"># tcpCliSock.send(str2.encode())</span></span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(outputdata)):</span><br><span class="line">			tcpCliSock.send(outputdata[i].encode())</span><br><span class="line">		<span class="built_in">print</span>(<span class="string">&#x27;Read from cache&#x27;</span>)</span><br><span class="line">	<span class="comment"># Error handling for file not found in cache</span></span><br><span class="line">	<span class="keyword">except</span> IOError:</span><br><span class="line">		<span class="keyword">if</span> fileExist == <span class="string">&quot;false&quot;</span>:</span><br><span class="line">			<span class="comment"># Create a socket on the proxyserver</span></span><br><span class="line">			c = socket(AF_INET, SOCK_STREAM)</span><br><span class="line">			host = message.split()[<span class="number">1</span>].partition(<span class="string">&quot;//&quot;</span>)[<span class="number">2</span>].partition(<span class="string">&quot;/&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;Host Name: &#x27;</span>, host)</span><br><span class="line">			<span class="keyword">try</span>:</span><br><span class="line">				<span class="comment"># Connect to the socket to port 80</span></span><br><span class="line">				c.connect((host, <span class="number">80</span>))</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&#x27;Socket connected to port 80 of the host&#x27;</span>)</span><br><span class="line">				c.sendall(message.encode())</span><br><span class="line">				<span class="comment"># Create a temporary file on this socket and ask port 80</span></span><br><span class="line">				<span class="comment"># for the file requested by the client</span></span><br><span class="line">				<span class="comment"># fileobj = c.makefile(&#x27;r&#x27;, 0)</span></span><br><span class="line">				<span class="comment"># fileobj.write(&quot;GET &quot;+&quot;http://&quot; + filename + &quot; HTTP/1.0\n\n&quot;)</span></span><br><span class="line">				<span class="comment"># Read the response into buffer</span></span><br><span class="line">				buff = c.recv(<span class="number">4096</span>)</span><br><span class="line">				<span class="comment"># Create a new file in the cache for the requested file.</span></span><br><span class="line">				<span class="comment"># Also send the response in the buffer to client socket and the corresponding file in the cache</span></span><br><span class="line">				tcpCliSock.sendall(buff)</span><br><span class="line">				tmpFile = <span class="built_in">open</span>(<span class="string">&quot;./&quot;</span> + filename,<span class="string">&quot;w&quot;</span>)</span><br><span class="line">				tmpFile.writelines(buff.decode().replace(<span class="string">&#x27;\r\n&#x27;</span>, <span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line">				tmpFile.close()</span><br><span class="line">				</span><br><span class="line">			<span class="keyword">except</span>:</span><br><span class="line">				<span class="built_in">print</span>(<span class="string">&quot;Illegal request&quot;</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="comment"># HTTP response message for file not found</span></span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;File Not Found&#x27;</span>)</span><br><span class="line">	<span class="comment"># Close the client and the server sockets</span></span><br><span class="line">	tcpCliSock.close()</span><br><span class="line">tcpSerSock.close()</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h2 id="ICMP-Ping程序">ICMP Ping程序</h2>
+<h3 id="实验要求-5">实验要求</h3>
+<p>在这个作业中，您将更好地理解因特网控制报文协议（ICMP）。您会学习使用ICMP请求和响应消息实现Ping程序。<br>
+Ping是一个网络应用程序，用于测试某个主机在IP网络中是否可访问。它也用于测试计算机的网卡或测试网络延迟。它通过向目标主机发送ICMP“回显”包并监听ICMP“回显”应答来工作。“回显”有时称为&quot;pong&quot;。ping程序测量往返时间，记录数据包丢失，并输出接收到的回显包的统计摘要（往返时间的最小值、最大值和平均值，以及在某些版本中的平均值的标准差）。<br>
+您的任务是用python开发自己的Ping程序。您的程序将使用ICMP，但为了保持简单，将不完全遵循RFC 1739中的正式规范。请注意，您只需要编写程序的客户端，因为服务器端所需的功能几乎内置于所有操作系统中。<br>
+您的Ping程序能将ping请求发送到指定的主机，间隔大约一秒钟。每个消息包含一个带有时间戳的数据包。每个数据包发送完后，程序最多等待一秒，用于接收响应。如果一秒后服务器没有响应，那么客户端应假设ping数据包或pong数据包在网络中丢失（或者服务器已关闭）。</p>
+<h3 id="代码-5">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> select</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">ICMP_ECHO_REQUEST = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">checksum</span>(<span class="params"><span class="built_in">str</span></span>):</span></span><br><span class="line">    csum = <span class="number">0</span></span><br><span class="line">    countTo = (<span class="built_in">len</span>(<span class="built_in">str</span>) / <span class="number">2</span>) * <span class="number">2</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> count &lt; countTo:</span><br><span class="line">        thisVal = <span class="built_in">str</span>[count + <span class="number">1</span>] * <span class="number">256</span> + <span class="built_in">str</span>[count]</span><br><span class="line">        csum = csum + thisVal</span><br><span class="line">        csum = csum &amp; <span class="number">0xffffffff</span></span><br><span class="line">        count = count + <span class="number">2</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> countTo &lt; <span class="built_in">len</span>(<span class="built_in">str</span>):</span><br><span class="line">        csum = csum + <span class="built_in">str</span>[<span class="built_in">len</span>(<span class="built_in">str</span>) - <span class="number">1</span>].decode()</span><br><span class="line">        csum = csum &amp; <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line">    csum = (csum &gt;&gt; <span class="number">16</span>) + (csum &amp; <span class="number">0xffff</span>)</span><br><span class="line">    csum = csum + (csum &gt;&gt; <span class="number">16</span>)</span><br><span class="line">    answer = ~csum</span><br><span class="line">    answer = answer &amp; <span class="number">0xffff</span></span><br><span class="line">    answer = answer &gt;&gt; <span class="number">8</span> | (answer &lt;&lt; <span class="number">8</span> &amp; <span class="number">0xff00</span>)</span><br><span class="line">    <span class="keyword">return</span> answer</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">receiveOnePing</span>(<span class="params">mySocket, ID, sequence, destAddr, timeout</span>):</span></span><br><span class="line">    timeLeft = timeout</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        startedSelect = time.time()</span><br><span class="line">        whatReady = select.select([mySocket], [], [], timeLeft)</span><br><span class="line">        howLongInSelect = (time.time() - startedSelect)</span><br><span class="line">        <span class="keyword">if</span> whatReady[<span class="number">0</span>] == []:  <span class="comment"># Timeout</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">        timeReceived = time.time()</span><br><span class="line">        recPacket, addr = mySocket.recvfrom(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">        header = recPacket[<span class="number">20</span>: <span class="number">28</span>]</span><br><span class="line">        <span class="built_in">type</span>, code, checksum, packetID, sequence = struct.unpack(<span class="string">&quot;!bbHHh&quot;</span>, header)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">type</span> == <span class="number">0</span> <span class="keyword">and</span> packetID == ID:  <span class="comment"># type should be 0</span></span><br><span class="line">            byte_in_double = struct.calcsize(<span class="string">&quot;!d&quot;</span>)</span><br><span class="line">            timeSent = struct.unpack(<span class="string">&quot;!d&quot;</span>, recPacket[<span class="number">28</span>: <span class="number">28</span> + byte_in_double])[<span class="number">0</span>]</span><br><span class="line">            delay = timeReceived - timeSent</span><br><span class="line">            ttl = <span class="built_in">ord</span>(struct.unpack(<span class="string">&quot;!c&quot;</span>, recPacket[<span class="number">8</span>:<span class="number">9</span>])[<span class="number">0</span>].decode())</span><br><span class="line">            <span class="keyword">return</span> (delay, ttl, byte_in_double)</span><br><span class="line"></span><br><span class="line">        timeLeft = timeLeft - howLongInSelect</span><br><span class="line">        <span class="keyword">if</span> timeLeft &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sendOnePing</span>(<span class="params">mySocket, ID, sequence, destAddr</span>):</span></span><br><span class="line">    <span class="comment"># Header is type (8), code (8), checksum (16), id (16), sequence (16)</span></span><br><span class="line">    </span><br><span class="line">    myChecksum = <span class="number">0</span></span><br><span class="line">    <span class="comment"># Make a dummy header with a 0 checksum. 计算Checksum时将字段值作为0输入</span></span><br><span class="line">    <span class="comment"># struct -- Interpret strings as packed binary data</span></span><br><span class="line">    <span class="comment"># ! 表示使用网络字节序进行解包，即采用大端字节序；</span></span><br><span class="line">    <span class="comment"># b 表示对应的数据类型为 1 个字节有符号整数（signed char）；</span></span><br><span class="line">    <span class="comment"># H 表示对应的数据类型为 2 个字节无符号整数（unsigned short）；</span></span><br><span class="line">    <span class="comment"># h 表示对应的数据类型为 2 个字节有符号整数（short）。</span></span><br><span class="line">    header = struct.pack(<span class="string">&quot;!bbHHh&quot;</span>, ICMP_ECHO_REQUEST, <span class="number">0</span>, myChecksum, ID, sequence)</span><br><span class="line">    data = struct.pack(<span class="string">&quot;!d&quot;</span>, time.time())</span><br><span class="line">    <span class="comment"># Calculate the checksum on the data and the dummy header.</span></span><br><span class="line">    myChecksum = checksum(header + data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># # Get the right checksum, and put in the header    </span></span><br><span class="line">    header = struct.pack(<span class="string">&quot;!bbHHh&quot;</span>, ICMP_ECHO_REQUEST, <span class="number">0</span>, myChecksum, ID, sequence)</span><br><span class="line">    packet = header + data</span><br><span class="line">    </span><br><span class="line">    mySocket.sendto(packet, (destAddr, <span class="number">1</span>)) <span class="comment"># AF_INET address must be tuple, not str</span></span><br><span class="line">    <span class="comment">#Both LISTS and TUPLES consist of a number of objects</span></span><br><span class="line">    <span class="comment">#which can be referenced by their position number within the object</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">doOnePing</span>(<span class="params">destAddr, sequence, timeout</span>):</span></span><br><span class="line">    icmp = socket.getprotobyname(<span class="string">&quot;icmp&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#SOCK_RAW is a powerful socket type. For more details see: http://sock-raw.org/papers/sock_raw</span></span><br><span class="line">    <span class="comment">#Create Socket here</span></span><br><span class="line">    mySocket = socket.socket(socket.AF_INET, socket.SOCK_RAW, icmp)</span><br><span class="line"></span><br><span class="line">    myID = os.getpid() &amp; <span class="number">0xFFFF</span> <span class="comment">#Return the current process i</span></span><br><span class="line">    sendOnePing(mySocket, myID, sequence, destAddr)</span><br><span class="line">    result = receiveOnePing(mySocket, myID, sequence, destAddr, timeout)</span><br><span class="line"></span><br><span class="line">    mySocket.close()</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ping</span>(<span class="params">host, timeout=<span class="number">1</span></span>):</span></span><br><span class="line">    <span class="comment">#timeout=1 means: If one second goes by without a reply from the server,</span></span><br><span class="line">    <span class="comment">#the client assumes that either the client’s ping or the server’s pong is lost</span></span><br><span class="line">    dest = socket.gethostbyname(host)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Pinging &quot;</span> + dest + <span class="string">&quot; using Python:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="comment">#Send ping requests to a server separated by approximately one second</span></span><br><span class="line">    loss = <span class="number">0</span></span><br><span class="line">    myID = os.getpid() &amp; <span class="number">0xFFFF</span>  <span class="comment"># Return the current process i</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        result = doOnePing(dest, i, timeout)</span><br><span class="line">        <span class="keyword">if</span> result != <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(result)</span><br><span class="line">            delay = <span class="built_in">int</span>(result[<span class="number">0</span>]*<span class="number">1000</span>)</span><br><span class="line">            ttl = result[<span class="number">1</span>]</span><br><span class="line">            <span class="built_in">bytes</span> = result[<span class="number">2</span>]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Received from &quot;</span> + dest + <span class="string">&quot;: byte(s)=&quot;</span> + <span class="built_in">str</span>(<span class="built_in">bytes</span>) + <span class="string">&quot; delay=&quot;</span> + <span class="built_in">str</span>(delay) + <span class="string">&quot;ms TTL=&quot;</span> + <span class="built_in">str</span>(ttl))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Request timed out.&quot;</span>)</span><br><span class="line">            loss += <span class="number">1</span></span><br><span class="line">        time.sleep(<span class="number">1</span>)<span class="comment"># one second</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Packet: sent = &quot;</span> + <span class="built_in">str</span>(<span class="number">4</span>) + <span class="string">&quot; received = &quot;</span> + <span class="built_in">str</span>(<span class="number">4</span>-loss) + <span class="string">&quot; lost = &quot;</span> + <span class="built_in">str</span>(loss))</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">ping(<span class="string">&quot;baidu.com&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/Lab/CSAPP/lab0/" data-toggle="tooltip" data-placement="top" title="CSAPP-Lab0">&larr; Previous Post</a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/course/DSA/指针/" data-toggle="tooltip" data-placement="top" title="指针学习笔记">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=自顶向下编程练习&body=Hi,I found this website and thought you might like it http://leo021017.github.io/Lab/Top-Down/Programming/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Web服务器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">实验要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#UDP-Ping%E7%A8%8B%E5%BA%8F"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">UDP Ping程序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">实验要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%82%AE%E4%BB%B6%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">邮件客户端</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82-3"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">实验要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">代理服务器</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82-4"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">实验要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">代码</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ICMP-Ping%E7%A8%8B%E5%BA%8F"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">ICMP Ping程序</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%9E%E9%AA%8C%E8%A6%81%E6%B1%82-5"><span class="toc-nav-number">5.1.</span> <span class="toc-nav-text">实验要求</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="toc-nav-number">5.2.</span> <span class="toc-nav-text">代码</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/Leo021017">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          Leo
+          2023
+          <!-- <br>
+          Theme by
+          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          re-Ported by
+          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
+          |
+          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe> -->
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='❤,❤,❤,❤,❤,❤,❤,❤,❤' color='#9933CC,#339933,#66CCCC,#FF99CC,#CCCCFF,#6666CC,#663399,#66CC99,#FF0033'></script>
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://leo021017.github.io/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

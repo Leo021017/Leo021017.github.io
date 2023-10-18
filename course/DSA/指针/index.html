@@ -418,7 +418,9 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>Introduction to pointers in C</h1>
+        <h2 id="笔记来源">笔记来源</h2>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bo4y1Z7xf/?spm_id_from=333.1007.top_right_bar_window_custom_collection.content.click">【强烈推荐】4小时彻底掌握C指针 - 顶尖程序员图文讲解 - UP主翻译校对 (已完结)_哔哩哔哩_bilibili</a></p>
+<h2 id="Introduction-to-pointers-in-C">Introduction to pointers in C</h2>
 <ul>
 <li>
 <p>计算机在定义一个变量时，在Memory (RAM) 中划出一片地址空间来存储，并在一个查找表中添加一条记录，如<code>int a;</code>存储为（a int 0x204），通过地址来访问变量，其中int占4个字节；char占1个字节；float占4个字节；指针的长度取决于操作系统位数，如64位操作系统，指针长度是8</p>
@@ -435,7 +437,7 @@
 <p>*p -&gt; value at address</p>
 </li>
 </ul>
-<h1>Working with pointers</h1>
+<h2 id="Working-with-pointers">Working with pointers</h2>
 <ul>
 <li>
 <p>Null指针，空指针的出现可能导致程序崩溃</p>
@@ -450,7 +452,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = &amp;a;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p);		<span class="comment">// 0x204</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, p+<span class="number">1</span>);	<span class="comment">// 0x208</span></span><br><span class="line">	<span class="comment">// p是一个指向整型类型的指针，对其+1操作会得到下一个整型数据的地址</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *(p+<span class="number">1</span>));	<span class="comment">// 指针越界，得到的是随机值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>Pointer types, void pointer, pointer arithmetic</h1>
+<h2 id="Pointer-types-void-pointer-pointer-arithmetic">Pointer types, void pointer, pointer arithmetic</h2>
 <ul>
 <li>
 <p>指针是强类型的，需要用特定类型的指针变量来存放特定类型变量的地址，那么既然指针仅仅存放着一个地址，为什么要分不同类型呢？答案是指针需要<strong>dereference</strong>，不同数据有不同的大小</p>
@@ -468,10 +470,10 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>* p0;</span><br><span class="line">p0 = p;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Address = %d, value = %d\n&quot;</span>, p0, *p0);	<span class="comment">// 只能打印地址，不能dereference</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>Pointer to pointer</h1>
+<h2 id="Pointer-to-pointer">Pointer to pointer</h2>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231008171912319.png" alt="image-20231008171912319" style="zoom:40%;" />
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> *p = &amp;x;</span><br><span class="line">    <span class="keyword">int</span> **q = &amp;p;</span><br><span class="line">    <span class="keyword">int</span> ***r = &amp;q;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *r);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n----following is dereference of x----\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, *p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, **q);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ***r);</span><br><span class="line">    ***r = **q + *p + <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;x = %d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Outputs:</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6422036</span></span><br><span class="line"><span class="number">6422024</span></span><br><span class="line"></span><br><span class="line">----following is dereference of x----</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">x = <span class="number">11</span></span><br></pre></td></tr></table></figure>
-<h1>Pointers as function arguments / Call by reference</h1>
+<h2 id="Pointers-as-function-arguments-Call-by-reference">Pointers as function arguments / Call by reference</h2>
 <ul>
 <li>
 <p>指针的一个用处是用于函数传值，下面的传值只传了值，没有传参数（形参&amp;实参）</p>
@@ -481,7 +483,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正确的如下</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">increase</span><span class="params">(<span class="keyword">int</span>* p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	*p = *p + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">increase(&amp;a);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>Pointers and Arrays</h1>
+<h2 id="Pointers-and-Arrays">Pointers and Arrays</h2>
 <ul>
 <li>
 <p>数字首元素的地址称为数组的基地址</p>
@@ -491,7 +493,7 @@
 <p><code>A </code> 和 <code>&amp;A[0]</code>的值相同，都是数组基地址，可以理解成<strong>数组就是指针</strong></p>
 </li>
 </ul>
-<h1>Arrays as function arguments</h1>
+<h2 id="Arrays-as-function-arguments">Arrays as function arguments</h2>
 <ul>
 <li>
 <p>编译器在编译时，只复制了数组的基地址到一个定义的同名指针中，而不是传递整个数组的空间，隐式地将<code>sum()</code>函数的参数<code>int A[]</code>变成了<code>int* A</code>，这节省了调用的函数栈帧的空间大小，是编译器做的优化（传引用，而不是传值）</p>
@@ -499,7 +501,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 传了同一数组，为什么长度算出来不一样？</span></span><br><span class="line"><span class="comment">// 因为一个是数组，一个是指针</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> A[])</span>	<span class="comment">// or int* A</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sum :%d %d\n&quot;</span>, <span class="keyword">sizeof</span>(A), <span class="keyword">sizeof</span>(A[<span class="number">0</span>]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> A[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> size = <span class="keyword">sizeof</span>(A)/<span class="keyword">sizeof</span>(A[<span class="number">0</span>]);</span><br><span class="line">    sum(A);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;main :%d %d\n&quot;</span>, <span class="keyword">sizeof</span>(A), <span class="keyword">sizeof</span>(A[<span class="number">0</span>]));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Outputs:</span><br><span class="line">sum :<span class="number">8</span> <span class="number">4</span></span><br><span class="line">main :<span class="number">20</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>Character arrays and pointers</h1>
+<h2 id="Character-arrays-and-pointers">Character arrays and pointers</h2>
 <ul>
 <li>
 <p>字符串就是字符数组，以<code>'\0'</code>作为结尾</p>
@@ -516,14 +518,14 @@
 char* C = &quot;Hello&quot;;		// string gets stored as compile time constant，即应用程序代码区
 
 C[0] = 'A';		// 常量不能被修改，程序会崩溃
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Pointers <span class="keyword">and</span> multi-dimensional arrays</span><br><span class="line"></span><br><span class="line"># Pointers <span class="keyword">and</span> dynamic memory</span><br><span class="line"></span><br><span class="line">- 分配给栈的内存空间在程序运行期间不会增加，当产生过多的函数调用，如：无穷的递归等，可能会发生栈溢出的情况（stack overflow），而程序的堆的大小不是固定的，堆就是空闲的内存池，C语言中使用malloc、calloc、realloc和free四个函数使用堆，C++添加了<span class="keyword">new</span>和<span class="keyword">delete</span>两个函数</span><br><span class="line"></span><br><span class="line">- <span class="built_in">malloc</span>()：malloc的参数是要在堆中申请的内存空间的大小，返回一个<span class="keyword">void</span> pointer，通过cast可以变成指定数据类型的指针；使用堆上内存的唯一方式就是**reference**</span><br><span class="line"></span><br><span class="line">  ```c</span><br><span class="line">  <span class="keyword">int</span>* p;</span><br><span class="line">  p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));	<span class="comment">// 这样就在堆中有了一块内存，可以存放一个整型</span></span><br><span class="line">  *p = <span class="number">10</span>;</span><br><span class="line">  <span class="built_in">free</span>(p);</span><br><span class="line">  p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">  *p = <span class="number">20</span>;	<span class="comment">// 原来的内存在函数调用结束后不会被释放（像栈那样），造成了“内存泄漏”！要使用free()释放内存</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Pointers <span class="keyword">and</span> multi-dimensional arrays</span><br><span class="line"></span><br><span class="line">## Pointers <span class="keyword">and</span> dynamic memory</span><br><span class="line"></span><br><span class="line">- 分配给栈的内存空间在程序运行期间不会增加，当产生过多的函数调用，如：无穷的递归等，可能会发生栈溢出的情况（stack overflow），而程序的堆的大小不是固定的，堆就是空闲的内存池，C语言中使用malloc、calloc、realloc和free四个函数使用堆，C++添加了<span class="keyword">new</span>和<span class="keyword">delete</span>两个函数</span><br><span class="line"></span><br><span class="line">- <span class="built_in">malloc</span>()：malloc的参数是要在堆中申请的内存空间的大小，返回一个<span class="keyword">void</span> pointer，通过cast可以变成指定数据类型的指针；使用堆上内存的唯一方式就是**reference**</span><br><span class="line"></span><br><span class="line">  ```c</span><br><span class="line">  <span class="keyword">int</span>* p;</span><br><span class="line">  p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));	<span class="comment">// 这样就在堆中有了一块内存，可以存放一个整型</span></span><br><span class="line">  *p = <span class="number">10</span>;</span><br><span class="line">  <span class="built_in">free</span>(p);</span><br><span class="line">  p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>));</span><br><span class="line">  *p = <span class="number">20</span>;	<span class="comment">// 原来的内存在函数调用结束后不会被释放（像栈那样），造成了“内存泄漏”！要使用free()释放内存</span></span><br></pre></td></tr></table></figure>
 
 
 
 </code></pre>
 </li>
 </ul>
-<h1>malloc、calloc、realloc、free</h1>
+<h2 id="malloc、calloc、realloc、free">malloc、calloc、realloc、free</h2>
 <ul>
 <li>
 <p><strong>malloc</strong>：对malloc返回指针先进行类型转换，之后可以使用<code>*(p+1)</code>或者<code>p[1]</code>来写入堆</p>
@@ -536,12 +538,12 @@ C[0] = 'A';		// 常量不能被修改，程序会崩溃
 <p><strong>realloc</strong>：已经申请了一块动态内存，希望改变大小，使用realloc函数，函数原型为<code>void* realloc(void* Ptr, size_t size)</code></p>
 </li>
 </ul>
-<h1>Memory leak</h1>
+<h2 id="Memory-leak">Memory leak</h2>
 <ul>
 <li>以赌博游戏为例，如果在play函数中<code>char c[3] = &#123;'J', 'Q', 'K'&#125;;</code>这样定义数组，数组存储在函数栈帧中，每一次调用play函数后，都会清空栈帧，所以在程序运行过程中，占用的内存不会明显增长</li>
 <li>如果<code>char *c = (char*)malloc(3*sizeof(char));</code>这样定义数组，每一次调用play函数，都在堆中申请了一块内存，函数栈帧中只有一个指向这块内存的指针，如果不调用free函数释放，在程序运行过程中，占用的内存会不断增长，Java等语言已经有内存回收机制，而C/C++程序员要格外小心</li>
 </ul>
-<h1>Pointers as function returns</h1>
+<h2 id="Pointers-as-function-returns">Pointers as function returns</h2>
 <ul>
 <li>
 <p>从栈顶向下传递局部变量或局部变量的地址（指针）是不被允许的，因为栈顶的空间先被释放，可能会被其他函数覆盖，而从栈底向上传递局部变量或局部变量的地址（指针）是可以的</p>
@@ -553,14 +555,14 @@ C[0] = 'A';		// 常量不能被修改，程序会崩溃
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231008222222631.png" alt="image-20231008222222631" style="zoom:33%;" />
 </li>
 </ul>
-<h1>Function Pointers</h1>
+<h2 id="Function-Pointers">Function Pointers</h2>
 <ul>
 <li>
 <p>一个函数就是一组存储在连续内存块中的指令，函数的地址称为函数的入口点，是函数第一条指令的地址，函数调用是一条跳转指令跳转到函数的入口点</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    <span class="keyword">int</span> (*p)(<span class="keyword">int</span>, <span class="keyword">int</span>);	<span class="comment">// (*p)不加括号就变成了返回指针的函数的声明</span></span><br><span class="line">    p = &amp;Add;	<span class="comment">// 也可以写成 p = Add; 就像数组一样</span></span><br><span class="line">    c = (*p)(<span class="number">2</span>, <span class="number">3</span>);	<span class="comment">// 解引用得到函数，并传参执行,也可以直接写成 c = p(2, 3);</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1>Function pointers and Callbacks</h1>
+<h2 id="Function-pointers-and-Callbacks">Function pointers and Callbacks</h2>
 <ul>
 <li>
 <p>函数指针可以作为函数的参数，接受这个函数指针参数的函数可以回调指针指向的函数</p>
@@ -587,6 +589,10 @@ C[0] = 'A';		// 常量不能被修改，程序会崩溃
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/Lab/Top-Down/Programming/" data-toggle="tooltip" data-placement="top" title="自顶向下编程练习">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
@@ -684,7 +690,7 @@ C[0] = 'A';		// 常量不能被修改，程序会崩溃
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Introduction to pointers in C</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Working with pointers</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Pointer types, void pointer, pointer arithmetic</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Pointer to pointer</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Pointers as function arguments &#x2F; Call by reference</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Pointers and Arrays</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">Arrays as function arguments</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">Character arrays and pointers</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">malloc、calloc、realloc、free</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">Memory leak</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">Pointers as function returns</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">Function Pointers</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">Function pointers and Callbacks</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%94%E8%AE%B0%E6%9D%A5%E6%BA%90"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">笔记来源</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Introduction-to-pointers-in-C"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Introduction to pointers in C</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Working-with-pointers"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Working with pointers</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pointer-types-void-pointer-pointer-arithmetic"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Pointer types, void pointer, pointer arithmetic</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pointer-to-pointer"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">Pointer to pointer</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pointers-as-function-arguments-Call-by-reference"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Pointers as function arguments &#x2F; Call by reference</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pointers-and-Arrays"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">Pointers and Arrays</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Arrays-as-function-arguments"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">Arrays as function arguments</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Character-arrays-and-pointers"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">Character arrays and pointers</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#malloc%E3%80%81calloc%E3%80%81realloc%E3%80%81free"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">malloc、calloc、realloc、free</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Memory-leak"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">Memory leak</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Pointers-as-function-returns"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">Pointers as function returns</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Function-Pointers"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">Function Pointers</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Function-pointers-and-Callbacks"><span class="toc-nav-number">14.</span> <span class="toc-nav-text">Function pointers and Callbacks</span></a></li></ol>
         
         </div>
       </aside>
