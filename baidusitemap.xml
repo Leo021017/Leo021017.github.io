@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://leo021017.github.io/course/ComputerNetwork/port-scan/</loc>
+    <lastmod>2023-10-18</lastmod>
+  </url>
+  <url>
     <loc>http://leo021017.github.io/course/Assembly/%E6%B1%87%E7%BC%96/</loc>
     <lastmod>2023-10-17</lastmod>
   </url>
@@ -13,7 +17,7 @@
     <lastmod>2023-10-17</lastmod>
   </url>
   <url>
-    <loc>http://leo021017.github.io/course/DSA/%E6%8C%87%E9%92%88/</loc>
+    <loc>http://leo021017.github.io/course/DSA/Pointer/</loc>
     <lastmod>2023-10-09</lastmod>
   </url>
   <url>
@@ -53,7 +57,7 @@
     <lastmod>2023-07-23</lastmod>
   </url>
   <url>
-    <loc>http://leo021017.github.io/undefined/report/</loc>
+    <loc>http://leo021017.github.io/Lab/report/</loc>
     <lastmod>2023-07-23</lastmod>
   </url>
   <url>

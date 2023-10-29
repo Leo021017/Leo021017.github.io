@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag (contains Google-Analytics、Baidu-Tongji)-->
+<head>
+  <!-- Google Analytics -->
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxx-xx"></script>
+    <script type="text/javascript">
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-xxxxxx-xx');
+    </script>
+  
+
+  <!-- Baidu Tongji -->
+  
+    <script type="text/javascript">
+      // Originial
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  <!-- Baidu Push -->
+  
+    <script>
+      (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+      })();
+    </script>
+  
+
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="google-site-verification" content="lxDfCplOZbIzjhG34NuQBgu2gdyRlAtMB4utP5AgEBc"/>
+  <meta name="baidu-site-verification" content="PpzM9WxOJU"/>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="这里是一个没有知识的荒漠"/>
+  <meta name="keyword" content="郝怡琛, Leo, 网络空间安全,四川大学,IT  blog,Blog"/>
+  <link rel="shortcut icon" href="/img/avatar/myAvatar.jpg"/>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async="async" defer="defer" src="https://buttons.github.io/buttons.js"></script>
+
+  
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/beantech.min.css"/>
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css"/>
+    <link rel="stylesheet" href="/css/widget.css"/>
+    <link rel="stylesheet" href="/css/rocket.css"/>
+    <link rel="stylesheet" href="/css/signature.css"/>
+    <link rel="stylesheet" href="/css/catalog.css"/>
+    <link rel="stylesheet" href="/css/livemylife.css"/>
+
+    
+      <!-- wave start -->
+      <link rel="stylesheet" href="/css/wave.css"/>
+      <!-- wave end -->
+    
+
+    
+      <!-- top start (article top hot config) -->
+      <link rel="stylesheet" href="/css/top.css"/>
+      <!-- top end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/scroll.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+      <!-- Search start -->
+      <link rel="stylesheet" href="/css/search.css"/>
+      <!-- Search end -->
+    
+
+    
+      <!-- ThemeColor start -->
+      <link rel="stylesheet" href="/css/themecolor.css"/>
+      <!-- ThemeColor end -->
+    
+
+    
+
+    
+  
+
+  <!-- Custom Fonts -->
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+  <!-- Hux change font-awesome CDN to qiniu -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Hux Delete, sad but pending in China <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'> <link
+  href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/ css'> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <link rel="canonical" href="http://leo021017.github.io/course/ComputerNetwork/port-scan/">
+  <title>
+    
+      端口扫描的几种方式 - Leo&#39;s Blog
+    
+  </title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+
+	<body ontouchstart="" class="body--light body--dark">
+
+
+		<!-- ThemeColor -->
+		
+		<!-- ThemeColor -->
+<style type="text/css">
+  .body--light {
+    --light-mode: none;
+    --dark-mode: block;
+  }
+  .body--dark {
+    --light-mode: block;
+    --dark-mode: none;
+  }
+  i.mdui-icon.material-icons.light-mode {
+    display: var(--light-mode);
+  }
+  i.mdui-icon.material-icons.dark-mode {
+    display: var(--dark-mode);
+  }
+</style>
+<div class="toggle" onclick="document.body.classList.toggle('body--dark')">
+  <i class="mdui-icon material-icons light-mode"></i>
+  <i class="mdui-icon material-icons dark-mode"></i>
+</div>
+<script>
+  //getCookieValue
+  function getCookieValue(a) {
+    var b = document.cookie.match('(^|[^;]+)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b
+      ? b.pop()
+      : '';
+  }
+  let themeMode = 'dark';
+  if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
+    let dbody = document.body.classList;
+    themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
+  }
+
+  //setCookieValue
+  var toggleBtn = document.querySelector(".toggle");
+  toggleBtn.addEventListener("click", function () {
+    var e = document.body.classList.contains("body--dark");
+    var cookieString = e
+      ? "dark"
+      : "light";
+    var exp = new Date();
+    exp.setTime(exp.getTime() + 3 * 24 * 60 * 60 * 1000); //3天过期
+    document.cookie = "sb-color-mode=" + cookieString + ";expires=" + exp.toGMTString() + ";path=/";
+  });
+</script>
+
+		
+
+		<!-- Gitter -->
+		
+		<!-- Gitter -->
+<!-- Docs:https://gitter.im/?utm_source=left-menu-logo -->
+<script>
+  ((window.gitter = {}).chat = {}).options = {
+    room: 'your-community/your-room'
+  };
+</script>
+<script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+
+		
+
+		<!-- Navigation (contains search)-->
+		<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Leo&#39;s Blog</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <!-- Known Issue, found by Hux: <nav>'s height woule be hold on by its content. so, when navbar scale out, the <nav> will cover tags. also mask any touch event of tags, unfortunately. -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/">HOME</a>
+          </li>
+
+          
+          
+          
+          
+          <li>
+            <a href="/tags/">
+              
+              TAGS
+              
+              
+            </a>
+          </li>
+          
+          
+
+          
+          <li>
+            <a class="popup-trigger">
+              <span class="search-icon"></span>SEARCH</a>
+          </li>
+          
+
+          <!-- LangSelect -->
+          
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+<!-- progress -->
+<div id="progress">
+  <div class="line" style="width: 0%;"></div>
+</div>
+
+<script>
+  // Drop Bootstarp low-performance Navbar Use customize navbar with high-quality material design animation in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = "0px"
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+</script>
+
+
+		<!-- Post Header (contains intro-header、signature、wordcount、busuanzi、waveoverlay) -->
+		<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+
+  <style type="text/css">
+    .body--light {
+      /* intro-header */
+      --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+    }
+    .body--dark {
+      --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+    }
+
+    header.intro-header {
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+      
+    }
+
+    
+      #signature {/*signature*/
+        background-image: url('/img/signature/leo.png');
+      }
+    
+  </style>
+
+
+
+
+
+<header class="intro-header">
+  <!-- Signature -->
+  <div id="signature">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+              
+            </div>
+            <h1>端口扫描的几种方式</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-10-18
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">14</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">2.9k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- waveoverlay start -->
+  <div class="preview-overlay">
+    <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="preview-parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill=var(--gentle-wave1)></use>
+        <use xlink:href="#gentle-wave" x="48" y="3" fill=var(--gentle-wave2)></use>
+        <use xlink:href="#gentle-wave" x="48" y="5" fill=var(--gentle-wave3)></use>
+        <use xlink:href="#gentle-wave" x="48" y="7" fill=var(--gentle-wave)></use>
+      </g>
+    </svg>
+  </div>
+  <!-- waveoverlay end -->
+  
+
+</header>
+
+
+
+		<!-- Main Content (Post contains
+	Pager、
+	tip、
+	socialshare、
+	gitalk、gitment、disqus-comment、
+	Catalog、
+	Sidebar、
+	Featured-Tags、
+	Friends Blog、
+	anchorjs、
+	) -->
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h2 id="TCP连接扫描">TCP连接扫描</h2>
+<p>若客户端想要连接服务器80端口时，会先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器(本例中为80端口)。如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端。随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器建立了连接。</p>
+<ul>
+<li>如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的。</li>
+<li>当客户端发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器后，如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关闭状态</li>
+</ul>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="keyword">sT</span>模式</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204753670-1943198352.png" alt="img"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">tcp_connect_scan_resp = sr1(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;S&quot;</span>),timeout=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(<span class="built_in">type</span>(tcp_connect_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span>(tcp_connect_scan_resp.haslayer(TCP)):</span><br><span class="line">    <span class="keyword">if</span>(tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x12</span>):</span><br><span class="line">        send_rst = sr(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;AR&quot;</span>),timeout=<span class="number">10</span>)<span class="comment"># 全连接 AR =&gt; ACK+RST</span></span><br><span class="line">        <span class="built_in">print</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> (tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x14</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="TCP-SYN-扫描">TCP SYN 扫描</h2>
+<p>客户端向服务器发送一个带有 SYN 标识和端口号的数据包，<strong>这种技术主要用于躲避防火墙的检测。</strong></p>
+<ul>
+<li>如果目标端口开发，则会返回带有 SYN 和 ACK 标识的 TCP 数据包。但是，这时客户端不会返回 RST+ACK 而是返回一个只带有 RST 标识的数据包。</li>
+<li>如果目标端口处于关闭状态，那么同之前一样，服务器会返回一个 RST 数据包</li>
+</ul>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="built_in">sS</span>模式</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204809004-1342453493.png" alt="img"></p>
+<h2 id="TCP-圣诞树-Xmas-Tree-扫描">TCP 圣诞树(Xmas Tree)扫描</h2>
+<p>在圣诞树扫描中，客户端会向服务器发送带有 PSH,FIN,URG 标识和端口号的数据包给服务器。</p>
+<ul>
+<li>如果目标端口是开放的，那么不会有任何来自服务器的回应。</li>
+<li>如果服务器返回了一个带有 RST 标识的 TCP 数据包，那么说明端口处于关闭状态。</li>
+<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 状态码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定是否处于开放状态。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sX模式</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204825896-570110956.png" alt="img"></p>
+<h2 id="FIN扫描">FIN扫描</h2>
+<p>FIN 扫描会向服务器发送带有 FIN 标识和端口号的 TCP 数据包。</p>
+<ul>
+<li>如果没有服务器端回应则说明端口开放。</li>
+<li>如果服务器返回一个 RST 数据包，则说明目标端口是关闭的。</li>
+<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 代码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定端口状态。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sF模式</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204840951-2048443802.png" alt="img"></p>
+<h2 id="TCP-空扫描-Null">TCP 空扫描(Null)</h2>
+<p>在空扫描中，客户端发出的 TCP 数据包仅仅只会包含端口号而不会有其他任何的标识信息。</p>
+<ul>
+<li>如果目标端口是开放的则不会回复任何信息。</li>
+<li>如果服务器返回了一个 RST 数据包，则说明目标端口是关闭的。</li>
+<li>如果返回 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被服务器过滤了。</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nmap</span> -<span class="meta">sN</span>模式</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204856385-1582964864.png" alt="img"></p>
+<h2 id="TCP-ACK扫描">TCP ACK扫描</h2>
+<p>ACK 扫描不是用于发现端口开启或关闭状态的，而是用于发现服务器上是否存在有状态防火墙的。它的结果只能说明端口是否被过滤。再次强调，ACK 扫描不能发现端口是否处于开启或关闭状态。</p>
+<ul>
+<li>客户端会发送一个带有 ACK 标识和端口号的数据包给服务器。如果服务器返回一个带有 RST 标识的 TCP 数据包，则说明端口没有被过滤，不存在状态防火墙。</li>
+<li>如果目标服务器没有任何回应或者返回ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被过滤且存在状态防火墙。</li>
+</ul>
+<h2 id="TCP窗口扫描">TCP窗口扫描</h2>
+<p>TCP 窗口扫描的流程同 ACK 扫描类似，同样是客户端向服务器发送一个带有 ACK 标识和端口号的 TCP 数据包，但是这种扫描能够用于发现目标服务器端口的状态。在 ACK 扫描中返回 RST 表明没有被过滤，但在窗口扫描中，当收到返回的 RST 数据包后，它会检查窗口大小的值。</p>
+<ul>
+<li>如果窗口大小的值是个非零值，则说明目标端口是开放的。</li>
+<li>如果返回的 RST 数据包中的窗口大小为0，则说明目标端口是关闭的。</li>
+</ul>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -<span class="keyword">sW模式</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204920913-1955130735.png" alt="img"></p>
+<h2 id="UDP扫描">UDP扫描</h2>
+<p>TCP 是面向连接的协议，而UDP则是无连接的协议。</p>
+<p>面向连接的协议会先在客户端和服务器之间建立通信信道，然后才会开始传输数据。如果客户端和服务器之间没有建立通信信道，则不会有任何产生任何通信数据。</p>
+<p>无连接的协议则不会事先建立客户端和服务器之间的通信信道，只要客户端到服务器存在可用信道，就会假设目标是可达的然后向对方发送数据。</p>
+<ul>
+<li>客户端会向服务器发送一个带有端口号的 UDP 数据包。如果服务器回复了 UDP 数据包，则目标端口是开放的。</li>
+<li>如果服务器返回了一个 ICMP 目标不可达的错误和代码3，则意味着目标端口处于关闭状态。</li>
+<li>如果服务器返回一个 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明目标端口被服务器过滤了。</li>
+<li>如果服务器没有任何相应客户端的 UDP 请求，则可以断定目标端口可能是开放或被过滤的，无法判断端口的最终状态。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">53</span></span><br><span class="line">dst_timeout=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">udp_scan</span>(<span class="params">dst_ip,dst_port,dst_timeout</span>):</span></span><br><span class="line">    udp_scan_resp = sr1(IP(dst=dst_ip)/UDP(dport=dst_port),timeout=dst_timeout)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">str</span>(<span class="built_in">type</span>(udp_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">        retrans = []</span><br><span class="line">        <span class="keyword">for</span> count <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">3</span>):</span><br><span class="line">            retrans.append(sr1(IP(dst=dst_ip)/UDP(dport=dst_port),timeout=dst_timeout))</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> retrans:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">str</span>(<span class="built_in">type</span>(item))!=<span class="string">&quot;&quot;</span>):</span><br><span class="line">                udp_scan(dst_ip,dst_port,dst_timeout)</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">&quot;Open|Filtered&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> (udp_scan_resp.haslayer(UDP)):</span><br><span class="line">        <span class="keyword">return</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span>(udp_scan_resp.haslayer(ICMP)):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).code)==<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">return</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line">        <span class="keyword">elif</span>(<span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="keyword">return</span>( <span class="string">&quot;Filtered&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> udp_scan(dst_ip,dst_port,dst_timeout)</span><br></pre></td></tr></table></figure>
+<h2 id="代码部分（半连接、ACK、FIN、Null、Xmas、windows）">代码部分（半连接、ACK、FIN、Null、Xmas、windows）</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> IPy <span class="keyword">import</span> IP <span class="keyword">as</span> IPY</span><br><span class="line"></span><br><span class="line">conf.L3socket=L3RawSocket </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sem_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;S&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is filtered.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags==<span class="string">&#x27;SA&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is open.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags == <span class="string">&#x27;RA&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is closed.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="comment"># ans.display()</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sem_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;rootkit&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fin_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;F&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is open.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags == <span class="string">&#x27;RA&#x27;</span>:</span><br><span class="line">        ans.display()</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is closed.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span>(ans[ICMP]):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>.code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Filtered&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fin_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;rootkit&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">null_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is open.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags == <span class="string">&#x27;RA&#x27;</span>:</span><br><span class="line">        ans.display()</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is closed.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span>(ans[ICMP]):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>.code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is filtered.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">null_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;rootkit&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">windows_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;A&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is filtered.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].window &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is open.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].window == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is closed.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="comment"># ans.display()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">windows_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;rootkit&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xmas_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;FPU&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is open or filtered.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags == <span class="string">&#x27;RA&#x27;</span>:</span><br><span class="line">        ans.display()</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is closed.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span>(ans[ICMP]):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>.code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is filtered.&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xmas_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;leo-port-lab&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ack_port_scan</span>(<span class="params">ip, port</span>):</span></span><br><span class="line">    p = IP(dst=ip) / TCP(dport=<span class="built_in">int</span>(port), flags=<span class="string">&quot;A&quot;</span>)</span><br><span class="line">    ans = sr1(p, timeout=<span class="number">1</span>, verbose=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment"># print(ans[TCP].flags)</span></span><br><span class="line">    <span class="keyword">if</span> ans == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;port&quot;</span>, <span class="built_in">str</span>(port), <span class="string">&quot;is filtered. Firewall exists&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> ans[TCP].flags==<span class="string">&#x27;R&#x27;</span>:</span><br><span class="line">        <span class="built_in">print</span>(ip, <span class="string">&quot;\033[0;32;47m\t&quot;</span> + <span class="string">&quot;No firewall&quot;</span> + <span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        ans.display()</span><br><span class="line">    <span class="keyword">elif</span>(ans[ICMP]):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(ans[ICMP].<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(ans[ICMP].code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">&quot;Stateful firewall presentn(Filtered)&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ack_Ping</span>(<span class="params">dest</span>):</span></span><br><span class="line">    ip_addr=IPY(dest)</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> ip_addr:</span><br><span class="line">        <span class="comment">#print(ip)</span></span><br><span class="line">        packet=IP(dst=<span class="built_in">str</span>(ip))/ICMP()/<span class="string">b&#x27;rootkit&#x27;</span> </span><br><span class="line">        ping=sr1(packet,timeout=<span class="number">1</span>,verbose=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> ping:</span><br><span class="line">          <span class="built_in">print</span>(<span class="string">&quot;\033[0;32;47m\t&quot;</span>+<span class="built_in">str</span>(ip)+<span class="string">&quot; is up!&quot;</span>+<span class="string">&quot;\033[0m&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          <span class="built_in">print</span>(<span class="built_in">str</span>(ip)+<span class="string">&quot; is down!&quot;</span>)                                            </span><br><span class="line">             </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(sys.argv) &gt; <span class="number">1</span>:</span><br><span class="line">        method = sys.argv[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> method.startswith(<span class="string">&quot;-&quot;</span>):</span><br><span class="line">            method = method[<span class="number">1</span>:]  <span class="comment"># 去除参数前的 &quot;-&quot;</span></span><br><span class="line">        dest = sys.argv[<span class="number">2</span>]</span><br><span class="line">        port = sys.argv[<span class="number">3</span>]</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;sem&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;半连接扫描结果：#########################&quot;</span>)</span><br><span class="line">        sem_Ping(dest)</span><br><span class="line">        sem_port_scan(dest,port)</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;ack&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;ACK结果：#########################&quot;</span>)</span><br><span class="line">        ack_Ping(dest)</span><br><span class="line">        ack_port_scan(dest,port)</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;fin&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;FIN结果：#########################&quot;</span>)</span><br><span class="line">        fin_Ping(dest)</span><br><span class="line">        fin_port_scan(dest,port)</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;null&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Null扫描结果：#########################&quot;</span>)</span><br><span class="line">        null_Ping(dest)</span><br><span class="line">        null_port_scan(dest,port)</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;xmas&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Xmas扫描结果：#########################&quot;</span>)</span><br><span class="line">        xmas_Ping(dest)</span><br><span class="line">        xmas_port_scan(dest,port)</span><br><span class="line">    <span class="keyword">if</span> method == <span class="string">&quot;windows&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;windows扫描结果：#########################&quot;</span>)</span><br><span class="line">        windows_Ping(dest)</span><br><span class="line">        windows_port_scan(dest,port)</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/course/Assembly/汇编/" data-toggle="tooltip" data-placement="top" title="汇编语言程序设计（by fzy）笔记">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=端口扫描的几种方式&body=Hi,I found this website and thought you might like it http://leo021017.github.io/course/ComputerNetwork/port-scan/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP%E8%BF%9E%E6%8E%A5%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">TCP连接扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP-SYN-%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">TCP SYN 扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP-%E5%9C%A3%E8%AF%9E%E6%A0%91-Xmas-Tree-%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">TCP 圣诞树(Xmas Tree)扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#FIN%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">FIN扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP-%E7%A9%BA%E6%89%AB%E6%8F%8F-Null"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">TCP 空扫描(Null)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP-ACK%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">TCP ACK扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TCP%E7%AA%97%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">TCP窗口扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#UDP%E6%89%AB%E6%8F%8F"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">UDP扫描</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86%EF%BC%88%E5%8D%8A%E8%BF%9E%E6%8E%A5%E3%80%81ACK%E3%80%81FIN%E3%80%81Null%E3%80%81Xmas%E3%80%81windows%EF%BC%89"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">代码部分（半连接、ACK、FIN、Null、Xmas、windows）</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
+        <!-- Friends Blog -->
+        
+        <hr>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
+
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
+
+
+		<!-- Footer (contains ThemeColor、viewer) -->
+		<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center">
+          
+
+          
+            <li>
+              <a target="_blank" href="https://github.com/Leo021017">
+                <span class="fa-stack fa-lg">
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+        </ul>
+        <p class="copyright text-muted">
+          Copyright &copy;
+          Leo
+          2023
+          <!-- <br>
+          Theme by
+          <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
+          <span style="display: inline-block; margin: 0 5px;">
+            <i class="fa fa-heart"></i>
+          </span>
+          re-Ported by
+          <a target="_blank" rel="noopener" href="https://v-vincen.life/">Live My Life</a>
+          |
+          <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=V-Vincen&repo=V-Vincen.github.io&type=star&count=true"></iframe> -->
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a id="rocket" href="#top" class=""></a>
+
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script type="text/javascript" src="/js/hux-blog.min.js"></script>
+  <!-- catalog -->
+  <script async="true" type="text/javascript" src="/js/catalog.js"></script>
+  <!-- totop(rocket) -->
+  <script async="true" type="text/javascript" src="/js/totop.js"></script>
+
+  
+
+  
+    <!-- Scroll start -->
+    <script async="async" type="text/javascript" src="/js/scroll.js"></script>
+    <!-- Scroll end -->
+  
+
+  
+
+  
+    <!-- Mouseclick -->
+    <script type="text/javascript" src="/js/mouseclick.js" content='❤,❤,❤,❤,❤,❤,❤,❤,❤' color='#9933CC,#339933,#66CCCC,#FF99CC,#CCCCFF,#6666CC,#663399,#66CC99,#FF0033'></script>
+  
+
+  
+    <!-- ribbon -->
+    <script type="text/javascript" src="/js/ribbonDynamic.js"></script>
+  
+
+  
+
+
+
+
+
+
+
+<script>
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function (e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  // fastClick.js
+  async ("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+    var $nav = document.querySelector("nav");
+    if ($nav)
+      FastClick.attach($nav);
+    }
+  )
+</script>
+
+<!-- Because of the native support for backtick-style fenced code blocks right within the Markdown is landed in Github Pages, From V1.6, There is no need for Highlight.js, so Huxblog drops it officially. -
+https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0 - https://help.github.com/articles/creating-and-highlighting-code-blocks/ -->
+<!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
+
+<!-- jquery.tagcloud.js -->
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://leo021017.github.io/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
+
+
+		<!-- Search -->
+		
+		<div class="popup search-popup local-search-popup">
+  <span class="popup-btn-close">
+    ESC
+  </span>
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-md-9 col-md-offset-1"> -->
+      <div class="col-lg-9 col-lg-offset-1 col-md-10 col-md-offset-1 local-search-content">
+
+        <div class="local-search-header clearfix">
+
+          <div class="local-search-input-wrapper">
+            <span class="search-icon">
+              <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
+            </span>
+            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+          </div>
+        </div>
+        <div id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    <script src="/js/ziploader.js"></script>
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+    // get search zip version
+    $.get('/searchVersion.json?t=' + (+new Date()), function (res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson() {
+      initLoad(['/search.flv'], {
+        loadOptions: {
+          success: function (obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function (e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions: {
+          'json': 'application/json'
+        }
+      })
+    }
+    // search function;
+    var searchFunc = function (search_id, content_id) {
+      'use strict';
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      // console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function () {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function (data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title
+              ? data.title.trim()
+              : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content
+              ? data.content.trim().replace(/<[^>]+>/g, "")
+              : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+
+            var date = data.date;
+            var dateTime = date.replace(/T/, " ").replace(/.000Z/, "");
+            var imgUrl = data.header_img;
+            
+
+
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function (keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0,
+                  position = [],
+                  index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+            // show search results
+            if (isMatch) {
+              // sort index by position of keyword
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+              // merge hits into slices
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+                  // move to next position of hit
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {hits: hits, start: start, end: end, searchTextCount: searchTextCountInSlice};
+              }
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if (start < 0) {
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if (end > content.length) {
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+              // sort slices in content by search text's count and hits' count
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+              // select top N slices in content
+              var upperBound = parseInt('1');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+              // highlight title and content
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+              var resultItem = '';
+
+              // if (slicesOfTitle.length != 0) {   resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>"; } else {   resultItem += "<li><a target='_blank' href='" +
+              // articleUrl + "' class='search-result-title'>" + title + "</a>"; } slicesOfContent.forEach(function (slice) {   resultItem += "<a target='_blank' href='" + articleUrl + "'><p class=\"search-result\">" + highlightKeyword(content, slice) +
+              // "...</p></a>"; }); resultItem += "</li>";
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              } else {
+                resultItem += "<a target='_blank' href='" + articleUrl + "' class='search-result'><div class='search-result-left'><div class='search-result-title'>" + title + "</div><time class='search-result-date'>" + dateTime + "</time>";
+              }
+              slicesOfContent.forEach(function (slice) {
+                resultItem += "<p class=\"search-result-content\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+              resultItem += "</div><div class='search-result-right'><img class='media-image' src='" + imgUrl + "' width='64px' height='48px'></img></div></a>";
+
+              resultItems.push({item: resultItem, searchTextCount: searchTextCount, hitCount: hitCount, id: resultItems.length});
+            }
+          })
+        };
+
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"></div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<div class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</div>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+      // remove loading animation
+      $('body').css('overflow', '');
+      proceedsearch();
+    }
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function (e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function (e) {
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 && $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+
+    document.addEventListener('mouseup', (e) => {
+      var _con = document.querySelector(".local-search-content");
+      if (_con) {
+        if (!_con.contains(e.target)) {
+          onPopupClose();
+        }
+      }
+    });
+  </script>
+
+
+		
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
