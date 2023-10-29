@@ -425,7 +425,7 @@
 <li>当客户端发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器后，如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关闭状态</li>
 </ul>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="keyword">sT</span>模式</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204753670-1943198352.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204753670-1943198352.png" alt="img"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">tcp_connect_scan_resp = sr1(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;S&quot;</span>),timeout=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(<span class="built_in">type</span>(tcp_connect_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span>(tcp_connect_scan_resp.haslayer(TCP)):</span><br><span class="line">    <span class="keyword">if</span>(tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x12</span>):</span><br><span class="line">        send_rst = sr(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;AR&quot;</span>),timeout=<span class="number">10</span>)<span class="comment"># 全连接 AR =&gt; ACK+RST</span></span><br><span class="line">        <span class="built_in">print</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> (tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x14</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="TCP-SYN-扫描">TCP SYN 扫描</h2>
 <p>客户端向服务器发送一个带有 SYN 标识和端口号的数据包，<strong>这种技术主要用于躲避防火墙的检测。</strong></p>
@@ -434,7 +434,7 @@
 <li>如果目标端口处于关闭状态，那么同之前一样，服务器会返回一个 RST 数据包</li>
 </ul>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="built_in">sS</span>模式</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204809004-1342453493.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204809004-1342453493.png" alt="img"></p>
 <h2 id="TCP-圣诞树-Xmas-Tree-扫描">TCP 圣诞树(Xmas Tree)扫描</h2>
 <p>在圣诞树扫描中，客户端会向服务器发送带有 PSH,FIN,URG 标识和端口号的数据包给服务器。</p>
 <ul>
@@ -443,7 +443,7 @@
 <li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 状态码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定是否处于开放状态。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sX模式</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204825896-570110956.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204825896-570110956.png" alt="img"></p>
 <h2 id="FIN扫描">FIN扫描</h2>
 <p>FIN 扫描会向服务器发送带有 FIN 标识和端口号的 TCP 数据包。</p>
 <ul>
@@ -452,7 +452,7 @@
 <li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 代码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定端口状态。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sF模式</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204840951-2048443802.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204840951-2048443802.png" alt="img"></p>
 <h2 id="TCP-空扫描-Null">TCP 空扫描(Null)</h2>
 <p>在空扫描中，客户端发出的 TCP 数据包仅仅只会包含端口号而不会有其他任何的标识信息。</p>
 <ul>
@@ -461,7 +461,7 @@
 <li>如果返回 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被服务器过滤了。</li>
 </ul>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nmap</span> -<span class="meta">sN</span>模式</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204856385-1582964864.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204856385-1582964864.png" alt="img"></p>
 <h2 id="TCP-ACK扫描">TCP ACK扫描</h2>
 <p>ACK 扫描不是用于发现端口开启或关闭状态的，而是用于发现服务器上是否存在有状态防火墙的。它的结果只能说明端口是否被过滤。再次强调，ACK 扫描不能发现端口是否处于开启或关闭状态。</p>
 <ul>
@@ -475,7 +475,7 @@
 <li>如果返回的 RST 数据包中的窗口大小为0，则说明目标端口是关闭的。</li>
 </ul>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -<span class="keyword">sW模式</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img2020.cnblogs.com/blog/1461466/202006/1461466-20200602204920913-1955130735.png" alt="img"></p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204920913-1955130735.png" alt="img"></p>
 <h2 id="UDP扫描">UDP扫描</h2>
 <p>TCP 是面向连接的协议，而UDP则是无连接的协议。</p>
 <p>面向连接的协议会先在客户端和服务器之间建立通信信道，然后才会开始传输数据。如果客户端和服务器之间没有建立通信信道，则不会有任何产生任何通信数据。</p>
