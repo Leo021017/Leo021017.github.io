@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">5</span> Minutes
+              Estimated Reading Time <span class="post-count">8</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.5k</span> In Total
+              Words <span class="post-count">2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,7 +470,7 @@
 </li>
 <li>进入被调用函数
 <ul>
-<li>ebp（的值）入栈，即被调用函数保存上一层函数的栈帧基地址</li>
+<li>ebp（的值）入栈，即被调用函数保存上一层函数的栈帧基地址，同时将当前esp下移</li>
 <li>将当前栈指针（esp）赋值给栈帧基地址寄存器（ebp）</li>
 <li>分配被调用函数需要的局部变量空间</li>
 </ul>
@@ -488,6 +488,66 @@
 <p>​       那么问题来了， 一整个函数调用栈只有一个 esp 和一个 ebp，却有很多不同函数的栈帧，那么怎么分出各个函数的栈帧范围呢？这就需要 <strong>ebp</strong>。 当父函数执行时，ebp 指向父函数的栈底，此时父函数调用子函数，ebp 需要更新指向子函数的栈底（ebp 寄存器的值改成子函数栈底地址），但是父函数的栈底同时需要被保存，这个地址就被保存在更新后的 ebp 所指向的内存空间，也就是每个函数的栈底空间存储的都是上一个函数的栈底空间的地址，当函数调用结束需要回退 ebp 时，使用这个值去更新 ebp 寄存器的值即可</p>
 <p>对应的汇编代码为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">push ebp</span><br><span class="line">mov ebp, esp</span><br><span class="line"></span><br><span class="line">; 执行函数</span><br><span class="line">mov eax, a</span><br><span class="line">add eax, b</span><br><span class="line"></span><br><span class="line">mov esp, ebp</span><br><span class="line">pop ebp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p><strong>下面以一次完整的main函数调用sum函数做说明</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> _a,<span class="keyword">int</span> _b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c=<span class="number">0</span>;</span><br><span class="line">    c=_a+_b;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">20</span>;</span><br><span class="line">    <span class="keyword">int</span> ret;</span><br><span class="line">    ret=sum(a,b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<a target="_blank" rel="noopener" href="https://godbolt.org/">Compiler Explorer </a>得到对应的汇编代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sum(int, int):</span><br><span class="line">        push    rbp</span><br><span class="line">        mov     rbp, rsp</span><br><span class="line">        mov     DWORD PTR [rbp-20], edi</span><br><span class="line">        mov     DWORD PTR [rbp-24], esi</span><br><span class="line">        mov     DWORD PTR [rbp-4], 0</span><br><span class="line">        mov     edx, DWORD PTR [rbp-20]</span><br><span class="line">        mov     eax, DWORD PTR [rbp-24]</span><br><span class="line">        add     eax, edx</span><br><span class="line">        mov     DWORD PTR [rbp-4], eax</span><br><span class="line">        mov     eax, DWORD PTR [rbp-4]</span><br><span class="line">        pop     rbp</span><br><span class="line">        ret</span><br><span class="line">main:</span><br><span class="line">        push    rbp</span><br><span class="line">        mov     rbp, rsp</span><br><span class="line">        sub     rsp, 16</span><br><span class="line">        mov     DWORD PTR [rbp-4], 10</span><br><span class="line">        mov     DWORD PTR [rbp-8], 20</span><br><span class="line">        mov     edx, DWORD PTR [rbp-8]</span><br><span class="line">        mov     eax, DWORD PTR [rbp-4]</span><br><span class="line">        mov     esi, edx</span><br><span class="line">        mov     edi, eax</span><br><span class="line">        call    sum(int, int)</span><br><span class="line">        mov     DWORD PTR [rbp-12], eax</span><br><span class="line">        mov     eax, 0</span><br><span class="line">        leave</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure>
+<p>main函数的栈在调用之前如图</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029130645688.png" alt="image-20231029130645688" style="zoom:40%;" />
+<ol>
+<li>
+<p>函数参数从右至左入栈</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov     edx, DWORD PTR [rbp-8]</span><br><span class="line">mov     eax, DWORD PTR [rbp-4]</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029131304939.png" alt="image-20231029131304939" style="zoom:40%;" />
+</li>
+<li>
+<p>返回地址入栈</p>
+<p><code>call    sum(int, int)</code>指令实际上分两步：① <code>push EIP</code> 将下一条指令入栈保存起来；② <code>esp-4</code> esp指针下移</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029132313279.png" alt="image-20231029132313279" style="zoom:40%;" />
+</li>
+<li>
+<p>main函数基指针入栈保存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push ebp</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029132550429.png" alt="image-20231029132550429" style="zoom:40%;" />
+<p><code>mov ebp esp</code> 将esp的值存入ebp也就等于将ebp指向esp</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029132646377.png" alt="image-20231029132646377" style="zoom:40%;" />
+<p><code>sub esp 44H</code> 将esp下移动一段空间创建sum函数的栈栈帧</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029132731995.png" alt="image-20231029132731995" style="zoom:40%;" />
+</li>
+<li>
+<p>将没有显式地初始化的内存用<code>CCCCCCCC</code>进行填充，将<code>ebx</code>、<code>esi</code>、<code>edi</code>压入栈中</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029133124542.png" alt="image-20231029133124542" style="zoom:40%;" />
+</li>
+<li>
+<p>复制传入的参数的值，将sum的局部变量c放入[ebp-4]的空间内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov     DWORD PTR [rbp-20], edi</span><br><span class="line">mov     DWORD PTR [rbp-24], esi</span><br><span class="line">mov     DWORD PTR [rbp-4], 0</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029133516034.png" alt="image-20231029133516034" style="zoom:40%;" />
+</li>
+<li>
+<p>执行函数操作</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029133711955.png" alt="image-20231029133711955" style="zoom:40%;" />
+</li>
+<li>
+<p>将返回值(变量c所在的地址的内容)放入eax寄存器保存住；将ebp的值赋给esp，也就等于将esp指向ebp，销毁sum函数栈帧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov eax,dword ptr [ebp-4] </span><br><span class="line">mov esp ebp</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029134005577.png" alt="image-20231029134005577" style="zoom:40%;" />
+</li>
+<li>
+<p>ebp出栈，将栈中保存的main函数的基址赋值给ebp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pop ebp</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029134149926.png" alt="image-20231029134149926" style="zoom:40%;" />
+</li>
+<li>
+<p><code>ret</code>相当于 <code>pop eip</code> 就是把之前保存的函数返回地址(也就是main函数中下一条该执行的指令的地址)出栈</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ret</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029134310656.png" alt="image-20231029134310656" style="zoom:40%;" />
+</li>
+<li>
+<p><code>add esp,8 </code>，此时若传入sum函数的参数已经不需要了，我们将esp指针上移</p>
+<p>此时函数整个调用过程就结束了，main函数栈恢复到了调用之前的状态</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029134459105.png" alt="image-20231029134459105" style="zoom:40%;" />
+</li>
+</ol>
 <h2 id="寻址方式举例">寻址方式举例</h2>
 <p>参考下面的汇编代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line">    &#x2F;&#x2F;int* a &#x3D; (int *)malloc(8 * sizeof(int));</span><br><span class="line">    int* a &#x3D; NULL;</span><br><span class="line">    __asm &#123;</span><br><span class="line">        push 0x20;         &#x2F;&#x2F; 要开辟8个int型整数的空间，于是将常数0x20（32的十六进制表示）压入栈顶，作为malloc函数的参数</span><br><span class="line">        call malloc;       &#x2F;&#x2F; 调用malloc函数，将参数0x20从栈中弹出，并执行分配内存的操作</span><br><span class="line">        add esp, 4;        &#x2F;&#x2F; 释放执行malloc函数时压入栈中的参数，恢复栈顶指针</span><br><span class="line">        mov [a], eax;      &#x2F;&#x2F; 将eax寄存器中的返回值（malloc分配空间的地址）存储到指针a所对应的内存地址中</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%x\n&quot;, a);</span><br><span class="line">    printf(&quot;a[1]&#x3D;%d\n&quot;, a[1]);</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;a[1] &#x3D; 1;</span><br><span class="line">    __asm &#123;</span><br><span class="line">        mov edi, [a];                    &#x2F;&#x2F; 将指针a的值（数组的地址）加载到edi寄存器中</span><br><span class="line">        mov dword ptr [edi + 4], 1017;   &#x2F;&#x2F; 将值1017存储到a的值+4字节偏移，即a[1]处</span><br><span class="line">    &#125;                                    </span><br><span class="line">    printf(&quot;a[1]&#x3D;%d\n&quot;, a[1]);              &#x2F;&#x2F; a[1]&#x3D;1017</span><br><span class="line">    </span><br><span class="line">    int b &#x3D; 0;</span><br><span class="line">    printf(&quot;b&#x3D;%d\n&quot;, b);</span><br><span class="line">    &#x2F;&#x2F; b &#x3D; a[1]</span><br><span class="line">    __asm &#123;</span><br><span class="line">        mov edi, [a];</span><br><span class="line">        mov eax, dword ptr[edi + 4];</span><br><span class="line">        mov[b], eax;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;b&#x3D;%d\n&quot;, b);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
