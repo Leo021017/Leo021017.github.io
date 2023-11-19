@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://leo021017.github.io/course/ComputerNetwork/TLS/</loc>
+    <lastmod>2023-11-19</lastmod>
+  </url>
+  <url>
+    <loc>http://leo021017.github.io/other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/</loc>
+    <lastmod>2023-11-19</lastmod>
+  </url>
+  <url>
     <loc>http://leo021017.github.io/course/ComputerNetwork/port-scan/</loc>
     <lastmod>2023-10-18</lastmod>
   </url>

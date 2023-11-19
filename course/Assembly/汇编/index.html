@@ -362,7 +362,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">2k</span> In Total
+              Words <span class="post-count">2.1k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -536,6 +536,10 @@
 <p>ebp出栈，将栈中保存的main函数的基址赋值给ebp</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pop ebp</span><br></pre></td></tr></table></figure>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029134149926.png" alt="image-20231029134149926" style="zoom:40%;" />
+<blockquote>
+<p>注：<code>leave</code>指令相当于<code>mov esp ebp</code>加上<code>pop ebp</code>，有时被调用函数没有局部变量，ebp始终等于esp，就不用<code>mov esp ebp</code></p>
+<p><code>ret</code>指令相当于<code>pop eip</code></p>
+</blockquote>
 </li>
 <li>
 <p><code>ret</code>相当于 <code>pop eip</code> 就是把之前保存的函数返回地址(也就是main函数中下一条该执行的指令的地址)出栈</p>

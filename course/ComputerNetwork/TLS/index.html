@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/tags/CNN/">
+  <link rel="canonical" href="http://leo021017.github.io/course/ComputerNetwork/TLS/">
   <title>
     
-      Leo&#39;s Blog
+      TLS协商过程 - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -340,10 +340,36 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Leo&#39;s Blog</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">这里是知识的荒漠</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+              
+            </div>
+            <h1>TLS协商过程</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-11-19
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">2</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">620</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
           </div>
           
         </div>
@@ -384,429 +410,243 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h2 id="TLS">TLS</h2>
+<p><strong>TLS</strong> (Transport Layer Security) 是在<strong>SSL3.0</strong>基础上设计的协议，实际上相当于SSL的后续版本</p>
+<p>SSL/TLS是一个安全通信框架，上面可以承载<strong>HTTP</strong>协议或者<strong>SMTP/POP3</strong>协议</p>
+<p>TLS主要分为两层，底层的是<strong>TLS记录协议</strong>，主要负责使用对称密码对消息进行加密；上层的是<strong>TLS握手协议</strong></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119145214020.png" alt="image-20231119145214020" style="zoom:33%;" />
+<h2 id="TLS握手过程">TLS握手过程</h2>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119153413153.png" alt="image-20231119153413153" style="zoom:40%;" />
+<h3 id="客户端发出请求（ClientHello）">客户端发出请求（ClientHello）</h3>
+<p>TLS是一套加密框架，其中的有些组件其实是可以替换的，这里可用版本号，可用的密</p>
+<p>码套件清单，可用的压缩方式清单就是向服务器询问对方支持哪些服务</p>
+<p>客户端向服务器端发出以下信息：</p>
+<ol>
+<li><strong>支持的协议版本</strong>（如TLS 1.0版）</li>
+<li><strong>客户端生成的随机数</strong></li>
+<li><strong>支持的加密方法</strong>（Cipher Suite）和<strong>支持的压缩方法</strong></li>
+<li><strong>会话ID和当前时间戳</strong></li>
+</ol>
+<h3 id="服务器回应（SeverHello">服务器回应（SeverHello)</h3>
+<p>服务器端收到ClientHello消息后，会向客户端返回一个ServerHello消息，有些服务端的实现是每条单</p>
+<p>独发送，有些服务端的实现是合并到一起发送，包含以下部分：</p>
+<ol>
+<li><strong>ServerCertificate</strong>：服务器证书</li>
+<li><strong>ServerKeyExchange</strong>：可选，如RSA公钥或或者Diffie-Hellman参数</li>
+<li><strong>CertificateRequest</strong>：对于重要的保密数据，服务器要求客户端发送证书以进行验证</li>
+<li><strong>ServerHelloDone</strong></li>
+<li><strong>使用的协议版本号</strong>：如果浏览器与服务器支持的版本不一致，服务器关闭加密通信</li>
+<li><strong>服务器随机数</strong>：和客户端的随机数一起生成<strong>会话密钥</strong>（Master Secret）</li>
+<li><strong>使用的Cipher Suite和压缩方式</strong></li>
+<li><strong>当前时间戳和会话ID</strong></li>
+</ol>
+<h3 id="客户端回应（Certificate-Verify）">客户端回应（Certificate Verify）</h3>
+<ol>
+<li><strong>CertificateVerify</strong>：检查服务器证书</li>
+<li><strong>ClientCertificate</strong>：如果客户端需要验证就发送自己的证书</li>
+<li><strong>ClientKeyExchange</strong>：发送RSA预主密钥（PreMaster Secret/Key）或者Diffie-Hellman参数，用于安全地协商出会话密钥</li>
+<li><strong>ChangeCipherSpec</strong>：是一个独立的协议，用数据包中的一个字节告知服务器端已经切换到协商好的Cipher Suite</li>
+<li><strong>Finished</strong>：客户端握手协议结束</li>
+</ol>
+<h3 id="服务器的最后回应（Server-Finish）">服务器的最后回应（Server Finish）</h3>
+<ol>
+<li><strong>ChangeCipherSpec</strong>：告知客户端已经切换到协商好的Cipher Suite</li>
+<li><strong>Finished</strong>：生成会话密钥，加密Finish消息发送给客户端，以验证加解密通道建立成功</li>
+</ol>
+<h3 id="交换数据">交换数据</h3>
+<p>双方使用相同的会话密钥，对数据进行对称加密，交换数据，完成通信</p>
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/TLS/" style="color: #0085a1">
-              <span>
-                TLS协商过程
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
           
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/深信服认证/" style="color: #0085a1">
-              <span>
-                Untitled
-                
-                -- other
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-18
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/port-scan/" style="color: #0085a1">
-              <span>
-                端口扫描的几种方式
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/Assembly/汇编/" style="color: #0085a1">
-              <span>
-                汇编语言程序设计（by fzy）笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab0/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab0
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/Top-Down/Programming/" style="color: #0085a1">
-              <span>
-                自顶向下编程练习
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-09
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/DSA/Pointer/" style="color: #0085a1">
-              <span>
-                指针学习笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab2-bomb/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab2
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/RNN/RNN/" style="color: #0085a1">
-              <span>
-                循环神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
-              <span>
-                深度学习的一些基础知识
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
-              <span>
-                图神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-31
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
-              <span>
-                Swin Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
-              <span>
-                自注意力机制
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
-              <span>
-                EfficientNet
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/report/" style="color: #0085a1">
-              <span>
-                实训2报告
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
-              <span>
-                经典卷积网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
-              <span>
-                卷积神经网络概述
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/OS/os/" style="color: #0085a1">
-              <span>
-                操作系统期末复习
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/firstBlog/" style="color: #0085a1">
-              <span>
-                第一篇博客——杂谈
-                
-                -- other
-                
-              </span>
-            </a>
+          <li class="next">
+            <a href="/other/深信服认证/" data-toggle="tooltip" data-placement="top" title="">Next Post &rarr;</a>
           </li>
           
         </ul>
-      </div>
-      
-    </div>
-  </div>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
 </div>
+<!-- tip end -->
 
+        <!-- tip end -->
+        
 
-      <!-- 如果开启评论功能 -->
-      
-    </div>
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
 
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>四川大学 网络空间安全学院</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Leo021017">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../course/ComputerNetwork/TLS/">
-      <li>TLS协商过程</li>
-    </a>
-    
-    <a href="../../other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
-      <li>(no title)</li>
-    </a>
-    
-    <a href="../../course/ComputerNetwork/port-scan/">
-      <li>端口扫描的几种方式</li>
-    </a>
-    
-    <a href="../../course/Assembly/%E6%B1%87%E7%BC%96/">
-      <li>汇编语言程序设计（by fzy）笔记</li>
-    </a>
-    
-    <a href="../../Lab/CSAPP/lab0/">
-      <li>CSAPP-Lab0</li>
-    </a>
-    
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=TLS协商过程&body=Hi,I found this website and thought you might like it http://leo021017.github.io/course/ComputerNetwork/TLS/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
   </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <hr>
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TLS"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">TLS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#TLS%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">TLS握手过程</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E5%87%BA%E8%AF%B7%E6%B1%82%EF%BC%88ClientHello%EF%BC%89"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">客户端发出请求（ClientHello）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9B%9E%E5%BA%94%EF%BC%88SeverHello"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">服务器回应（SeverHello)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E5%BA%94%EF%BC%88Certificate-Verify%EF%BC%89"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">客户端回应（Certificate Verify）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%9C%80%E5%90%8E%E5%9B%9E%E5%BA%94%EF%BC%88Server-Finish%EF%BC%89"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">服务器的最后回应（Server Finish）</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%95%B0%E6%8D%AE"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text">交换数据</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-
-    
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

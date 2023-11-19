@@ -410,6 +410,128 @@
   <!-- top end -->
   
 
+  <a href="/course/ComputerNetwork/TLS/">
+    <h2 class="post-title">
+      TLS协商过程
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      TLS
+TLS (Transport Layer Security) 是在SSL3.0基础上设计的协议，实际上相当于SSL的后续版本
+SSL/TLS是一个安全通信框架，上面可以承载HTTP协议或者SMTP/POP3协议
+TLS主要分为两层，底层的是TLS记录协议，主要负责使用对称密码对消息进行加密；上层的是TLS握手协议
+
+TLS握手过程
+
+客户端发出请求（ClientHello）
+TLS是......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-19
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/other/深信服认证/">
+    <h2 class="post-title">
+      Untitled
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      HTTP
+
+
+
+
+URL 一定是 URI；URN + URL 就是 URI
+URL是URI的一种实现形式
+
+
+
+
+
+
+进行一次握手就一直请求-响应，后来效率还是不够高，发明了管道技术
+
+
+
+SQL注入
+
+
+
+
+
+
+
+
+
+
+
+注意substr和left函数的区别
+
+
+
+
+
+
+
+
+
+XSS
+
+
+
+
+浏览器天然不支持Cookie字段跨域，但token单独是一个首部字段，可以跨域
+
+
+
+
+
+sess......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-19
+  </p>
+  <div class="tags">
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/course/ComputerNetwork/port-scan/">
     <h2 class="post-title">
       端口扫描的几种方式
@@ -720,93 +842,6 @@ N  to 1：如情感分类等......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/GNN/GNN/">
-    <h2 class="post-title">
-      图神经网络
-    </h2>
-    <h3 class="post-subtitle">
-      介绍了图神经网络结构
-    </h3>
-    <div class="post-content-preview">
-      GNN介绍
-
-
-图：GNN考虑一个图有三个要素：点、边、全局（输入数据的格式不规则）
-GNN最终的作用是通过迭代计算，重构一张图中点和边的特征，然后将特征交给全连接层即可
-
-
-
-消息传递(聚合)：针对下图去更新节点的特征，需要结合邻居和自身信息，$h_{j}$表示原始邻居的特征，$W_{j}$表示GNN需要学习的权重参数矩阵，加到一起后用激活函数处理（可以是最大、最小、平均）
-
-$$
-h_{......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-09-13
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#GNN" title="GNN">GNN</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/CNN/Transformer/">
-    <h2 class="post-title">
-      Transformer
-    </h2>
-    <h3 class="post-subtitle">
-      介绍Transformer的基本网络结构
-    </h3>
-    <div class="post-content-preview">
-      Transformer概述
-
-
-核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
-
-
-
-encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
-
-
-enc......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-31
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -886,6 +921,14 @@ enc......
 <div class="widget">
   <ul>
     
+    <a href="course/ComputerNetwork/TLS/">
+      <li>TLS协商过程</li>
+    </a>
+    
+    <a href="other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
+      <li>(no title)</li>
+    </a>
+    
     <a href="course/ComputerNetwork/port-scan/">
       <li>端口扫描的几种方式</li>
     </a>
@@ -896,14 +939,6 @@ enc......
     
     <a href="Lab/CSAPP/lab0/">
       <li>CSAPP-Lab0</li>
-    </a>
-    
-    <a href="Lab/Top-Down/Programming/">
-      <li>自顶向下编程练习</li>
-    </a>
-    
-    <a href="course/DSA/Pointer/">
-      <li>指针学习笔记</li>
     </a>
     
   </ul>

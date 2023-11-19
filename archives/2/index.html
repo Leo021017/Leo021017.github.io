@@ -410,6 +410,93 @@
   <!-- top end -->
   
 
+  <a href="/DeepLearning/GNN/GNN/">
+    <h2 class="post-title">
+      图神经网络
+    </h2>
+    <h3 class="post-subtitle">
+      介绍了图神经网络结构
+    </h3>
+    <div class="post-content-preview">
+      GNN介绍
+
+
+图：GNN考虑一个图有三个要素：点、边、全局（输入数据的格式不规则）
+GNN最终的作用是通过迭代计算，重构一张图中点和边的特征，然后将特征交给全连接层即可
+
+
+
+消息传递(聚合)：针对下图去更新节点的特征，需要结合邻居和自身信息，$h_{j}$表示原始邻居的特征，$W_{j}$表示GNN需要学习的权重参数矩阵，加到一起后用激活函数处理（可以是最大、最小、平均）
+
+$$
+h_{......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-13
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#GNN" title="GNN">GNN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/CNN/Transformer/">
+    <h2 class="post-title">
+      Transformer
+    </h2>
+    <h3 class="post-subtitle">
+      介绍Transformer的基本网络结构
+    </h3>
+    <div class="post-content-preview">
+      Transformer概述
+
+
+核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
+
+
+
+encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
+
+
+enc......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-07-31
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/DeepLearning/Transformer/Swing Transformer/">
     <h2 class="post-title">
       Swin Transformer
@@ -766,40 +853,6 @@ VGG-16：网络结构相对......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/other/firstBlog/">
-    <h2 class="post-title">
-      第一篇博客——杂谈
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      作为一名IT学生，不断体会到应该搭建一个平台，来记录自己学习过程中的知识总结和心得体会，于是搭建了这个博客，分享一些自己的东西
-...
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-06-28
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#杂谈" title="杂谈">杂谈</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -808,6 +861,10 @@ VGG-16：网络结构相对......
       <a href="/">&larr; Older Posts</a>
     </li>
     
+    
+    <li class="next">
+      <a href="/archives/3/">Newer Posts &rarr;</a>
+    </li>
     
   </ul>
 
@@ -879,6 +936,14 @@ VGG-16：网络结构相对......
 <div class="widget">
   <ul>
     
+    <a href="../../course/ComputerNetwork/TLS/">
+      <li>TLS协商过程</li>
+    </a>
+    
+    <a href="../../other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
+      <li>(no title)</li>
+    </a>
+    
     <a href="../../course/ComputerNetwork/port-scan/">
       <li>端口扫描的几种方式</li>
     </a>
@@ -889,14 +954,6 @@ VGG-16：网络结构相对......
     
     <a href="../../Lab/CSAPP/lab0/">
       <li>CSAPP-Lab0</li>
-    </a>
-    
-    <a href="../../Lab/Top-Down/Programming/">
-      <li>自顶向下编程练习</li>
-    </a>
-    
-    <a href="../../course/DSA/Pointer/">
-      <li>指针学习笔记</li>
     </a>
     
   </ul>
