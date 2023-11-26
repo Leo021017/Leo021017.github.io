@@ -410,6 +410,45 @@
   <!-- top end -->
   
 
+  <a href="/course/pwn/">
+    <h2 class="post-title">
+      PWN入门
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      二进制基础程序的编译与链接
+
+预处理：预处理指令（如#include和#define）替换成实际的代码
+123456   gcc -E hello.c -o hello.i2. **编译**：由C语言代码生成汇编代码   ```bash   gcc -S hello.i -o hello.s
+
+汇编：由汇编代码生成机器码（Windows下是.obj文件）
+1gcc -c hello.s -o......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-26
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#PWN" title="PWN">PWN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/course/ComputerNetwork/proxy/">
     <h2 class="post-title">
       代理服务器原理（https, socks5）
@@ -418,15 +457,18 @@
       
     </h3>
     <div class="post-content-preview">
-      HTTPS代理原理
+      HTTP代理原理HTTP存在两种代理方式：
 
+普通代理
+隧道代理
 
-Socks代理原理
-Socks协议
-什么是Socks协议
-Socks协议是一种代理 (Proxy) 协议，主要用于客户端与外网服务器之间通讯的中间传递，Socks是“SOCKetS”的缩写，最新的版本为5，即Socks5
-Socks协议的作用
-通常组织内部的专用网络与Internet是隔离的，代理服务器创建一个从内网到外网的通道，用于组织内的主机与组织外的主机进行通信......
+普通代理
+HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理请求和连接（例如正确处理 Connection: keep-alive），同时向服务器发送请求，并将收到的响应转发给客户端
+对于连接到它的客户端来说，它是服务端；对于要连接的服务端来说，它是客户端
+
+这里也有两种代理服务器：
+
+正向代理：客户端通过修改配置......
     </div>
   </a>
   
@@ -771,45 +813,6 @@ Introduction to pointers in C
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/Lab/CSAPP/lab2-bomb/">
-    <h2 class="post-title">
-      CSAPP-Lab2
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      实验概览
-BombLab提供给我们两个文件，一个是编译不了的C文件bomb.c，一个是可执行文件bomb。当运行bomb文件时，它会要求输内容，如果其中的任何一句是错的，炸弹就会“爆炸”。我们必须利用反汇编工具逆向分析这个文件，并找到这6个字符串，从而“拆除”炸弹。
-使用objdump -d bomb &gt; bomb.asm命令反汇编bomb
-汇编基础
-
-
-eax寄存器常用来保存函数的返......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-09-23
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#CSAPP-Lab" title="CSAPP-Lab">CSAPP-Lab</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -889,6 +892,10 @@ eax寄存器常用来保存函数的返......
 <div class="widget">
   <ul>
     
+    <a href="course/pwn/">
+      <li>PWN入门</li>
+    </a>
+    
     <a href="course/ComputerNetwork/proxy/">
       <li>代理服务器原理（https, socks5）</li>
     </a>
@@ -903,10 +910,6 @@ eax寄存器常用来保存函数的返......
     
     <a href="other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
       <li>深信服认证题目摘要</li>
-    </a>
-    
-    <a href="course/ComputerNetwork/port-scan/">
-      <li>端口扫描的几种方式</li>
     </a>
     
   </ul>

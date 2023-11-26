@@ -410,6 +410,45 @@
   <!-- top end -->
   
 
+  <a href="/Lab/CSAPP/lab2-bomb/">
+    <h2 class="post-title">
+      CSAPP-Lab2
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      实验概览
+BombLab提供给我们两个文件，一个是编译不了的C文件bomb.c，一个是可执行文件bomb。当运行bomb文件时，它会要求输内容，如果其中的任何一句是错的，炸弹就会“爆炸”。我们必须利用反汇编工具逆向分析这个文件，并找到这6个字符串，从而“拆除”炸弹。
+使用objdump -d bomb &gt; bomb.asm命令反汇编bomb
+汇编基础
+
+
+eax寄存器常用来保存函数的返......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-23
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#CSAPP-Lab" title="CSAPP-Lab">CSAPP-Lab</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/DeepLearning/RNN/RNN/">
     <h2 class="post-title">
       循环神经网络
@@ -794,51 +833,6 @@ EfficientNet主要是用NAS（Neural Architecture Search）技术来搜索网络
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/CNN/classic CNN/">
-    <h2 class="post-title">
-      经典卷积网络
-    </h2>
-    <h3 class="post-subtitle">
-      介绍了LeNet-5 ResNets VGG等经典卷积神经网络结构
-    </h3>
-    <div class="post-content-preview">
-      经典网络
-
-
-LeNet-5：可以识别图中的手写数字，灰度图像；使用平均池化，建议改成最大池化；还没有使用到padding；现在多使用softmax函数输出分类结果，而LeNet-5网络使用了另外一种已经不常用的；
-而一个或多个卷积层后面跟着一个池化层，然后又是若干个卷积层再接一个池化层，然后是全连接层，最后是输出，这种排列方式很常用
-
-
-
-AlexNet：
-
-
-
-VGG-16：网络结构相对......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-21
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#CNN" title="CNN">CNN</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -922,6 +916,10 @@ VGG-16：网络结构相对......
 <div class="widget">
   <ul>
     
+    <a href="../../course/pwn/">
+      <li>PWN入门</li>
+    </a>
+    
     <a href="../../course/ComputerNetwork/proxy/">
       <li>代理服务器原理（https, socks5）</li>
     </a>
@@ -936,10 +934,6 @@ VGG-16：网络结构相对......
     
     <a href="../../other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
       <li>深信服认证题目摘要</li>
-    </a>
-    
-    <a href="../../course/ComputerNetwork/port-scan/">
-      <li>端口扫描的几种方式</li>
     </a>
     
   </ul>
