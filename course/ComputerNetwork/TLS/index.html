@@ -418,12 +418,15 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h2 id="TLS"><a href="#TLS" class="headerlink" title="TLS"></a>TLS</h2><p><strong>TLS</strong> (Transport Layer Security) 是在<strong>SSL3.0</strong>基础上设计的协议，实际上相当于SSL的后续版本</p>
+        <h2 id="TLS">TLS</h2>
+<p><strong>TLS</strong> (Transport Layer Security) 是在<strong>SSL3.0</strong>基础上设计的协议，实际上相当于SSL的后续版本</p>
 <p>SSL/TLS是一个安全通信框架，上面可以承载<strong>HTTP</strong>协议或者<strong>SMTP/POP3</strong>协议</p>
 <p>TLS主要分为两层，底层的是<strong>TLS记录协议</strong>，主要负责使用对称密码对消息进行加密；上层的是<strong>TLS握手协议</strong></p>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119145214020.png" alt="image-20231119145214020" style="zoom:33%;" /></p>
-<h2 id="TLS握手过程"><a href="#TLS握手过程" class="headerlink" title="TLS握手过程"></a>TLS握手过程</h2><p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119153413153.png" alt="image-20231119153413153" style="zoom:40%;" /></p>
-<h3 id="客户端发出请求（ClientHello）"><a href="#客户端发出请求（ClientHello）" class="headerlink" title="客户端发出请求（ClientHello）"></a>客户端发出请求（ClientHello）</h3><p>TLS是一套加密框架，其中的有些组件其实是可以替换的，这里可用版本号，可用的密</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119145214020.png" alt="image-20231119145214020" style="zoom:33%;" />
+<h2 id="TLS握手过程">TLS握手过程</h2>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231119153413153.png" alt="image-20231119153413153" style="zoom:40%;" />
+<h3 id="客户端发出请求（ClientHello）">客户端发出请求（ClientHello）</h3>
+<p>TLS是一套加密框架，其中的有些组件其实是可以替换的，这里可用版本号，可用的密</p>
 <p>码套件清单，可用的压缩方式清单就是向服务器询问对方支持哪些服务</p>
 <p>客户端向服务器端发出以下信息：</p>
 <ol>
@@ -432,7 +435,8 @@
 <li><strong>支持的加密方法</strong>（Cipher Suite）和<strong>支持的压缩方法</strong></li>
 <li><strong>会话ID和当前时间戳</strong></li>
 </ol>
-<h3 id="服务器回应（SeverHello"><a href="#服务器回应（SeverHello" class="headerlink" title="服务器回应（SeverHello)"></a>服务器回应（SeverHello)</h3><p>服务器端收到ClientHello消息后，会向客户端返回一个ServerHello消息，有些服务端的实现是每条单</p>
+<h3 id="服务器回应（SeverHello">服务器回应（SeverHello)</h3>
+<p>服务器端收到ClientHello消息后，会向客户端返回一个ServerHello消息，有些服务端的实现是每条单</p>
 <p>独发送，有些服务端的实现是合并到一起发送，包含以下部分：</p>
 <ol>
 <li><strong>ServerCertificate</strong>：服务器证书</li>
@@ -444,33 +448,42 @@
 <li><strong>使用的Cipher Suite和压缩方式</strong></li>
 <li><strong>当前时间戳和会话ID</strong></li>
 </ol>
-<h3 id="客户端回应（Certificate-Verify）"><a href="#客户端回应（Certificate-Verify）" class="headerlink" title="客户端回应（Certificate Verify）"></a>客户端回应（Certificate Verify）</h3><ol>
+<h3 id="客户端回应（Certificate-Verify）">客户端回应（Certificate Verify）</h3>
+<ol>
 <li><strong>CertificateVerify</strong>：检查服务器证书</li>
 <li><strong>ClientCertificate</strong>：如果客户端需要验证就发送自己的证书</li>
 <li><strong>ClientKeyExchange</strong>：发送RSA预主密钥（PreMaster Secret/Key）或者Diffie-Hellman参数，用于安全地协商出会话密钥</li>
 <li><strong>ChangeCipherSpec</strong>：是一个独立的协议，用数据包中的一个字节告知服务器端已经切换到协商好的Cipher Suite</li>
 <li><strong>Finished</strong>：客户端握手协议结束</li>
 </ol>
-<h3 id="服务器的最后回应（Server-Finish）"><a href="#服务器的最后回应（Server-Finish）" class="headerlink" title="服务器的最后回应（Server Finish）"></a>服务器的最后回应（Server Finish）</h3><ol>
+<h3 id="服务器的最后回应（Server-Finish）">服务器的最后回应（Server Finish）</h3>
+<ol>
 <li><strong>ChangeCipherSpec</strong>：告知客户端已经切换到协商好的Cipher Suite</li>
 <li><strong>Finished</strong>：生成会话密钥，加密Finish消息发送给客户端，以验证加解密通道建立成功</li>
 </ol>
-<h3 id="交换数据"><a href="#交换数据" class="headerlink" title="交换数据"></a>交换数据</h3><p>双方使用相同的会话密钥，对数据进行对称加密，交换数据，完成通信</p>
-<h2 id="TLS应用——HTTPS"><a href="#TLS应用——HTTPS" class="headerlink" title="TLS应用——HTTPS"></a>TLS应用——HTTPS</h2><h3 id="CA证书"><a href="#CA证书" class="headerlink" title="CA证书"></a>CA证书</h3><p><strong>Certificate Authority</strong>，是负责管理和签发证书的第三方机构，浏览器不可能认识所有的网站，但可以认识几个CA机构，如果要访问的网站有<strong>CA证书</strong>，那么就能证明这个网站是安全的网站</p>
+<h3 id="交换数据">交换数据</h3>
+<p>双方使用相同的会话密钥，对数据进行对称加密，交换数据，完成通信</p>
+<h2 id="TLS应用——HTTPS">TLS应用——HTTPS</h2>
+<h3 id="CA证书">CA证书</h3>
+<p><strong>Certificate Authority</strong>，是负责管理和签发证书的第三方机构，浏览器不可能认识所有的网站，但可以认识几个CA机构，如果要访问的网站有<strong>CA证书</strong>，那么就能证明这个网站是安全的网站</p>
 <p>服务方 S 向第三方机构CA提交申请，如申请通过，CA会向申请者颁发证书，证书包括：</p>
 <blockquote>
 <p>申请者公钥、申请者的组织信息和个人信息、签发机构 CA 的信息、有效时间、证书序列号等信息的明文，同时包含一个签名</p>
 </blockquote>
 <p>使用散列函数计算公开的明文信息的信息摘要，然后，采用CA的私钥对信息摘要进行加密，密文即签名；</p>
 <p>客户端使用CA公钥解密，如果信息摘要没有发送变化，则证书未被修改，证明可信</p>
-<h3 id="HTTPS过程"><a href="#HTTPS过程" class="headerlink" title="HTTPS过程"></a>HTTPS过程</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HTTPS</span> = HTTP + TLS</span><br></pre></td></tr></table></figure>
-<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231125150953900.png" alt="image-20231125150953900" style="zoom:40%;" /></p>
-<h3 id="后续的问题"><a href="#后续的问题" class="headerlink" title="后续的问题"></a>后续的问题</h3><ul>
-<li>https的缺点 <ul>
+<h3 id="HTTPS过程">HTTPS过程</h3>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HTTPS</span> = HTTP + TLS</span><br></pre></td></tr></table></figure>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231125150953900.png" alt="image-20231125150953900" style="zoom:40%;" />
+<h3 id="后续的问题">后续的问题</h3>
+<ul>
+<li>https的缺点
+<ul>
 <li>https保证了通信的安全，但带来了加密解密消耗计算机cpu资源的问题 ，不过，有专门的https加解密硬件服务器</li>
 </ul>
 </li>
-<li>各大互联网公司，百度、淘宝、支付宝、知乎都使用https协议，为什么？ <ul>
+<li>各大互联网公司，百度、淘宝、支付宝、知乎都使用https协议，为什么？
+<ul>
 <li>支付宝涉及到金融，所以出于安全考虑采用https这个，可以理解，为什么百度、知乎等也采用这种方式？为了防止运营商劫持！http通信时，运营商在数据中插入各种广告，用户看到后，怒火发到互联网公司，其实这些坏事都是运营商(移动、联通、电信)干的，用了https，运营商就没法插播广告篡改数据了</li>
 </ul>
 </li>

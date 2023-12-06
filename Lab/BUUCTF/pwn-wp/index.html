@@ -362,7 +362,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">503</span> In Total
+              Words <span class="post-count">558</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -436,7 +436,9 @@
 <h2 id="level0">level0</h2>
 <p><code>ret2text</code>，没什么特别的</p>
 <h2 id="第五空间2019-决赛-PWN5">[第五空间2019 决赛]PWN5</h2>
+<p>格式化字符串漏洞</p>
 <h2 id="jarvisoj-level2">jarvisoj_level2</h2>
+<p>开启NX保护，没有可执行段，<code>ret2libc</code>题目，类似ctf wiki的ret2libc1，已经给出<code>system</code>的plt表项和<code>/bin/sh</code>字符串，可以使用<code>elf.symbols['system']</code>直接获得plt表项</p>
 <h2 id="ciscn-2019-n-8">ciscn_2019_n_8</h2>
 <p>程序的保护措施都开了，但这道题是一个逻辑绕过，跟溢出无关，核心是下面一段代码，只要使<code>var[13]</code>等于<code>17</code>即可</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( *(_QWORD *)&amp;var[<span class="number">13</span>] == <span class="number">17LL</span> )</span><br><span class="line">      system(<span class="string">&quot;/bin/sh&quot;</span>);</span><br></pre></td></tr></table></figure>

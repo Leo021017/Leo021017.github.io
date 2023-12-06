@@ -410,6 +410,80 @@
   <!-- top end -->
   
 
+  <a href="/course/ComputerNetwork/network-device/">
+    <h2 class="post-title">
+      网络设备
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      在计网中接触了很多的网络设备，但对这些网络设备的功能和分类总是一知半解，导致对很多相关知识理解不全面，这里总结梳理一下
+参考文章：计算机网络各层网络设备（中继器、集线器、网桥、交换机、路由器、网关）总结_计算机网络各层设备-CSDN博客
+物理层设备
+中继器
+中继器（RP repeater）又称转发器，主要功能是将信号整形并放大再转发出去，缓解物理信号的衰减，从而扩大网络传输距离
+由于工作在物......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-12-06
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/Lab/CTF-Wiki/pwn-wp/">
+    <h2 class="post-title">
+      CTF Wiki PWN Exp
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      ret2lic1
+程序给出了system的plt和字符串/bin/sh，直接构造payload，可以使用IDA Pro手动找system函数的plt表项地址，也可以使用pwntools的ELF对象自动找
+完整exp如下
+1234567891011#! /usr/bin/env pythonfrom pwn import *bin_sh_addr = 0x08048720# system_ad......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-30
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#PWN" title="PWN">PWN</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/Lab/BUUCTF/pwn-exp/">
     <h2 class="post-title">
       BUUCTF PWN Exp
@@ -538,18 +612,21 @@ ciscn_......
       
     </h3>
     <div class="post-content-preview">
-      HTTP代理原理HTTP存在两种代理方式：
+      HTTP代理原理
+HTTP存在两种代理方式：
 
 普通代理
 隧道代理
 
 普通代理
+
 HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理请求和连接（例如正确处理 Connection: keep-alive），同时向服务器发送请求，并将收到的响应转发给客户端
 对于连接到它的客户端来说，它是服务端；对于要连接的服务端来说，它是客户端
 
 这里也有两种代理服务器：
 
-正向代理：客户端通过修改配置......
+
+正向代理：客户端通过修......
     </div>
   </a>
   
@@ -582,7 +659,8 @@ HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理
       
     </h3>
     <div class="post-content-preview">
-      主机访问虚拟机中docker内的Mysql服务12345671. docker pull mysql:5.72. docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.73. docker update --restart=always mysql5.7		#开机自启4. 本地主机：s......
+      主机访问虚拟机中docker内的Mysql服务
+12345671. docker pull mysql:5.72. docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.73. docker update --restart=always mysql5.7		#开机自启4. 本地主机：......
     </div>
   </a>
   
@@ -615,12 +693,15 @@ HTTP 客户端向代理发送请求报文，代理服务器需要正确地处理
       
     </h3>
     <div class="post-content-preview">
-      TLSTLS (Transport Layer Security) 是在SSL3.0基础上设计的协议，实际上相当于SSL的后续版本
+      TLS
+TLS (Transport Layer Security) 是在SSL3.0基础上设计的协议，实际上相当于SSL的后续版本
 SSL/TLS是一个安全通信框架，上面可以承载HTTP协议或者SMTP/POP3协议
 TLS主要分为两层，底层的是TLS记录协议，主要负责使用对称密码对消息进行加密；上层的是TLS握手协议
 
 TLS握手过程
-客户端发出请求（ClientHello）TLS是一套加......
+
+客户端发出请求（ClientHello）
+TLS是......
     </div>
   </a>
   
@@ -743,82 +824,6 @@ HTTP
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/course/Assembly/汇编/">
-    <h2 class="post-title">
-      汇编语言程序设计（by fzy）笔记
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      寄存器
-8086/8088 CPU的寄存器共有14个，都是16位的寄存器，根据用途分为数据寄存器、段寄存器、地址寄存器和控制寄存器4种类型
-
-8086上一代CPU中的寄存器都是8位的；为保证兼容性，这四个寄存器都可以分为两个独立的8位寄存器使用。
-分别为AH、AL、BH、BL、CH、CL、DH、DL，H表示 高字节寄存器（高8位），L表示低字节寄存器（低8位）
-
-
-
-数据寄存器（通用寄存器）......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-10-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#汇编" title="汇编">汇编</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/Lab/CSAPP/lab0/">
-    <h2 class="post-title">
-      CSAPP-Lab0
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      环境搭建
-参考CSAPP一键环境配置、完成8个lab总结 - 知乎 (zhihu.com)使用docker搭建完成
-...
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-10-17
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#CSAPP-Lab" title="CSAPP-Lab">CSAPP-Lab</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -898,6 +903,14 @@ HTTP
 <div class="widget">
   <ul>
     
+    <a href="course/ComputerNetwork/network-device/">
+      <li>网络设备</li>
+    </a>
+    
+    <a href="Lab/CTF-Wiki/pwn-wp/">
+      <li>CTF Wiki PWN Exp</li>
+    </a>
+    
     <a href="Lab/BUUCTF/pwn-exp/">
       <li>BUUCTF PWN Exp</li>
     </a>
@@ -908,14 +921,6 @@ HTTP
     
     <a href="course/pwn/">
       <li>PWN入门</li>
-    </a>
-    
-    <a href="course/ComputerNetwork/proxy/">
-      <li>代理服务器原理（https, socks5）</li>
-    </a>
-    
-    <a href="other/%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">
-      <li>一些工具的配置方法</li>
     </a>
     
   </ul>
