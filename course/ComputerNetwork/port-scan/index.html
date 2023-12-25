@@ -419,72 +419,77 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <h2 id="TCP连接扫描">TCP连接扫描</h2>
-<p>若客户端想要连接服务器80端口时，会先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器(本例中为80端口)。如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端。随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器建立了连接。</p>
+<p>客户端先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器，如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端，随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器<strong>建立了连接</strong></p>
 <ul>
-<li>如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的。</li>
-<li>当客户端发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器后，如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关闭状态</li>
+<li>如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的</li>
+<li>如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关闭状态</li>
 </ul>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="keyword">sT</span>模式</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204753670-1943198352.png" alt="img"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">tcp_connect_scan_resp = sr1(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;S&quot;</span>),timeout=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(<span class="built_in">type</span>(tcp_connect_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span>(tcp_connect_scan_resp.haslayer(TCP)):</span><br><span class="line">    <span class="keyword">if</span>(tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x12</span>):</span><br><span class="line">        send_rst = sr(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;AR&quot;</span>),timeout=<span class="number">10</span>)<span class="comment"># 全连接 AR =&gt; ACK+RST</span></span><br><span class="line">        <span class="built_in">print</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> (tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x14</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"><span class="comment"># 也可以使用socket套接字直接实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">tcp_connect_scan_resp = sr1(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;S&quot;</span>),timeout=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(<span class="built_in">type</span>(tcp_connect_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span>(tcp_connect_scan_resp.haslayer(TCP)):</span><br><span class="line">    <span class="keyword">if</span>(tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x12</span>):</span><br><span class="line">        send_rst = sr(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;AR&quot;</span>),timeout=<span class="number">10</span>)<span class="comment"># 全连接 AR =&gt; ACK+RST</span></span><br><span class="line">        <span class="built_in">print</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> (tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x14</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="TCP-SYN-扫描">TCP SYN 扫描</h2>
-<p>客户端向服务器发送一个带有 SYN 标识和端口号的数据包，<strong>这种技术主要用于躲避防火墙的检测。</strong></p>
+<p>客户端向服务器发送一个带有 SYN 标识和端口号的数据包，<strong>这种技术主要用于躲避防火墙的检测，且不留下建立连接的记录</strong></p>
 <ul>
-<li>如果目标端口开发，则会返回带有 SYN 和 ACK 标识的 TCP 数据包。但是，这时客户端不会返回 RST+ACK 而是返回一个只带有 RST 标识的数据包。</li>
+<li>如果目标端口开发，则会返回带有 SYN 和 ACK 标识的 TCP 数据包。但是，这时客户端不会返回 RST+ACK 而是返回一个只带有 RST 标识的数据包</li>
 <li>如果目标端口处于关闭状态，那么同之前一样，服务器会返回一个 RST 数据包</li>
 </ul>
 <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap的-<span class="built_in">sS</span>模式</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204809004-1342453493.png" alt="img"></p>
 <h2 id="TCP-圣诞树-Xmas-Tree-扫描">TCP 圣诞树(Xmas Tree)扫描</h2>
-<p>在圣诞树扫描中，客户端会向服务器发送带有 PSH,FIN,URG 标识和端口号的数据包给服务器。</p>
+<p>客户端向服务器发送带有 PSH，FIN，URG 标识和端口号的数据包给服务器</p>
 <ul>
-<li>如果目标端口是开放的，那么不会有任何来自服务器的回应。</li>
-<li>如果服务器返回了一个带有 RST 标识的 TCP 数据包，那么说明端口处于关闭状态。</li>
-<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 状态码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定是否处于开放状态。</li>
+<li>如果目标端口是开放的，那么不会有任何来自服务器的回应</li>
+<li>如果服务器返回了一个带有 RST 标识的 TCP 数据包，那么说明端口处于关闭状态</li>
+<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 状态码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定是否处于开放状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sX模式</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204825896-570110956.png" alt="img"></p>
 <h2 id="FIN扫描">FIN扫描</h2>
-<p>FIN 扫描会向服务器发送带有 FIN 标识和端口号的 TCP 数据包。</p>
+<p>客户端向服务器发送带有 FIN 标识和端口号的 TCP 数据包</p>
 <ul>
-<li>如果没有服务器端回应则说明端口开放。</li>
-<li>如果服务器返回一个 RST 数据包，则说明目标端口是关闭的。</li>
-<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 代码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定端口状态。</li>
+<li>如果没有服务器端回应则说明端口开放</li>
+<li>如果服务器返回一个 RST 数据包，则说明目标端口是关闭的</li>
+<li>如果服务器返回了一个 ICMP 数据包，其中包含 ICMP 目标不可达错误类型3以及 ICMP 代码为1，2，3，9，10或13，则说明目标端口被过滤了无法确定端口状态</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sF模式</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204840951-2048443802.png" alt="img"></p>
 <h2 id="TCP-空扫描-Null">TCP 空扫描(Null)</h2>
-<p>在空扫描中，客户端发出的 TCP 数据包仅仅只会包含端口号而不会有其他任何的标识信息。</p>
+<p>客户端发出的 TCP 数据包仅仅只会包含端口号而不会有其他任何的标识信息</p>
 <ul>
-<li>如果目标端口是开放的则不会回复任何信息。</li>
-<li>如果服务器返回了一个 RST 数据包，则说明目标端口是关闭的。</li>
-<li>如果返回 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被服务器过滤了。</li>
+<li>如果目标端口是开放的则不会回复任何信息</li>
+<li>如果服务器返回了一个 RST 数据包，则说明目标端口是关闭的</li>
+<li>如果返回 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被服务器过滤了</li>
 </ul>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nmap</span> -<span class="meta">sN</span>模式</span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204856385-1582964864.png" alt="img"></p>
 <h2 id="TCP-ACK扫描">TCP ACK扫描</h2>
-<p>ACK 扫描不是用于发现端口开启或关闭状态的，而是用于发现服务器上是否存在有状态防火墙的。它的结果只能说明端口是否被过滤。再次强调，ACK 扫描不能发现端口是否处于开启或关闭状态。</p>
+<p>客户端会发送一个带有 ACK 标识和端口号的数据包给服务器</p>
+<blockquote>
+<p>ACK 扫描不是用于发现端口开启或关闭状态的，而是用于发现服务器上是否存在有状态防火墙的。它的结果只能说明端口是否被过滤，不能说明端口是否处于开启或关闭状态</p>
+</blockquote>
 <ul>
-<li>客户端会发送一个带有 ACK 标识和端口号的数据包给服务器。如果服务器返回一个带有 RST 标识的 TCP 数据包，则说明端口没有被过滤，不存在状态防火墙。</li>
-<li>如果目标服务器没有任何回应或者返回ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被过滤且存在状态防火墙。</li>
+<li>如果服务器返回一个带有 RST 标识的 TCP 数据包，则说明端口没有被过滤，不存在状态防火墙</li>
+<li>如果目标服务器没有任何回应或者返回 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明端口被过滤且存在状态防火墙</li>
 </ul>
 <h2 id="TCP窗口扫描">TCP窗口扫描</h2>
-<p>TCP 窗口扫描的流程同 ACK 扫描类似，同样是客户端向服务器发送一个带有 ACK 标识和端口号的 TCP 数据包，但是这种扫描能够用于发现目标服务器端口的状态。在 ACK 扫描中返回 RST 表明没有被过滤，但在窗口扫描中，当收到返回的 RST 数据包后，它会检查窗口大小的值。</p>
+<p>TCP 窗口扫描的流程同 ACK 扫描类似，同样是客户端向服务器发送一个带有 ACK 标识和端口号的 TCP 数据包，但是这种扫描能够用于发现目标服务器端口的状态</p>
+<p>在 ACK 扫描中返回 RST 表明没有被过滤，但在窗口扫描中，当收到返回的 RST 数据包后，它会检查窗口大小的值</p>
 <ul>
-<li>如果窗口大小的值是个非零值，则说明目标端口是开放的。</li>
-<li>如果返回的 RST 数据包中的窗口大小为0，则说明目标端口是关闭的。</li>
+<li>如果窗口大小的值是个非零值，则说明目标端口是开放的</li>
+<li>如果返回的 RST 数据包中的窗口大小为0，则说明目标端口是关闭的</li>
 </ul>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -<span class="keyword">sW模式</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204920913-1955130735.png" alt="img"></p>
 <h2 id="UDP扫描">UDP扫描</h2>
-<p>TCP 是面向连接的协议，而UDP则是无连接的协议。</p>
-<p>面向连接的协议会先在客户端和服务器之间建立通信信道，然后才会开始传输数据。如果客户端和服务器之间没有建立通信信道，则不会有任何产生任何通信数据。</p>
-<p>无连接的协议则不会事先建立客户端和服务器之间的通信信道，只要客户端到服务器存在可用信道，就会假设目标是可达的然后向对方发送数据。</p>
+<p>TCP 是面向连接的协议，而UDP则是无连接的协议</p>
+<p>面向连接的协议会先在客户端和服务器之间建立通信信道，然后才会开始传输数据。如果客户端和服务器之间没有建立通信信道，则不会有任何产生任何通信数据</p>
+<p>无连接的协议则不会事先建立客户端和服务器之间的通信信道，只要客户端到服务器存在可用信道，就会假设目标是可达的然后向对方发送数据</p>
+<p>客户端会向服务器发送一个带有端口号的 UDP 数据包</p>
 <ul>
-<li>客户端会向服务器发送一个带有端口号的 UDP 数据包。如果服务器回复了 UDP 数据包，则目标端口是开放的。</li>
-<li>如果服务器返回了一个 ICMP 目标不可达的错误和代码3，则意味着目标端口处于关闭状态。</li>
-<li>如果服务器返回一个 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明目标端口被服务器过滤了。</li>
-<li>如果服务器没有任何相应客户端的 UDP 请求，则可以断定目标端口可能是开放或被过滤的，无法判断端口的最终状态。</li>
+<li>如果服务器回复了 UDP 数据包，则目标端口是开放的</li>
+<li>如果服务器返回了一个 ICMP 目标不可达的错误和代码3，则意味着目标端口处于关闭状态</li>
+<li>如果服务器返回一个 ICMP 错误类型3且代码为1，2，3，9，10或13的数据包，则说明目标端口被服务器过滤了</li>
+<li>如果服务器没有任何相应客户端的 UDP 请求，则可以断定目标端口可能是开放或被过滤的，无法判断端口的最终状态</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">53</span></span><br><span class="line">dst_timeout=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">udp_scan</span>(<span class="params">dst_ip,dst_port,dst_timeout</span>):</span></span><br><span class="line">    udp_scan_resp = sr1(IP(dst=dst_ip)/UDP(dport=dst_port),timeout=dst_timeout)</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">str</span>(<span class="built_in">type</span>(udp_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">        retrans = []</span><br><span class="line">        <span class="keyword">for</span> count <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">3</span>):</span><br><span class="line">            retrans.append(sr1(IP(dst=dst_ip)/UDP(dport=dst_port),timeout=dst_timeout))</span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> retrans:</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">str</span>(<span class="built_in">type</span>(item))!=<span class="string">&quot;&quot;</span>):</span><br><span class="line">                udp_scan(dst_ip,dst_port,dst_timeout)</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">&quot;Open|Filtered&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> (udp_scan_resp.haslayer(UDP)):</span><br><span class="line">        <span class="keyword">return</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span>(udp_scan_resp.haslayer(ICMP)):</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).code)==<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">return</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line">        <span class="keyword">elif</span>(<span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).<span class="built_in">type</span>)==<span class="number">3</span> <span class="keyword">and</span> <span class="built_in">int</span>(udp_scan_resp.getlayer(ICMP).code) <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">13</span>]):</span><br><span class="line">            <span class="keyword">return</span>( <span class="string">&quot;Filtered&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> udp_scan(dst_ip,dst_port,dst_timeout)</span><br></pre></td></tr></table></figure>
 <h2 id="代码部分（半连接、ACK、FIN、Null、Xmas、windows）">代码部分（半连接、ACK、FIN、Null、Xmas、windows）</h2>
