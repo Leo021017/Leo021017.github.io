@@ -410,6 +410,43 @@
   <!-- top end -->
   
 
+  <a href="/course/ComputerNetwork/port-scan/">
+    <h2 class="post-title">
+      端口扫描的几种方式
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      TCP连接扫描
+客户端先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器，如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端，随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器建立了连接
+
+如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的
+如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-10-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/course/Assembly/汇编/">
     <h2 class="post-title">
       汇编语言程序设计（by fzy）笔记
@@ -770,49 +807,6 @@ enc......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/Transformer/Swing Transformer/">
-    <h2 class="post-title">
-      Swin Transformer
-    </h2>
-    <h3 class="post-subtitle">
-      介绍Swin Transformer网络结构
-    </h3>
-    <div class="post-content-preview">
-      Vision Transformer
-
-
-整体架构：
-
-构建patch：将一张图片分成了9个小块，即9个patch，再把每一个patch都 ”拉长“ （一次卷积计算）成一个向量，这样就转换成了一个vector set，然后通过一个全连接层，做一个特征整合和维度变换
-
-
-
-
-位置编码：在图像中，位置编码尤为重要，两种方法，一种是在每一个vector前面加上一个位置ID，另一种方法是加上一个空间......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -896,6 +890,10 @@ enc......
 <div class="widget">
   <ul>
     
+    <a href="../../course/ComputerNetwork/Linux-Network-Programming/">
+      <li>Linux网络编程入门与实践</li>
+    </a>
+    
     <a href="../../course/ComputerNetwork/network-device/">
       <li>网络设备</li>
     </a>
@@ -910,10 +908,6 @@ enc......
     
     <a href="../../Lab/BUUCTF/pwn-wp/">
       <li>BUUCTF PWN Write up</li>
-    </a>
-    
-    <a href="../../course/pwn/">
-      <li>PWN入门</li>
     </a>
     
   </ul>
@@ -978,7 +972,7 @@ enc......
         <p class="copyright text-muted">
           Copyright &copy;
           Leo
-          2023
+          2024
           <!-- <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
