@@ -428,6 +428,9 @@
 <p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/1461466-20200602204753670-1943198352.png" alt="img"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/python</span></span><br><span class="line"><span class="comment"># 也可以使用socket套接字直接实现</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logging.getLogger(<span class="string">&quot;scapy.runtime&quot;</span>).setLevel(logging.ERROR)</span><br><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">dst_ip = <span class="string">&quot;10.0.0.1&quot;</span></span><br><span class="line">src_port = RandShort()</span><br><span class="line">dst_port=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">tcp_connect_scan_resp = sr1(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;S&quot;</span>),timeout=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">str</span>(<span class="built_in">type</span>(tcp_connect_scan_resp))==<span class="string">&quot;&quot;</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span>(tcp_connect_scan_resp.haslayer(TCP)):</span><br><span class="line">    <span class="keyword">if</span>(tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x12</span>):</span><br><span class="line">        send_rst = sr(IP(dst=dst_ip)/TCP(sport=src_port,dport=dst_port,flags=<span class="string">&quot;AR&quot;</span>),timeout=<span class="number">10</span>)<span class="comment"># 全连接 AR =&gt; ACK+RST</span></span><br><span class="line">        <span class="built_in">print</span>( <span class="string">&quot;Open&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> (tcp_connect_scan_resp.getlayer(TCP).flags == <span class="number">0x14</span>):</span><br><span class="line">    <span class="built_in">print</span>( <span class="string">&quot;Closed&quot;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="TCP-SYN-扫描">TCP SYN 扫描</h2>
+<blockquote>
+<p>Nmap的默认扫描方式</p>
+</blockquote>
 <p>客户端向服务器发送一个带有 SYN 标识和端口号的数据包，<strong>这种技术主要用于躲避防火墙的检测，且不留下建立连接的记录</strong></p>
 <ul>
 <li>如果目标端口开发，则会返回带有 SYN 和 ACK 标识的 TCP 数据包。但是，这时客户端不会返回 RST+ACK 而是返回一个只带有 RST 标识的数据包</li>
@@ -514,7 +517,7 @@
           
           
           <li class="next">
-            <a href="/course/Assembly/汇编/" data-toggle="tooltip" data-placement="top" title="汇编语言程序设计（by fzy）笔记">Next Post &rarr;</a>
+            <a href="/course/Assembly/汇编基础/" data-toggle="tooltip" data-placement="top" title="汇编语言程序设计（by fzy）笔记">Next Post &rarr;</a>
           </li>
           
         </ul>

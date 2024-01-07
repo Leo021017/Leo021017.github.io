@@ -410,40 +410,6 @@
   <!-- top end -->
   
 
-  <a href="/course/ComputerNetwork/Linux-Network-Programming/">
-    <h2 class="post-title">
-      Linux网络编程入门与实践
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      1根据《网络空间安全产品开发实践》（by lg老师）课程编写 
-12345678910111213141516171819202122232425// 一、创建套接字/*domain：套接字的地址族，常见的有AF_INET（IPv4地址族）和AF_INET6（IPv6地址族）type：套接字类型，常见的有SOCK_STREAM（面向连接的可靠传输）和SOCK_DGRAM（无连接的不可靠传输）......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-12-27
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
   <a href="/course/ComputerNetwork/network-device/">
     <h2 class="post-title">
       网络设备
@@ -821,6 +787,43 @@ HTTP
 </div>
 <hr>
 
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/course/ComputerNetwork/port-scan/">
+    <h2 class="post-title">
+      端口扫描的几种方式
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      TCP连接扫描
+客户端先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器，如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端，随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器建立了连接
+
+如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的
+如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-10-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
 
   <!-- Pager -->
   <ul class="pager">
@@ -900,10 +903,6 @@ HTTP
 <div class="widget">
   <ul>
     
-    <a href="course/ComputerNetwork/Linux-Network-Programming/">
-      <li>Linux网络编程入门与实践</li>
-    </a>
-    
     <a href="course/ComputerNetwork/network-device/">
       <li>网络设备</li>
     </a>
@@ -918,6 +917,10 @@ HTTP
     
     <a href="Lab/BUUCTF/pwn-wp/">
       <li>BUUCTF PWN Write up</li>
+    </a>
+    
+    <a href="course/pwn/">
+      <li>PWN入门</li>
     </a>
     
   </ul>
