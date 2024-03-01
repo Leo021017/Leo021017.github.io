@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">2</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">244</span> In Total
+              Words <span class="post-count">574</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -426,6 +426,12 @@ $$<br>
 S_{t}=f(W_{input}X+W_SS_{t-1}+b)<br>
 $$</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916174738274.png" alt="image-20230916174738274" style="zoom:33%;" />
+<p>如果是普通的神经网络，相同的输入会产生相同的输出，但这在很多序列数据（如：nlp任务）中是不科学的，nlp要求考虑词语在句子中的上下文，这要求神经网络具有 “记忆力”，序列中每一个数据进行计算时都要同时考虑前一个数据计算的结果，注意下图展示的RNN计算过程中不是三个network，而是同一个network在不同时间点被使用了三次</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20240203202643783.png" alt="image-20240203202643783"/>
+<p>根据存储的要放在下一次计算中的数据来源的不同，RNN分成两种，一般来说Jordan Network的效果要好一些，因为输出层的结果有明显的target来约束，可以明确神经网络学到了什么东西</p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20240203203128987.png" alt="image-20240203203128987"></p>
+<p>但此时RNN学到的只有上文信息，没有下文信息，为了同时考虑上下文信息，提出了一种双向RNN（<strong>Bidirectional RNN</strong>），将从两边学习到的信息同时考虑得到最终的结果</p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20240203203444442.png" alt="image-20240203203444442"></p>
 <p>注：RNN假定不同时刻共享参数矩阵$W_{s}$</p>
 </li>
 <li>
@@ -439,6 +445,12 @@ $$</p>
 </li>
 </ul>
 <h1>LSTM</h1>
+<blockquote>
+<p>Long Short-term Memory<br>
+“比较长的短期记忆网络”</p>
+</blockquote>
+<p>四个输入分别是input vector和控制三个门的信号，其中三个信号一般都是sigmoid函数的输出，这样在0、1之间表示这个gate被打开的程度</p>
+<p><img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20240203204012891.png" alt="image-20240203204012891"></p>
 <ul>
 <li>
 <p>传统RNN的记忆难以长期维持，于是引入LSTM模型，相当于多加了一个记事本</p>
