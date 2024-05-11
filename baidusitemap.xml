@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://leo021017.github.io/course/DSA/leetcode%20hot%20100/</loc>
+    <lastmod>2024-04-25</lastmod>
+  </url>
+  <url>
+    <loc>https://leo021017.github.io/course/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</loc>
+    <lastmod>2024-03-11</lastmod>
+  </url>
+  <url>
     <loc>https://leo021017.github.io/course/ComputerNetwork/network-device/</loc>
     <lastmod>2023-12-06</lastmod>
   </url>

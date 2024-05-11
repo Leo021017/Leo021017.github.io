@@ -410,6 +410,111 @@
   <!-- top end -->
   
 
+  <a href="/other/深信服认证/">
+    <h2 class="post-title">
+      深信服认证题目摘要
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      客观题
+网络安全概述
+
+
+
+
+
+
+怪不得17年开始全国成立那么多网络空间安全学院
+
+
+
+“网络运营者为用户办理网络接入、域名注册服务，办理固定电话、移动电话等入网手续，或者为用户提供信息发布、即时通讯等服务，应当要求用户提供真实身份信息。”
+原来实名制是这个意思
+
+渗透测试基础
+
+
+根域名服务器不提供具体的域名解析服务
+
+
+
+
+AAAA 是将域名解析到IPv6
+
+
+
+
+
+
+
+
+HTTP
+
+
+......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-11-19
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#others" title="others">others</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/course/ComputerNetwork/port-scan/">
+    <h2 class="post-title">
+      端口扫描的几种方式
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      TCP连接扫描
+客户端先发送一个带有 SYN 标识和端口号的 TCP 数据包给服务器，如果端口是开放的，则服务器会接受这个连接并返回一个带有 SYN 和 ACK 标识的数据包给客户端，随后客户端会返回带有 ACK 和 RST 标识的数据包，此时客户端与服务器建立了连接
+
+如果完成一次三次握手，那么服务器上对应的端口肯定就是开放的
+如果服务器端返回一个带 RST 标识的数据包，则说明端口处于关......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-10-18
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#计算机网络" title="计算机网络">计算机网络</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/course/Assembly/汇编基础/">
     <h2 class="post-title">
       汇编语言程序设计（by fzy）笔记
@@ -652,14 +757,11 @@ $$
       梯度下降
 
 
-引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即梯度下降法
+引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即梯度下降法（GD）
 
 
 
-随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值
-
-
-更......
+随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值......
     </div>
   </a>
   
@@ -714,92 +816,6 @@ h_{......
   <div class="tags">
     
     <a href="/tags/#GNN" title="GNN">GNN</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/CNN/Transformer/">
-    <h2 class="post-title">
-      Transformer
-    </h2>
-    <h3 class="post-subtitle">
-      介绍Transformer的基本网络结构
-    </h3>
-    <div class="post-content-preview">
-      Transformer概述
-
-
-核心是seq2seq模型，能处理很多的问题；一般的seq2seq模型分成两个部分：encoder和decoder，encoder负责处理input sequence，把处理结果给decoder，由decoder决定输出什么样的sequence
-
-
-
-encoder是Transformer的核心，将特征更好地提取出来，decoder在具体的任务中使用
-
-
-enc......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-31
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/DeepLearning/Transformer/Swing Transformer/">
-    <h2 class="post-title">
-      Swin Transformer
-    </h2>
-    <h3 class="post-subtitle">
-      介绍Swin Transformer网络结构
-    </h3>
-    <div class="post-content-preview">
-      Vision Transformer
-
-
-整体架构：
-
-构建patch：将一张图片分成了9个小块，即9个patch，再把每一个patch都 ”拉长“ （一次卷积计算）成一个向量，这样就转换成了一个vector set，然后通过一个全连接层，做一个特征整合和维度变换
-
-
-
-
-位置编码：在图像中，位置编码尤为重要，两种方法，一种是在每一个vector前面加上一个位置ID，另一种方法是加上一个空间......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-07-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Transformer" title="Transformer">Transformer</a>
     
   </div>
   
@@ -890,6 +906,14 @@ enc......
 <div class="widget">
   <ul>
     
+    <a href="../../course/DSA/leetcode%20hot%20100/">
+      <li>(no title)</li>
+    </a>
+    
+    <a href="../../course/%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">
+      <li>(no title)</li>
+    </a>
+    
     <a href="../../course/ComputerNetwork/network-device/">
       <li>网络设备</li>
     </a>
@@ -900,14 +924,6 @@ enc......
     
     <a href="../../Lab/BUUCTF/pwn-exp/">
       <li>BUUCTF PWN Exp</li>
-    </a>
-    
-    <a href="../../Lab/BUUCTF/pwn-wp/">
-      <li>BUUCTF PWN Write up</li>
-    </a>
-    
-    <a href="../../course/pwn/">
-      <li>PWN入门</li>
     </a>
     
   </ul>

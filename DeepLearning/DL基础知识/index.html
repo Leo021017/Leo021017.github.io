@@ -358,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">3</span> Minutes
+              Estimated Reading Time <span class="post-count">4</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">936</span> In Total
+              Words <span class="post-count">1.2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -421,34 +421,49 @@
         <h1>梯度下降</h1>
 <ul>
 <li>
-<p>引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即<strong>梯度下降法</strong></p>
+<p>引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即<strong>梯度下降法（GD）</strong></p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916145705344.png" alt="image-20230916145705344" style="zoom:25%;" />
 </li>
 <li>
 <p>随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916145839905.png" alt="image-20230916145839905" style="zoom:30%;" />
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916150054669.png" alt="image-20230916150054669" style="zoom:31%;" />
-<p>更一般的形式如下：要优化的参数是$\theta$，首先求出$L$关于$\theta$的偏导，也就是梯度值，然后对每一个点做一个平均，$\theta$沿着梯度的负方向移动就可以让损失函数更小</p>
+<p>更一般的形式如下：要优化的参数是$\theta$，首先求出$x_i$点处损失函数$L$关于$\theta$的偏导$\nabla_{\theta}L(f(x_i,\theta),y_i)$，对$N$个点求和取平均得到梯度$g$，$\theta$沿着梯度的负方向每次移动一个$\varepsilon$（learning rate）就可以让损失函数更小</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916150324899.png" alt="image-20230916150324899" style="zoom:16%;" />
 </li>
 <li>
 <p>优化方法：</p>
 <ul>
 <li>
-<p><strong>随机梯度下降</strong>：如果样本点很多，计算的内存开销较大，于是每次从所有样本中随机选取小部分样本拿来训练，并且不重复</p>
+<p><strong>随机梯度下降（SGD）</strong>：如果样本点很多，计算的内存开销较大，就每次从所有样本中随机选取小部分样本拿来训练，并且不重复</p>
 </li>
 <li>
-<p><strong>动量随机梯度下降</strong>：为了防止在 “山谷” 之间 “振荡” ，每次增加一个阻尼，每次计算保留一部分上一次计算的梯度，加在一起就是新的梯度</p>
+<p><strong>动量随机梯度下降</strong>：为了防止在 “山谷” 之间 “振荡” ，每次增加一个阻尼，每次计算保留一部分上一次计算的梯度（历史动量），加在一起就是新的梯度<br>
+$$<br>
+v \leftarrow \alpha v-\varepsilon g \<br>
+\theta \leftarrow \theta + v<br>
+$$<br>
+其中$\alpha$用来控制历史动量对新方向的影响程度</p>
+<img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916151344967.png" alt="image-20230916151344967" style="zoom:33%;" />
 </li>
-</ul>
-  <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916151344967.png" alt="image-20230916151344967" style="zoom:33%;" />
-<ul>
 <li>
-<p><strong>AdaGrad算法</strong>：在训练过程中希望梯度一开始快速找到下降方向，学习率要大，后期要找到最小值，学习率要小。$r$是梯度在时间上的积累量，将$\sqrt{r}$放在学习率的分母上，可以实现自动调整。RMSProp算法在$r$更新的式子中加入了可以手动调节的$\rho$，$r\leftarrow \rho r+(1-\rho)g^2$</p>
+<p><strong>AdaGrad算法</strong>：在训练过程中希望梯度一开始快速找到下降方向，学习率要大，后期要找到最小值，不能一直震荡，学习率要小。于是引入一个新的量$r$表示梯度在时间上的积累量，然后将$\sqrt{r}$放在学习率的分母上，可以实现自动调整。其中$\delta$是为了稳定数值计算<br>
+$$<br>
+r \leftarrow r+g^2 \<br>
+\theta \leftarrow \theta - \frac{\varepsilon}{\sqrt{r}+\delta}<br>
+$$<br>
+但AdaGrad算法可能会使学习率过早下降，于是后来提出的RMSProp算法在$r$更新的式子中加入了可以手动调节的$\rho$<br>
+$$<br>
+r\leftarrow \rho r+(1-\rho)g^2<br>
+$$</p>
 </li>
 <li>
 <p><strong>Adam算法</strong>：结合自适应学习和动量两种方法，自适应动量由$s$表示<br>
 $$<br>
+s \leftarrow \rho_1s+(1-\rho_1)g \<br>
+r \leftarrow \rho_2r+(1-\rho_2)g^2 \<br>
+\hat{s} \leftarrow \frac{s}{1-\rho_1^t} \<br>
+\hat{r} \leftarrow \frac{r}{1-\rho_2^t} \<br>
 \theta \leftarrow \theta-\frac{\epsilon s}{\sqrt r+\delta}g<br>
 $$</p>
 </li>
@@ -458,14 +473,17 @@ $$</p>
 <h1>反向传播</h1>
 <ul>
 <li>
-<p>引入：下面是一个线性拟合的例子，$w$和$b$的随机化一个初始值，通过损失函数去反向更新$w$和$b$的值。我们需要计算损失函数$L$对$w$和$b$的梯度值，为了方便计算，先计算$L$对$y$的偏导，然后通过链式法则去计算$L$对$w$和$b$的偏导，然后通过梯度下降更新$w$和$b$的值，这就是<strong>反向传播</strong></p>
+<p>引入：下面是一个线性拟合的例子，$w$和$b$各自随机化一个初始值，通过损失函数去反向更新$w$和$b$的值。根据上面的梯度下降算法，我们需要先计算损失函数$L$对$w$和$b$的梯度值（偏导数），为了方便计算，先计算$L$对$y$的偏导，然后通过链式法则去计算$L$对$w$和$b$的偏导。然后沿着梯度的反方向更新$w$和$b$的值。沿着黄色箭头<strong>从后往前计算参数梯度值</strong>的方法就是<strong>反向传播</strong></p>
+<blockquote>
+<p>反向传播实际就是神经网络中加速计算参数梯度值的方法</p>
+</blockquote>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154220136.png" alt="image-20230916154220136" style="zoom:43%;" />
 </li>
 <li>
-<p>计算机中的模块化计算：</p>
-<p>下面是正向计算图</p>
+<p>计算机中的模块化计算（computational graph, 计算图）：</p>
+<p>下面是正向计算图，输入$x$、$w_1$、$b_1$，输出损失函数$L$的值</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154558833.png" alt="image-20230916154558833" style="zoom:33%;" />
-<p>下面是反向传播计算图</p>
+<p>下面是反向传播计算图，</p>
 <img src="https://blog-leo021017.oss-cn-beijing.aliyuncs.com/img/image-20230916154730452.png" alt="image-20230916154730452" style="zoom:33%;" />
 </li>
 <li>
