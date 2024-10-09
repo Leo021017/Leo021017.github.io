@@ -410,40 +410,6 @@
   <!-- top end -->
   
 
-  <a href="/other/一些配置/">
-    <h2 class="post-title">
-      一些工具的配置方法
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      主机访问虚拟机中docker内的Mysql服务
-12345671. docker pull mysql:5.72. docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql:5.73. docker update --restart=always mysql5.7		#开机自启4. 本地主机：......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by Leo on
-    2023-11-25
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#others" title="others">others</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
   <a href="/course/ComputerNetwork/TLS/">
     <h2 class="post-title">
       TLS协商过程
@@ -814,6 +780,46 @@ $$
 </div>
 <hr>
 
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/DeepLearning/DL基础知识/">
+    <h2 class="post-title">
+      深度学习的一些基础知识
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      梯度下降
+
+
+引入：  对下图的三个点进行线性拟合，要优化的参数是$b$，使得三个点到直线的距离最小，我们可以求出距离之和的式子（最小二乘），作为损失函数，在初中我们可以对这个二次函数求最值，现在换个思路，即梯度下降法（GD）
+
+
+
+随机初始化一个$b$点，求出当前点的斜率，在乘一个常数$\varepsilon$，对$b$进行更新，得到的新值比之前的损失函数更小，然后不断迭代，就找到了最小值......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by Leo on
+    2023-09-16
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
 
   <!-- Pager -->
   <ul class="pager">
@@ -897,12 +903,8 @@ $$
 <div class="widget">
   <ul>
     
-    <a href="../../course/DSA/note/">
-      <li>(no title)</li>
-    </a>
-    
     <a href="../../course/OS/Lab_WriteUp/">
-      <li>(no title)</li>
+      <li>xv6实验详解</li>
     </a>
     
     <a href="../../course/DSA/leetcode%20hot%20100/">
@@ -915,6 +917,10 @@ $$
     
     <a href="../../course/ComputerNetwork/network-device/">
       <li>网络设备</li>
+    </a>
+    
+    <a href="../../Lab/CTF-Wiki/pwn-wp/">
+      <li>CTF Wiki PWN Exp</li>
     </a>
     
   </ul>

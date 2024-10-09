@@ -133,7 +133,7 @@
   <link rel="canonical" href="https://leo021017.github.io/course/OS/Lab_WriteUp/">
   <title>
     
-      Leo&#39;s Blog
+      xv6实验详解 - Leo&#39;s Blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -306,19 +306,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/myBKG.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
@@ -343,8 +343,10 @@
           <div class="post-heading">
             <div class="tags">
               
+              <a class="tag" href="/tags/#xv6" title="xv6">xv6</a>
+              
             </div>
-            <h1></h1>
+            <h1>xv6实验详解</h1>
             <h2 class="subheading"></h2>
             <span class="meta">
               Posted by Leo on
@@ -356,11 +358,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">14</span> Minutes
+              Estimated Reading Time <span class="post-count">15</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">3.1k</span> In Total
+              Words <span class="post-count">3.2k</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -512,15 +514,18 @@
 <p>系统调用流程还没搞清楚</p>
 <p>实验中的trapframe还没搞清楚</p>
 <p><code>defs.h</code></p>
+<h1>Lab3:</h1>
+<h1>About XV6</h1>
+<p>So why did we need <code>exit()</code> in xv6?</p>
+<p>Because, when building a program with <code>gcc</code> for linux for instance, the tool chain add the required <code>exit</code> call: see <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Crt0">https://en.wikipedia.org/wiki/Crt0</a></p>
+<p>In short, on linux, your program don’t start at <code>main</code> but at <code>start</code>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* get argc, argv, env) */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> r = main(argc, argv, envp);  <span class="comment">/*  &lt;&lt; start calls the actual main */</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">exit</span>(r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>On xv6, on contrary, the real starting point is <code>main</code> when OS try to return from <code>main</code>, it has no address to pop what cause a segfault</p>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
-          
-          <li class="previous">
-            <a href="/course/DSA/note/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
-          </li>
           
           
           <li class="next">
@@ -580,7 +585,7 @@
       </a>
     </li>
     <!-- <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=&body=Hi,I found this website and thought you might like it https://leo021017.github.io/course/OS/Lab_WriteUp/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=xv6实验详解&body=Hi,I found this website and thought you might like it https://leo021017.github.io/course/OS/Lab_WriteUp/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li> -->
@@ -612,6 +617,17 @@
 
       <!-- Catalog: Tabe of Content -->
       <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Lab1: Xv6 and Unix utilities</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#sleep"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">sleep</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#pingpong"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">pingpong</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#primes"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">primes</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#find"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">find</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#xargs"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">xargs</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Lab2: System calls</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#system-call-tracing"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">system call tracing</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#sysinfo"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">sysinfo</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Lab3:</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">About XV6</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
 
 
 
